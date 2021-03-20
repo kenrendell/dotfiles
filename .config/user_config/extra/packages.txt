@@ -1,0 +1,83 @@
+# Essential packages
+    * xorg
+    * xorg-dev
+    * xinit
+    * dkms
+    * linux-headers-$(uname -r)
+    * build-essential
+    * tlp
+    * tlp-rdw
+    * sudo
+
+# Network
+    * network-manager
+    * speedtest-cli
+    * netselect-apt
+    * ufw
+    * curl
+    * wget
+
+# Window Manager
+    * bspwm
+    * sxhkd
+    * polybar
+
+# Utilities
+    * unclutter-xfixes
+    * picom
+    * xautolock
+    * dunst
+    * xbindkeys
+    * arandr
+    * redshift
+    * playerctl
+    * pulseaudio
+    * pavucontrol
+    * udiskie
+    * light
+    * xsel
+    * xclip
+
+# Conky
+    * conky-all
+    * lm-sensors
+    * hddtemp
+
+# Command-line
+    * neovim
+    * zsh
+    * silversearcher-ag
+    * htop
+    * neofetch
+    * git
+    * bc
+    * time
+    * tree
+
+# Linter
+    * shellcheck
+    * pylint
+
+# Appearance
+    * fonts-jetbrains-mono
+    * fonts-symbola
+    * arc-theme
+    * breeze-cursor-theme
+    * papirus-icon-theme
+    * lxappearance
+
+# Media
+    * feh
+    * pcmanfm
+    * firefox-esr
+    * atril
+    * ristretto
+    * vokoscreen-ng
+    * moc
+    * neomutt
+    * mpv
+
+# OTHERS
+    * deepin-screenshot
+    . libreoffice
+    . gimp
