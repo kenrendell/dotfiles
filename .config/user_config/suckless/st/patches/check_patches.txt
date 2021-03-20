@@ -1,0 +1,15 @@
+# version: st-0.8.4
+# Patch from top to bottom!
+
+[*] st-newterm-0.8.2.diff
+[*] st-anysize-20201003-407a3d0.diff
+[*] st-clipboard-0.8.3.diff
+[*] st-scrollback-20201205-4ef0cbd.diff
+[*] st-scrollback-mouse-20191024-a2c479c.diff
+[*] st-scrollback-mouse-altscreen-20200416-5703aa0.diff
+[*] st-boxdraw_v2-0.8.3.diff    (patch using: patch -p1 < ...)
+[*] st-font2-20190416-ba72400.diff
+[*] st-autosync-0.8.3.diff          # added in st-0.8.3 to avoid flicker/tearing
+[*] st-appsync-20200618-b27a383.diff
+[*] st-externalpipe-0.8.4.diff
+[*] st-xresources-20200604-9ba7ecf.diff
