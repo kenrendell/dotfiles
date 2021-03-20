@@ -1,0 +1,12 @@
+
+# version: dmenu-5.0
+# Patches
+
+[*] dmenu-numbers-4.9.diff
+[*] dmenu-password-4.9.diff    (Patch using: patch -R -i <filename>)
+[*] dmenu-fuzzymatch-4.9.diff
+[*] dmenu-lineheight-5.0.diff
+[*] dmenu-listfullwidth-20210126.diff
+[*] dmenu-border-20201112-1a13d04.diff
+[*] dmenu-xyw-5.0.diff
+[*] dmenu-xresources-4.9.diff
