@@ -1,0 +1,29 @@
+#!/bin/sh
+
+xrdb << EOF
+*font:        JetBrains Mono:pixelsize=12
+*color0:      $BLACK_0
+*color1:      $RED_0
+*color2:      $GREEN_0
+*color3:      $YELLOW_0
+*color4:      $BLUE_0
+*color5:      $MAGENTA_0
+*color6:      $CYAN_0
+*color7:      $WHITE_0
+*color8:      $BLACK_1
+*color9:      $RED_1
+*color10:     $GREEN_1
+*color11:     $YELLOW_1
+*color12:     $BLUE_1
+*color13:     $MAGENTA_1
+*color14:     $CYAN_1
+*color15:     $WHITE_1
+*foreground:  $WHITE_0
+*background:  $BACKGD
+
+dmenu.font:          JetBrains Mono:pixelsize=12
+dmenu.foreground:    $WHITE_0
+dmenu.background:    $BACKGD
+dmenu.selforeground: $BACKGD
+dmenu.selbackground: $BLUE_0
+EOF
