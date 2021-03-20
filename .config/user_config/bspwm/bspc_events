@@ -1,0 +1,10 @@
+#!/bin/sh
+
+pidof -x bspc | xargs kill
+
+# Set the layer of focused window to 'above'.
+bspc subscribe node_focus | \
+while read -r REPLY; do
+    bspc node last --layer normal
+    bspc node --layer above
+done &

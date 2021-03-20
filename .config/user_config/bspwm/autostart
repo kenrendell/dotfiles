@@ -1,0 +1,28 @@
+#!/bin/sh
+
+pidof -x \
+    picom \
+    conky \
+    polybar \
+    sxhkd \
+    dunst \
+    xautolock \
+    unclutter \
+    udiskie \
+    pulse_subscribe.sh \
+| xargs kill
+
+picom &
+xsetroot -cursor_name left_ptr &
+setxkbmap -option caps:swapescape &
+feh --no-fehbg --bg-fill "$DESKTOP_BG" &
+"$USER_CONFIG/X11/xresources" &
+"$USER_CONFIG/dunst/dunstrc.sh" &
+"$USER_CONFIG/conky/conkyrc.sh" &
+polybar -q -c "$USER_CONFIG/polybar/config" main &
+sxhkd -m 1 -c "$SXHKD_BIND/common.sxhkdrc" "$SXHKD_BIND/bspc.sxhkdrc" &
+xautolock -time 10 -locker slock -corners -000 -cornersize 10 &
+unclutter --timeout 4 &
+udiskie -s &
+
+pulse_subscribe.sh &

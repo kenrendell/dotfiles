@@ -1,0 +1,10 @@
+#!/bin/sh
+
+window_id="$1"
+class="$2"
+instance="$3"
+consequences="$4"
+
+case "$class" in
+    'Firefox-esr') printf 'desktop=5' ;;
+esac

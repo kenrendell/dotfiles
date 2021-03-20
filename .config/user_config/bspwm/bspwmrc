@@ -1,0 +1,52 @@
+#!/bin/sh
+
+top_padding="$((4 * BORDER + BAR_HEIGHT))"
+side_padding="$((2 * BORDER))"
+window_gap="-$BORDER"
+
+# Use 'xrandr -q' or 'bspc query -M' to find monitor names
+bspc monitor LVDS1 -d 1 2 3 4 5
+
+bspc desktop 5 --layout monocle
+bspc config external_rules_command       "$USER_CONFIG/bspwm/external_rules"
+
+bspc config border_width                 "$BORDER"
+bspc config window_gap                   "$window_gap"
+bspc config top_padding                  "$top_padding"
+bspc config bottom_padding               "$side_padding"
+bspc config left_padding                 "$side_padding"
+bspc config right_padding                "$side_padding"
+bspc config borderless_monocle           false
+bspc config gapless_monocle              false
+bspc config single_monocle               false
+
+bspc config automatic_scheme             alternate
+bspc config initial_polarity             second_child
+bspc config directional_focus_tightness  high
+bspc config removal_adjustment           true
+bspc config split_ratio                  0.5
+
+bspc config remove_unplugged_monitors    true
+bspc config remove_disabled_monitors     true
+bspc config merge_overlapping_monitors   true
+
+bspc config focus_follows_pointer        false
+bspc config pointer_follows_focus        true
+bspc config pointer_follows_monitor      true
+bspc config pointer_modifier             mod1
+bspc config pointer_action1              move
+bspc config pointer_action2              resize_side
+bspc config pointer_action3              resize_corner
+
+bspc config ignore_ewmh_focus            true
+bspc config ignore_ewmh_fullscreen       true
+bspc config ignore_ewmh_struts           false
+
+bspc config normal_border_color          "$BLACK_0"
+bspc config active_border_color          "$GREEN_0"
+bspc config focused_border_color         "$BLUE_0"
+bspc config urgent_border_color          "$RED_0"
+bspc config presel_feedback_color        "$BLACK_0"
+
+"$USER_CONFIG/bspwm/bspc_events" &
+"$USER_CONFIG/bspwm/autostart" &
