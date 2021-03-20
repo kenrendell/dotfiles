@@ -1,0 +1,112 @@
+
+[bar/main]
+width = 100%
+height = ${env:BAR_HEIGHT:}
+border-size = ${env:BORDER:}
+
+foreground = ${env:WHITE_0:}
+background = ${env:BACKGD:}
+border-color = ${env:BACKGD:}
+
+font-0 = JetBrains Mono:style=Light:pixelsize=8;2
+font-1 = JetBrains Mono:style=Bold:pixelsize=8;2
+font-3 = Symbola:pixelsize=8;2
+
+modules-left = bspwm _ xwindow
+modules-right = audio_output | audio_input | backlight | backlight_filter | notification | internet | battery | date _
+
+tray-position = right
+tray-maxsize = 14
+tray-padding = 2
+tray-offset-x = 2
+tray-offset-y = 0
+
+wm-restack = bspwm
+override-redirect = false
+
+enable-ipc = false
+
+;==========================================================
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+inline-mode = false
+enable-click = true
+enable-scroll = true
+reverse-scroll = false
+
+label-focused = %{O2}%{T2} %index% %{T- O2}
+label-focused-foreground = ${env:BACKGD:}
+label-focused-background = ${env:CYAN_0:}
+
+label-empty = %{O2}%{T2} %index% %{T- O2}
+label-empty-foreground = ${env:BACKGD:}
+label-empty-background = ${env:BLACK_1:}
+
+label-occupied = %{O2}%{T2} %index% %{T- O2}
+label-occupied-foreground = ${env:CYAN_0:}
+label-occupied-background = ${env:BLACK_0:}
+
+label-urgent = %{O2}%{T2} %index% %{T- O2}
+label-urgent-foreground = ${env:BACKGD:}
+label-urgent-background = ${env:RED_0:}
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:80:...%
+label-foreground = ${env:BLACK_1:}
+
+[module/audio_output]
+type = custom/script
+exec = $POLY_MODULE/audio_output.sh
+tail = true
+
+[module/audio_input]
+type = custom/script
+exec = $POLY_MODULE/audio_input.sh
+tail = true
+
+[module/backlight]
+type = custom/script
+exec = $POLY_MODULE/backlight.sh
+tail = true
+
+[module/backlight_filter]
+type = custom/script
+exec = $POLY_MODULE/backlight_filter.sh
+tail = true
+
+[module/notification]
+type = custom/script
+exec = $POLY_MODULE/notification.sh
+tail = true
+
+[module/internet]
+type = custom/script
+exec = $POLY_MODULE/internet.sh
+tail = true
+
+[module/battery]
+type = custom/script
+exec = $POLY_MODULE/battery.sh
+tail = true
+
+[module/date]
+type = custom/script
+exec = $POLY_MODULE/date.sh
+tail = true
+
+[module/_]
+type = custom/text
+content = " "
+
+[module/|]
+type = custom/text
+content = " - "
+content-foreground = ${env:BLACK_0:}
+
+;==========================================================
+
+; vim:ft=dosini
