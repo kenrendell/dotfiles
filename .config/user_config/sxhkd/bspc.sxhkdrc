@@ -1,0 +1,118 @@
+
+#===================== BSPWM Hotkeys ====================#
+
+# Run 'xev' to identify the names of keyboard keys.
+
+# alt + backspace         := Close the windows rooted at the selected node.
+# alt + shift + backspace := Kill the windows rooted at the selected node.
+# alt + ctrl + backspace  := Restart the window manager.
+alt {+,+ shift +,+ ctrl +} BackSpace
+    bspc {node --close,node --kill,wm --restart}
+
+# alt + t         := Toggle the state of the selected window to tiled.
+# alt + shift + t := Toggle the state of the selected window to pseudo_tiled.
+# alt + f         := Toggle the state of the selected window to floating.
+# alt + shift + f := Toggle the state of the selected window to fullscreen.
+alt + {t,shift + t,f,shift + f}
+    bspc node --state ~{tiled,pseudo_tiled,floating,fullscreen}
+
+# alt + m         := Set the marked flag for the selected window.
+# alt + shift + m := Unset the marked flag for the selected window.
+alt {+,+ shift +} m
+    bspc node --flag marked={on,off}
+
+# alt + apostrophe := Show/Hide all windows at the selected desktop.
+alt + shift + apostrophe
+    bspc node @/ --flag hidden
+
+# alt + slash := Toggle between monocle and tiled layout.
+alt + slash
+    bspc desktop --layout next
+
+# alt + F{1-5}         := Focus the desktop {1-5}.
+# alt + shift + F{1-5} := Move the selected window to desktop {1-5}.
+alt {+,+ shift +} {1-5}
+    action='{desktop --focus,node --to-desktop}'; deskname={1-5}; \
+    if [ "$(bspc query -D -d $deskname)" = "$(bspc query -D -d)" ]; then \
+        bspc $action last; \
+    else bspc $action $deskname; fi
+
+# alt + {h,j,k,l}         := Focus the tiled/pseudo_tiled window at the {west,south,north,east} direction.
+# alt + shift + {h,j,k,l} := Move the tiled/pseudo_tiled window to the {west,south,north,east} direction.
+alt {+,+ shift +} {h,j,k,l}
+    bspc node --{focus,swap} {west,south,north,east}.!floating
+
+# super + {h,j,k,l} := Focus the floating window at the {west,south,north,east} direction.
+super + {h,j,k,l}
+    bspc node --focus {west,south,north,east}.floating || \
+    bspc node --focus next.floating.local
+
+# alt + semicolon  := Jumps to the parent node.
+# alt + apostrophe := Jumps to the brother node.
+# alt + comma      := Jumps to the first child.
+# alt + period     := Jumps to the second child.
+alt + {semicolon,apostrophe,comma,period}
+    bspc node --focus @{parent,brother,first,second}
+
+# alt + space         := Move focused window to preselect node.
+# alt + shift + space := Move last marked window to preselect node.
+alt {+,+ shift +} space
+    presel_id="$(bspc query -N -n newest.!automatic)"; \
+    node='{_,newest.marked}'; \
+    if [ -n "$presel_id" ] && \
+        (( [ -z "$node" ] && bspc query -N -n focused ) || \
+        ( [ -n "$node" ] && bspc query -N -n newest.marked )); then \
+        bspc node $presel_id --insert-receptacle; \
+        bspc node $node --to-node any.leaf.!window; \
+    fi
+
+# alt + tab         := Circulate all nodes in clockwise direction.
+# alt + shift + tab := Circulate all nodes in counter-clockwise direction.
+alt {+,+ shift +} Tab
+    bspc query -N -n focused.!floating.!fullscreen && \
+    bspc node @/ --circulate {forward,backward}
+
+# alt + shift + backslash := Activate 'LAYOUT' mode.
+# [LAYOUT] + r            := Rotate the tree rooted at the selected node in 90 degrees.
+# [LAYOUT] + shift + r    := Rotate the tree rooted at the selected node in -90 degrees.
+# [LAYOUT] + f            := Flip the tree rooted at the selected node in x axis.
+# [LAYOUT] + shift + f    := Flip the tree rooted at the selected node in y axis.
+# [LAYOUT] + b            := Adjust the split ratios of the tree rooted at the selected node to equal value.
+# [LAYOUT] + e            := Adjust the split ratios of the tree rooted at the selected node to default value.
+alt + shift + backslash : {r,shift + r,f,shift + f,b,e}
+    bspc node --{rotate 90,rotate -90,flip horizontal,flip vertical,balance,equalize}
+
+# alt + shift + semicolon := Activate 'PRESEL' mode.
+# [PRESEL] + {h,j,k,l}      := Preselect the {right,bottom,top,left} area of the selected node.
+# [PRESEL] + {1-9}          := Set the splitting ratio of the preselection area to 0.{1-9}.
+# [PRESEL] + 0              := Cancel the preselection area at the selected node.
+# [PRESEL] + minus          := Cancel the preselection areas at the selected desktop.
+# [PRESEL] + shift + minus  := Cancel the preselection areas globally.
+alt + shift + semicolon : {h,j,k,l,0-9,minus,shift + minus}
+    value='{west,south,north,east,cancel,1-9,.local,_}'; \
+    if [ "$value" = '.local' ] || [ -z "$value" ]; then \
+        for node in $(bspc query -N -n .!automatic$value); do \
+            bspc node $node --presel-dir cancel; \
+        done; \
+    elif [ "$(printf '%s' "$value" | wc -m)" -eq 1 ]; then \
+        bspc node --presel-ratio 0.$value; \
+    else bspc node --presel-dir $value; fi
+
+# alt + shift + slash          := Activate 'RESIZE' mode.
+# [RESIZE] + {h,j,k,l}         := Expand the area of tiled, pseudo_tiled, and floating windows.
+# [RESIZE] + shift + {h,j,k,l} := Compress the area of tiled, pseudo_tiled, and floating windows.
+# [RESIZE] + ctrl + {h,j,k,l}  := Move floating window in {west,south,north,east} direction.
+alt + shift + slash : {_,shift +,ctrl +} {h,j,k,l}
+    step=20; loc='left bottom top right'; m={1,0,_}; \
+    { n=$((m * -3 + 4)); x=-$step; y=0; \
+    , n=$((m * -1 + 3)); y=$step;  x=0; \
+    , n=$((m *  1 + 2)); y=-$step; x=0; \
+    , n=$((m *  3 + 1)); x=$step;  y=0; \
+    } \
+    if [ -n "$m" ]; then \
+        dir="$(printf '%s' "$loc" | cut -d ' ' -f $n)"; \
+        bspc node --resize $dir $x $y; \
+    else bspc node --move $x $y; fi
+
+#========================================================#
+

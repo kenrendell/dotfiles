@@ -1,0 +1,54 @@
+
+#================ WM Independent Hotkeys ================#
+
+# Run 'xev' to identify the names of keyboard keys.
+
+# alt + return := Execute terminal.
+alt + Return
+    st
+
+# alt + ctrl + return := Activate 'LAUNCH' mode.
+# [LAUNCH] + d        := Execute application launcher.
+# [LAUNCH] + w        := Execute web browser.
+# [LAUNCH] + f        := Execute file manager.
+# [LAUNCH] + i        := Execute network manager.
+# [LAUNCH] + m        := Execute memory cleaner.
+# [LAUNCH] + s        := Execute screenshot taker.
+# [LAUNCH] + l        := Execute logout session.
+alt + ctrl + Return ; {d,w,f,i,m,s,l}
+    { dmenu_run $(dmenu_center.sh 600 12) -p 'run:' \
+    , firefox-esr \
+    , pcmanfm \
+    , st -e nmtui \
+    , clearcache.sh \
+    , screenshot.sh \
+    , shutdown.sh }
+
+# alt + escape         := Reload sxhkd.
+# alt + shift + escape := Reload polybar.
+alt {+,+ shift +} Escape
+    { pidof -x sxhkd | xargs kill -USR1, \
+    pidof -x polybar | xargs kill; \
+    polybar -q -c "$USER_CONFIG/polybar/config" main }
+
+# alt + grave      := Activate 'STATLINE' mode.
+# [STATLINE] + d := Show time/date.
+# [STATLINE] + n := Toggle notification on/off.
+alt + grave ; {d,n}
+    pidof -x {date,notification}.sh | xargs kill -USR1
+
+# [STATLINE] + {o,i,b,f} := Activate 'VOL-OUT', 'VOL-IN', 'DAY-LIGHT', 'NIGHT-LIGHT' mode.
+# [VOL-OUT] + {h,l,j}      := {Decrease,Increase,Mute/Unmute} the volume of audio output device.
+# [VOL-OUT] + k            := Change the port of audio output device.
+# [VOL-IN] + {h,l,j}       := {Decrease,Increase,Mute/Unmute} the volume of audio input device.
+# [VOL-IN] + k             := Change the port of audio input device.
+# [DAY-LIGHT] + {h,l}      := {Decrease,Increase} the brightness of monitor backlight.
+# [NIGHT-LIGHT] + {h,l}    := {Decrease,Increase} the temperature of night light.
+# [NIGHT-LIGHT] + k        := Show the current temperature of night light.
+# [NIGHT-LIGHT] + j        := Toggle night light on/off.
+alt + grave ; {o,i,b,f} : {h,j,k,l}
+    pid="$(pidof -x {audio_output,audio_input,backlight,backlight_filter}.sh)"; \
+    printf {5,1,3,4} > "$XDG_RUNTIME_DIR/$pid-signal"; \
+    kill -USR1 $pid
+
+#========================================================#
