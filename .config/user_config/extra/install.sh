@@ -3,9 +3,9 @@
 [ "$(whoami)" != 'root' ] && { printf 'This script needs root permission!\n'; exit 1; }
 ping -c 1 8.8.8.8 >/dev/null 2>&1 || { printf 'No internet connection!\n'; exit 1; }
 
-printf '\nUsername: '; read -r user
+printf 'Username: '; read -r user
 config_dir="/home/$user/.config/user_config"
-packages="$(eval "printf '%s' \"$(grep '\*' "$config_dir/packages.txt" | cut -d '*' -f 2)\"")"
+packages="$(eval "printf '%s' \"$(grep '\*' "$config_dir/extra/packages.txt" | cut -d '*' -f 2)\"")"
 
 # Set default backlight
 acpi_video='/sys/class/backlight/acpi_video0'
@@ -31,8 +31,8 @@ rm -rf "$config_dir/suckless/st/config.h" \
 
 # Enable firewall
 printf '\nSetting up firewall...\n'
-ufw allow ssh
-ufw enable
+/usr/sbin/ufw allow ssh
+/usr/sbin/ufw enable
 
 # Enable hddtemp network daemon
 sed -i -e '/RUN_DAEMON/s/".*"/"true"/' /etc/default/hddtemp
