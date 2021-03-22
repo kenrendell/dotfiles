@@ -34,3 +34,6 @@ alias time='\time -f "\nProgram: %C\nReal: %e s - User: %U s - System: %S s - CP
 
 # Dotfiles management
 alias gitdf='git --git-dir="$HOME/.gitdf" --work-tree="$HOME"'
+
+# Network
+alias ip='ip -c'
