@@ -11,15 +11,13 @@ alt + Return
 # [LAUNCH] + d        := Execute application launcher.
 # [LAUNCH] + w        := Execute web browser.
 # [LAUNCH] + f        := Execute file manager.
-# [LAUNCH] + i        := Execute network manager.
 # [LAUNCH] + m        := Execute memory cleaner.
 # [LAUNCH] + s        := Execute screenshot taker.
 # [LAUNCH] + l        := Execute logout session.
-alt + ctrl + Return ; {d,w,f,i,m,s,l}
+alt + ctrl + Return ; {d,w,f,m,s,l}
     { dmenu_run $(dmenu_center.sh 600 12) -p 'run:' \
     , firefox-esr \
     , pcmanfm \
-    , st -e nmtui \
     , clearcache.sh \
     , screenshot.sh \
     , shutdown.sh }
