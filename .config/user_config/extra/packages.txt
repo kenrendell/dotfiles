@@ -6,13 +6,9 @@
     * linux-headers-$(uname -r)
     * build-essential
     * tlp
-    * tlp-rdw
     * sudo
 
 # Network
-    * network-manager
-    * speedtest-cli
-    * netselect-apt
     * ufw
     * curl
     * wget
@@ -53,6 +49,7 @@
     * bc
     * time
     * tree
+    * gtypist
 
 # Linter
     * shellcheck
@@ -76,9 +73,4 @@
     * moc
     * neomutt
     * mpv
-
-# OTHERS
     * deepin-screenshot
-    * klavaro
-    . libreoffice
-    . gimp
