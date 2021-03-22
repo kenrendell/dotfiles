@@ -79,5 +79,6 @@
 
 # OTHERS
     * deepin-screenshot
+    * klavaro
     . libreoffice
     . gimp
