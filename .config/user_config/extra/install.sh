@@ -15,19 +15,11 @@ acpi_video='/sys/class/backlight/acpi_video0'
 apt update || { printf 'An error occured!\n'; exit 1; }; printf '\n'
 printf '%s' "$packages" | xargs apt install -y || { printf 'An error occured!\n'; exit 1; }
 
-# Add username to sudoers file
-sed -i -e "/root/ a $user ALL=(ALL:ALL) ALL" /etc/sudoers
+# Add username to sudo group
+/usr/sbin/usermod -aG sudo "$user"
 
 # Change default shell to zsh
 chsh -s "$(which zsh)" "$user"
-
-# Compiling suckless software
-make -C "$config_dir/suckless/st" clean install
-make -C "$config_dir/suckless/dmenu" clean install
-make -C "$config_dir/suckless/slock" clean install
-rm -rf "$config_dir/suckless/st/config.h" \
-    "$config_dir/suckless/dmenu/config.h" \
-    "$config_dir/suckless/slock/config.h"
 
 # Enable firewall
 printf '\nSetting up firewall...\n'
@@ -36,3 +28,11 @@ printf '\nSetting up firewall...\n'
 
 # Enable hddtemp network daemon
 sed -i -e '/RUN_DAEMON/s/".*"/"true"/' /etc/default/hddtemp
+
+# Compiling suckless software
+make -C "$config_dir/suckless/st" clean install
+make -C "$config_dir/suckless/dmenu" clean install
+make -C "$config_dir/suckless/slock" clean install
+rm -rf "$config_dir/suckless/st/config.h" \
+    "$config_dir/suckless/dmenu/config.h" \
+    "$config_dir/suckless/slock/config.h"
