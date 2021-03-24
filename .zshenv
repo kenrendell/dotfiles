@@ -92,6 +92,9 @@ export ST_BIN="$USER_CONFIG/suckless/st/bin"
 # Desktop background
 export DESKTOP_BG="$HOME/Pictures/Wallpapers/desktop-bg.jpg"
 
+# Theme
+export QT_QPA_PLATFORMTHEME='gtk2'
+
 # Extras
 export BAR_HEIGHT=16  # For polybar, bspwm, and dmenu layout.
 export BORDER=2       # For polybar, bspwm, and dmenu layout.
