@@ -6,6 +6,7 @@
     * linux-headers-$(uname -r)
     * build-essential
     * sudo
+    * desktop-base
 
 # Network
     * ufw
@@ -19,12 +20,11 @@
 
 # Utilities
     * tlp
+    * libnotify-bin
     * unclutter-xfixes
     * picom
     * xautolock
     * dunst
-    * xbindkeys
-    * arandr
     * redshift
     * playerctl
     * pulseaudio
@@ -61,7 +61,7 @@
     * arc-theme
     * breeze-cursor-theme
     * papirus-icon-theme
-    * lxappearance
+    * qt5-style-plugins
 
 # Media
     * feh
@@ -70,7 +70,7 @@
     * atril
     * ristretto
     * vokoscreen-ng
-    * moc
     * neomutt
+    * moc
     * mpv
     * deepin-screenshot
