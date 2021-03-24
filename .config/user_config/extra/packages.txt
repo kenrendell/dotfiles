@@ -9,6 +9,7 @@
     * desktop-base
 
 # Network
+    * firefox-esr
     * ufw
     * curl
     * wget
@@ -33,6 +34,8 @@
     * light
     * xsel
     * xclip
+    * feh
+    * deepin-screenshot
 
 # Conky
     * conky-all
@@ -49,7 +52,6 @@
     * bc
     * time
     * tree
-    * gtypist
 
 # Linter
     * shellcheck
@@ -63,14 +65,15 @@
     * papirus-icon-theme
     * qt5-style-plugins
 
-# Media
-    * feh
+# File Management
     * pcmanfm
-    * firefox-esr
+    * xarchiver
+
+# Others
     * atril
     * ristretto
     * vokoscreen-ng
-    * neomutt
     * moc
     * mpv
-    * deepin-screenshot
+    * neomutt
+    * klavaro
