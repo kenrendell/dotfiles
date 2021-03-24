@@ -73,6 +73,7 @@
     * atril
     * ristretto
     * vokoscreen-ng
+    * vlc
     * moc
     * mpv
     * neomutt
