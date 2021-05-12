@@ -13,6 +13,7 @@
     * ufw
     * curl
     * wget
+    * network-manager
 
 # Window Manager
     * bspwm
@@ -21,6 +22,7 @@
 
 # Utilities
     * tlp
+    * tlp-rdw
     * libnotify-bin
     * unclutter-xfixes
     * picom
