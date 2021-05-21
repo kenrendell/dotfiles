@@ -9,6 +9,7 @@ alt + Return
 
 # alt + ctrl + return := Activate 'LAUNCH' mode.
 # [LAUNCH] + d        := Execute application launcher.
+# [LAUNCH] + i        := Execute network manager.
 # [LAUNCH] + w        := Execute web browser.
 # [LAUNCH] + f        := Execute file manager.
 # [LAUNCH] + m        := Execute memory cleaner.
@@ -16,6 +17,7 @@ alt + Return
 # [LAUNCH] + l        := Execute logout session.
 alt + ctrl + Return ; {d,w,f,m,s,l}
     { dmenu_run $(dmenu_center.sh 600 12) -p 'run:' \
+    , st -e nmtui \
     , firefox-esr \
     , pcmanfm \
     , clearcache.sh \
