@@ -15,7 +15,7 @@ alt + Return
 # [LAUNCH] + m        := Execute memory cleaner.
 # [LAUNCH] + s        := Execute screenshot taker.
 # [LAUNCH] + l        := Execute logout session.
-alt + ctrl + Return ; {d,w,f,m,s,l}
+alt + ctrl + Return ; {d,i,w,f,m,s,l}
     { dmenu_run $(dmenu_center.sh 600 12) -p 'run:' \
     , st -e nmtui \
     , firefox-esr \
