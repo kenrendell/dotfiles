@@ -13,6 +13,9 @@ alias lls='ls -lh --time-style=+%a\ %F\ %R'
 # Matching patterns
 alias grep='grep --color=auto'
 
+# Comparing files
+alias diff='diff --color=auto'
+
 # File manipulation
 alias cp='cp -rvi'
 alias mv='mv -vi'
