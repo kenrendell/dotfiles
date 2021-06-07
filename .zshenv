@@ -84,6 +84,18 @@ export FZF_DEFAULT_OPTS="
 --color='prompt:12,pointer:14,marker:9,spinner:3'
 "
 
+# Less command
+export LESS='-sMR +Gg'
+export LESS_TERMCAP_mb="$(tput bold; tput setaf 5)"
+export LESS_TERMCAP_md="$(tput bold; tput setaf 4)"
+export LESS_TERMCAP_me="$(tput sgr0)"
+export LESS_TERMCAP_so="$(tput bold; tput setaf 3)"
+export LESS_TERMCAP_se="$(tput rmso; tput sgr0)"
+export LESS_TERMCAP_us="$(tput setaf 1)"
+export LESS_TERMCAP_ue="$(tput rmul; tput sgr0)"
+export LESS_TERMCAP_mr="$(tput rev)"
+export LESS_TERMCAP_mh="$(tput dim)"
+
 # Paths for other configurations
 export POLY_MODULE="$USER_CONFIG/polybar/modules"
 export SXHKD_BIND="$USER_CONFIG/sxhkd/"
