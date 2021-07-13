@@ -8,6 +8,9 @@
     * sudo
     * desktop-base
 
+# C development files
+    * libdmalloc-dev
+
 # Network
     * firefox-esr
     * ufw
