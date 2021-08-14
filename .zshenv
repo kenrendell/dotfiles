@@ -27,13 +27,6 @@ eval "$(dmalloc -l /tmp/dmalloc_logs.%p -i 100 low)"
 # Set LS_COLORS
 eval "$(dircolors -b "$ZDOTDIR/colors/.dircolors")"
 
-# Xorg configuration files
-export XORGCONFIG="$USER_CONFIG/X11/xorg.conf"
-export XINITRC="$USER_CONFIG/X11/xinitrc"
-
-# Shell used by sxhkd to execute commands.
-export SXHKD_SHELL='/bin/sh'
-
 # Paths/settings used by zgen to manage the plugins of zsh.
 export ZGEN_DIR="$XDG_DATA_HOME/zgen"
 export ZGEN_INIT="$ZGEN_DIR/init.zsh"
