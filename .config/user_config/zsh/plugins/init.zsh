@@ -1,7 +1,7 @@
 # Initialize ZSH Tools
 
 # Set window title
-_set_title() { local title="\033]0;$TERM ${PWD/$HOME/~}\007"; printf '%b' "$title"; }
+_set_title() { local title="\033]0;${PWD/$HOME/~}\007"; printf '%b' "$title"; }
 
 # Enable Powerlevel10k instant prompt.
 _instant_prompt() {

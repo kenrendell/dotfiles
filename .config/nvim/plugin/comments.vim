@@ -1,4 +1,4 @@
-if exists('g:loaded_comments') || $SHLVL == 1
+if exists('g:loaded_comments') || $DISPLAY == ''
     finish
 else
     let g:loaded_comments = 1

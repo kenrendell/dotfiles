@@ -1,4 +1,4 @@
-if exists('g:loaded_tabline') || $SHLVL == 1
+if exists('g:loaded_tabline') || $DISPLAY == ''
     finish
 else
     let g:loaded_tabline = 1

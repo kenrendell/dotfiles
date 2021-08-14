@@ -1,6 +1,6 @@
 " NEOVIM Configuration file
 
-if $SHLVL == 1
+if $DISPLAY == ''
     finish
 endif
 

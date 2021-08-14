@@ -11,11 +11,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # User configuration directory
 export USER_CONFIG="$XDG_CONFIG_HOME/user_config"
 
-# XDG configuration directories
-[[ -z "$XDG_CONFIG_DIRS" ]] && \
-export XDG_CONFIG_DIRS="$USER_CONFIG:/etc/xdg" || \
-export XDG_CONFIG_DIRS="$USER_CONFIG:$XDG_CONFIG_DIRS"
-
 # Include user binaries in PATH.
 export PATH="$USER_CONFIG/bin:$PATH"
 
@@ -25,6 +20,9 @@ export HISTFILE="$XDG_DATA_HOME/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 export KEYTIMEOUT=1
+
+# Dmalloc Options
+eval "$(dmalloc -l /tmp/dmalloc_logs.%p -i 100 low)"
 
 # Set LS_COLORS
 eval "$(dircolors -b "$ZDOTDIR/colors/.dircolors")"
@@ -96,20 +94,8 @@ export LESS_TERMCAP_ue="$(tput rmul; tput sgr0)"
 export LESS_TERMCAP_mr="$(tput rev)"
 export LESS_TERMCAP_mh="$(tput dim)"
 
-# Paths for other configurations
-export POLY_MODULE="$USER_CONFIG/polybar/modules"
-export SXHKD_BIND="$USER_CONFIG/sxhkd/"
-export ST_BIN="$USER_CONFIG/suckless/st/bin"
-
-# Desktop background
-export DESKTOP_BG="$HOME/Pictures/Wallpapers/desktop-bg.jpg"
-
 # Theme
 export QT_QPA_PLATFORMTHEME='gtk2'
 
-# Extras
-export BAR_HEIGHT=16  # For polybar, bspwm, and dmenu layout.
-export BORDER=2       # For polybar, bspwm, and dmenu layout.
-export SINK=0         # Run 'pactl list sinks' to check for available sinks.
-export SOURCE=1       # Run 'pactl list sources' to check for available sources.
-export BATTERY='BAT1' # See '/sys/class/power_supply' to check for availble batteries.
+# Firefox
+export MOZ_ENABLE_WAYLAND=1

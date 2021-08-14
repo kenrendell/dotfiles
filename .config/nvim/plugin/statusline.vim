@@ -1,6 +1,4 @@
-
-
-if exists('g:loaded_statusline') || $SHLVL == 1
+if exists('g:loaded_statusline') || $DISPLAY == ''
     finish
 else
     let g:loaded_statusline = 1

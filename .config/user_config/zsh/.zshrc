@@ -1,7 +1,7 @@
 # ZSH Interactive Shell
 
 # Exit when in console terminal.
-[[ "$SHLVL" -eq 1 ]] && return
+[[ "$DISPLAY" ]] || return
 
 # Initialize tools
 source "$ZDOTDIR/plugins/init.zsh"

@@ -1,14 +1,14 @@
 # ZSH Aliases
 
-# Use sudo with alias commands
+# Use sudo with aliased commands
 alias sudo='sudo '
 
 # Editor
 alias v='nvim'
 
 # File listing
-alias ls='ls -AF --group-directories-first --color=auto'
-alias lls='ls -lh --time-style=+%a\ %F\ %R'
+alias ls='exa -FGa --color=always -s type'
+alias ll='exa -Flhamg --color=always -s type'
 
 # Matching patterns
 alias grep='grep --color=auto'
@@ -33,7 +33,7 @@ alias hl=' fc -iDl 1'                     # List all history from file.
 alias he=' nvim -c "setl ft=" $HISTFILE'  # Edit the history file.
 
 # Time
-alias time='\time -f "\nProgram: %C\nReal: %e s - User: %U s - System: %S s - CPU: %P"'
+alias time='command time -f "\nProgram: %C\nReal: %e s - User: %U s - System: %S s - CPU: %P"'
 
 # Dotfiles management
 alias gitdf='git --git-dir="$HOME/.gitdf" --work-tree="$HOME"'
