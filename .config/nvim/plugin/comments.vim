@@ -41,6 +41,7 @@ let s:comment_map = {
     \   "sxhkdrc": '#',
     \   "vim": '"',
     \   "tex": '%',
+    \   "gitcommit": '#',
     \ }
 
 " ==== Toggle comments ==== "

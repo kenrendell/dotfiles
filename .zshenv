@@ -90,8 +90,6 @@ export LESS_TERMCAP_mh="$(tput dim)"
 # QT settings
 export QT_QPA_PLATFORMTHEME='gtk2'
 export QT_QPA_PLATFORM='wayland-egl'
-# export QT_WAYLAND_FORCE_DPI='physical'
-# export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
 # Firefox
 export MOZ_ENABLE_WAYLAND=1
