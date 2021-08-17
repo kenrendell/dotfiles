@@ -5,21 +5,9 @@
 set $MOD Mod1
 set $SYSTEM_MODE 'System: (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (p)oweroff'
 set $BG_IMAGE '~/Pictures/Wallpapers/desktop-bg.jpg'
-set $FONT_NAME Open Sans 8
-set $CURSOR_THEME 'Breeze_Snow'
+set $FONT Open Sans 9
+set $CURSOR_THEME Breeze_Snow
 set $CURSOR_SIZE 24
-
-### GTK Themes ###
-# You can get the list of keys by running:
-# gsettings list-keys org.gnome.desktop.interface
-# cursor-size values: 24, 32, 48, 64, 96
-exec_always gsettings set org.gnome.desktop.interface {
-    gtk-theme 'Arc-Dark'
-    icon-theme 'Papirus-Dark'
-    cursor-theme $CURSOR_THEME
-    cursor-size $CURSOR_SIZE
-    font-name 'Open Sans 9'
-}
 
 ### Idle configuration
 exec swayidle -w \
@@ -30,6 +18,20 @@ exec swayidle -w \
 
 ### Status Bar
 bar swaybar_command waybar
+
+### GTK Themes ###
+# You can get the list of keys by running:
+# gsettings list-keys org.gnome.desktop.interface
+# cursor-size values: 24, 32, 48, 64, 96
+exec_always gsettings set org.gnome.desktop.interface {
+    gtk-theme 'Arc-Dark'
+    icon-theme 'Papirus-Dark'
+    font-name '$FONT'
+    cursor-theme '$CURSOR_THEME'
+    cursor-size '$CURSOR_SIZE'
+    toolbar-style 'both-horiz'
+    toolbar-icons-size 'small'
+}
 
 include {
     /etc/sway/config-vars.d/*

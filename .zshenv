@@ -87,9 +87,8 @@ export LESS_TERMCAP_ue="$(tput rmul; tput sgr0)"
 export LESS_TERMCAP_mr="$(tput rev)"
 export LESS_TERMCAP_mh="$(tput dim)"
 
-# QT settings
-export QT_QPA_PLATFORMTHEME='gtk2'
-export QT_QPA_PLATFORM='wayland-egl'
-
-# Firefox
+# GUI settings
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+export QT_QPA_PLATFORM='wayland' # 'qtwayland5' is needed for Wayland support.
+export QT_QPA_PLATFORMTHEME='gtk2' # 'qt5-style-plugins' is needed to use gtk2 theme.
 export MOZ_ENABLE_WAYLAND=1
