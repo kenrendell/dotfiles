@@ -9,20 +9,27 @@ set $FONT Open Sans 9
 set $CURSOR_THEME Breeze_Snow
 set $CURSOR_SIZE 24
 
-### Idle configuration
+# Colors
+set $BASE_0 '#1D2025'
+set $BASE_1 '#282D33'
+set $BASE_2 '#363B45'
+set $BASE_3 '#5E6878'
+set $BASE_4 '#A1A8B5'
+set $BLUE_0 '#5596E2'
+set $BLUE_1 '#78ACE7'
+set $RED_0  '#DC657D'
+set $RED_1  '#E48698'
+
+### Idle configuration ###
 exec swayidle -w \
     timeout 300 swaylock \
     timeout 600 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
     before-sleep swaylock
 
-### Status Bar
-bar swaybar_command waybar
-
 ### GTK Themes ###
 # You can get the list of keys by running:
 # gsettings list-keys org.gnome.desktop.interface
-# cursor-size values: 24, 32, 48, 64, 96
 exec_always gsettings set org.gnome.desktop.interface {
     gtk-theme 'Arc-Dark'
     icon-theme 'Papirus-Dark'
@@ -32,6 +39,9 @@ exec_always gsettings set org.gnome.desktop.interface {
     toolbar-style 'both-horiz'
     toolbar-icons-size 'small'
 }
+
+### Status Bar ###
+exec_always ~/.local/bin/waybar.sh
 
 include {
     /etc/sway/config-vars.d/*

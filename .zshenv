@@ -11,8 +11,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # User configuration directory
 export USER_CONFIG="$XDG_CONFIG_HOME/user_config"
 
-# Include user binaries in PATH.
-export PATH="$USER_CONFIG/bin:$PATH"
+# Include user and snap binaries in PATH.
+export PATH="$HOME/.local/bin:$PATH:/snap/bin"
 
 # ZSH configuration files
 export ZDOTDIR="$USER_CONFIG/zsh"

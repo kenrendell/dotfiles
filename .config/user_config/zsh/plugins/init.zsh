@@ -1,8 +1,5 @@
 # Initialize ZSH Tools
 
-# Set window title
-_set_title() { local title="\033]0;${PWD/$HOME/~}\007"; printf '%b' "$title"; }
-
 # Enable Powerlevel10k instant prompt.
 _instant_prompt() {
     # Initialization code that may require console input (password prompts, [y/n]
@@ -33,7 +30,7 @@ _zgen_init() {
             else
                 rm -rf "$FZF_BASE"
                 git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_BASE" && \
-                "$FZF_BASE/install" --bin
+                    "$FZF_BASE/install" --bin
             fi
         fi
 
@@ -73,4 +70,25 @@ _zgen_init() {
 [[ -f "$ZGEN_DIR/zgen.zsh" ]] || { rm -rf "$ZGEN_DIR"; \
     git clone https://github.com/tarjoilija/zgen.git "$ZGEN_DIR"; } && _zgen_init
 
-precmd_functions+=(_set_title)
+# Set window title
+_set_title() { local title="\033]0;${PWD/$HOME/~}\007"; printf '%b' "$title"; }
+
+# Configure zsh to emit the OSC 7 escape sequence for 'foot terminal'.
+# See 'https://codeberg.org/dnkl/foot/wiki#user-content-how-to-configure-my-shell-to-emit-the-osc-7-escape-sequence'
+# Bug: Can't `exit` Ctrl+Shift+N spawned foot termminal.
+_urlencode() {
+    local length="${#1}"
+    for (( i = 0; i < length; i++ )); do
+        local c="${1:$i:1}"
+        case $c in
+            %) printf '%%%02X' "'$c" ;;
+            *) printf "%s" "$c" ;;
+        esac
+    done
+}
+
+_osc7_cwd() { printf '\e]7;file://%s%s\e\\' "$HOSTNAME" "$(_urlencode "$PWD")"; }
+
+autoload -Uz add-zsh-hook
+add-zsh-hook -Uz chpwd _osc7_cwd
+add-zsh-hook -Uz precmd _set_title
