@@ -57,7 +57,7 @@ export WHITE_1='#BAC0C9'
 
 # Include FZF binaries in PATH.
 export FZF_BASE="$XDG_DATA_HOME/fzf"
-export PATH="$FZF_BASE/bin:$PATH"
+export PATH="$PATH:$FZF_BASE/bin"
 
 # FZF configurations
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
