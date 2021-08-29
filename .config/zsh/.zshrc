@@ -21,8 +21,8 @@ setopt INC_APPEND_HISTORY_TIME  # Append the history entry to the history file a
 setopt EXTENDED_HISTORY         # Save each commands with format, ": <beginning time>:<elapsed seconds>;<command>".
 
 # Input/Output
-setopt CORRECT                  # Try to correct the spelling of commands.
-setopt CORRECT_ALL              # Try to correct the spelling of all arguments in a line.
+setopt NOCORRECT                # Disable autocorrect.
+setopt NOCORRECT_ALL            # Disable autocorrect all arguments.
 setopt PRINT_EXIT_VALUE         # Print the exit value of programs with non-zero exit status.
 
 # Load edit-command-line function.

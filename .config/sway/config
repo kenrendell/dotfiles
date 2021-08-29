@@ -40,8 +40,8 @@ exec_always gsettings set org.gnome.desktop.interface {
     toolbar-icons-size 'small'
 }
 
-### Status Bar ###
-exec_always ~/.local/bin/waybar.sh
+### Statusbar ###
+exec_always waybar.sh
 
 include {
     /etc/sway/config-vars.d/*

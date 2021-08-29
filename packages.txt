@@ -18,29 +18,12 @@
     * wget
     * network-manager
 
-# Window Manager
-    * bspwm
-    * sxhkd
-    * polybar
-
 # Utilities
     * tlp
-    * tlp-rdw
     * libnotify-bin
-    * unclutter-xfixes
-    * picom
-    * xautolock
-    * dunst
-    * redshift
     * playerctl
-    * pulseaudio
-    * pavucontrol
     * udiskie
     * light
-    * xsel
-    * xclip
-    * feh
-    * deepin-screenshot
 
 # Conky
     * conky-all
@@ -71,15 +54,12 @@
     * qt5-style-plugins
 
 # File Management
-    * pcmanfm
     * xarchiver
 
 # Others
     * atril
     * ristretto
-    * vokoscreen-ng
-    * vlc
     * moc
     * mpv
     * neomutt
-    * klavaro
+    * gtypist

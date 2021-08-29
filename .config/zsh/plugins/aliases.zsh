@@ -10,6 +10,9 @@ alias v='nvim'
 alias ls='exa -FGa --color=always -s type'
 alias ll='exa -Flhamg --color=always -s type'
 
+# Viewing files
+alias cat='batcat'
+
 # Matching patterns
 alias grep='grep --color=auto'
 
