@@ -73,6 +73,8 @@ export FZF_DEFAULT_OPTS="
 export MANPAGER="sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 export PAGER='less'
 export LESS='-RF'
+export LESSHISTFILE="$XDG_DATA_HOME/.lesshst"
+export LESSHISTSIZE=100
 export LESS_TERMCAP_mb="$(tput bold; tput setaf 5)"
 export LESS_TERMCAP_md="$(tput bold; tput setaf 4)"
 export LESS_TERMCAP_me="$(tput sgr0)"
