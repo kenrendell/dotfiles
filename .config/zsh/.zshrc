@@ -1,7 +1,7 @@
 # ZSH Interactive Shell
 
 # Exit when in console terminal.
-[[ "$DISPLAY" ]] || return
+[[ -n "$DISPLAY" ]] || return
 
 # Initialize tools
 source "$ZDOTDIR/plugins/init.zsh"

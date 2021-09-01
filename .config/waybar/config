@@ -1,7 +1,10 @@
 {
     "height": 30,
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
+    "margin-top": 2,
+    "margin-left": 2,
+    "margin-right": 2,
+    "margin-bottom": 0,
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-right": [
         "idle_inhibitor",
         "custom/audio_output",
@@ -12,65 +15,80 @@
         "custom/date",
         "tray"
     ],
+    "sway/workspaces": {
+        "format": "{value}",
+        "disable-scroll": true,
+        "all-outputs": true,
+    },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "format": "{}"
+    },
+    "sway/window": {
+        "format": "{}",
+        "max-length": 80
+    },
+    "tray": {
+        "spacing": 10
     },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "",
             "deactivated": ""
-        }
+        },
+        "tooltip": false
     },
-    "tray": {
-        "spacing": 10
+    "network": {
+        "format-wifi": " {essid} ({signalStrength}%) - ↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+        "format-ethernet": " {ifname} ({ipaddr}/{cidr}) - ↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+        "format-disabled": "",
+        "tooltip": false
     },
     "custom/date": {
-        "format": " {} ",
+        "format": "{}",
         "exec": "date.sh",
-        "on-click": "printf 'toggle\n' > $XDG_RUNTIME_DIR/bar-date-pipe",
-        "exec-on-event": false,
-        "tooltip": false
-    },
-    "custom/backlight": {
-        "format": " {} ",
-        "exec": "backlight.sh",
-        "on-scroll-up": "printf 'inc\n' > $XDG_RUNTIME_DIR/bar-backlight-pipe",
-        "on-scroll-down": "printf 'dec\n' > $XDG_RUNTIME_DIR/bar-backlight-pipe",
-        "exec-on-event": false,
-        "tooltip": false
-    },
-    "custom/audio_output": {
-        "format": " {} ",
-        "exec": "audio_output.sh",
-        "on-click": "printf 'mute\n' > $XDG_RUNTIME_DIR/bar-audio_output-pipe",
-        "on-scroll-up": "printf 'inc\n' > $XDG_RUNTIME_DIR/bar-audio_output-pipe",
-        "on-scroll-down": "printf 'dec\n' > $XDG_RUNTIME_DIR/bar-audio_output-pipe",
-        "exec-on-event": false,
-        "tooltip": false
-    },
-    "custom/audio_input": {
-        "format": " {} ",
-        "exec": "audio_input.sh",
-        "on-click": "printf 'mute\n' > $XDG_RUNTIME_DIR/bar-audio_input-pipe",
-        "on-scroll-up": "printf 'inc\n' > $XDG_RUNTIME_DIR/bar-audio_input-pipe",
-        "on-scroll-down": "printf 'dec\n' > $XDG_RUNTIME_DIR/bar-audio_input-pipe",
-        "exec-on-event": false,
-        "tooltip": false
-    },
-    "custom/battery": {
-        "format": " {} ",
-        "exec": "battery.py 1",
-        "on-click": "printf 'toggle\n' > $XDG_RUNTIME_DIR/bar-BAT1-pipe",
+        "on-click": "statusbar.sh toggle date-pipe",
         "return-type": "json",
         "exec-on-event": false,
         "tooltip": false
     },
-    "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "custom/backlight": {
+        "format": "{}",
+        "exec": "backlight.sh",
+        "on-scroll-up": "statusbar.sh inc backlight-pipe",
+        "on-scroll-down": "statusbar.sh dec backlight-pipe",
+        "return-type": "json",
+        "exec-on-event": false,
+        "tooltip": false
+    },
+    "custom/audio_output": {
+        "format": "{}",
+        "exec": "audio_output.sh",
+        "on-click": "statusbar.sh mute audio_output-pipe",
+        "on-scroll-up": "statusbar.sh inc audio_output-pipe",
+        "on-scroll-down": "statusbar.sh dec audio_output-pipe",
+        "return-type": "json",
+        "exec-on-event": false,
+        "tooltip": false
+    },
+    "custom/audio_input": {
+        "format": "{}",
+        "exec": "audio_input.sh",
+        "on-click": "statusbar.sh mute audio_input-pipe",
+        "on-scroll-up": "statusbar.sh inc audio_input-pipe",
+        "on-scroll-down": "statusbar.sh dec audio_input-pipe",
+        "return-type": "json",
+        "exec-on-event": false,
+        "tooltip": false
+    },
+    "custom/battery": {
+        "format": "{}",
+        "exec": "battery.py 1",
+        "on-click": "statusbar.sh toggle BAT1-pipe",
+        "return-type": "json",
+        "exec-on-event": false,
+        "tooltip": false
     }
 }

@@ -3,8 +3,7 @@
 
 ### Variables
 set $MOD Mod1
-set $SYSTEM_MODE 'System: (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (p)oweroff'
-set $BG_IMAGE '~/Pictures/Wallpapers/desktop-bg.jpg'
+set $BG_IMAGE '~/Pictures/Wallpapers/img04.jpg'
 set $FONT Open Sans 9
 set $CURSOR_THEME Breeze_Snow
 set $CURSOR_SIZE 24
@@ -20,12 +19,9 @@ set $BLUE_1 '#78ACE7'
 set $RED_0  '#DC657D'
 set $RED_1  '#E48698'
 
-### Idle configuration ###
-exec swayidle -w \
-    timeout 300 swaylock \
-    timeout 600 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep swaylock
+### Sway Idle ###
+exec swayidle -w
+# config: ~/.config/swayidle/config
 
 ### GTK Themes ###
 # You can get the list of keys by running:
@@ -41,7 +37,7 @@ exec_always gsettings set org.gnome.desktop.interface {
 }
 
 ### Statusbar ###
-exec_always waybar.sh
+exec_always statusbar.sh
 
 include {
     /etc/sway/config-vars.d/*

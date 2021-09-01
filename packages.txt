@@ -45,6 +45,10 @@
     * shellcheck
     * pylint
 
+# Golang
+    * golang-go
+    * golang-dbus-dev
+
 # Appearance
     * fonts-jetbrains-mono
     * fonts-symbola
@@ -55,6 +59,9 @@
 
 # File Management
     * xarchiver
+
+# Image viewer
+    * imv (use 'imv-wayland' for wayland)
 
 # Others
     * atril

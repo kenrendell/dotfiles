@@ -1,0 +1,21 @@
+/* CSS colors */
+
+@define-color BASE_0    #1D2025;
+@define-color BASE_1    #282D33;
+@define-color BASE_2    #363B45;
+@define-color BASE_3    #5E6878;
+@define-color BASE_4    #A1A8B5;
+@define-color BASE_5    #BAC0C9;
+
+@define-color RED_0     #DC657D;
+@define-color RED_1     #E48698;
+@define-color GREEN_0   #79B370;
+@define-color GREEN_1   #98C491;
+@define-color YELLOW_0  #E18051;
+@define-color YELLOW_1  #E79D78;
+@define-color BLUE_0    #5596E2;
+@define-color BLUE_1    #78ACE7;
+@define-color MAGENTA_0 #B07AB8;
+@define-color MAGENTA_1 #C095C6;
+@define-color CYAN_0    #4AB0A6;
+@define-color CYAN_1    #73C4BC;
