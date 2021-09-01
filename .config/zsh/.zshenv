@@ -52,7 +52,7 @@ export MAGENTA_1='#C095C6'
 export CYAN_1='#73C4BC'
 
 # GO environment
-export GOPATH="/usr/share/gocode:$XDG_DATA_HOME/go"
+export GOPATH="$HOME/go:/usr/share/gocode"
 
 # Include FZF binaries in PATH.
 export FZF_BASE="$XDG_DATA_HOME/fzf"
