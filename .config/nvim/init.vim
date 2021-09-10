@@ -235,5 +235,9 @@ nnoremap <silent> <leader>p :setlocal invpaste<CR>
 nnoremap <silent> <leader>s :setlocal invspell<CR>
 
 " FZF
+nnoremap <silent> <leader>fr :Rg<CR>
 nnoremap <silent> <leader>ff :Files<CR>
 nnoremap <silent> <leader>fb :Buffers<CR>
+nnoremap <silent> <leader>fl :BLines<CR>
+nnoremap <silent> <leader>f\ :Lines<CR>
+nnoremap <silent> <leader>fh :History<CR>

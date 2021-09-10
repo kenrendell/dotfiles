@@ -20,7 +20,7 @@ trap _exit INT TERM
 
 {
     while true; do
-        text=" $(calc.sh "$(light)")%"
+        text=" $(printf '%.f' "$(light)")%"
         printf '{"text": "%s"}\n' "$text"
 
         read -r mes < "$pipe"

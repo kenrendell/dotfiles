@@ -23,6 +23,15 @@
 # Background 256 color coding:
 #   48;5;colorN
 
+# Text RGB color coding:
+#   38;2;R;G;B
+
+# Background RGB color coding:
+#   48;2;R;G;B
+
+# Where:
+#   colorN = R = G = B = (0 - 255)
+
 TERM alacritty
 TERM alacritty-direct
 TERM ansi

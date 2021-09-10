@@ -1,72 +1,137 @@
-# Essential packages
-    * xorg
-    * xorg-dev
-    * xinit
-    * dkms
-    * linux-headers-$(uname -r)
-    * build-essential
-    * sudo
-    * desktop-base
+# ARCH LINUX
 
-# C development files
-    * libdmalloc-dev
+# Essential packages
+    * linux-lts
+    * linux-lts-headers
+    * intel-ucode
+    * xdg-utils
+    * sudo
+
+# QT
+    * qt5-base
+    * qt6-base
+    * qt5-wayland
+    * qt6-wayland
+
+# GTK
+    * gtk2
+    * gtk3
+    * gtk4
+
+# Wayland compositor
+    * sway
+    * swayidle
+    * swaylock
+    * xorg-xwayland
+
+# Wayland utilities
+    * alacritty
+    * waybar
+    * wofi
+    * mako
+    * light
+    * udiskie
+    * playerctl
+
+# Power management
+    * tlp
+    * tlp-rdw
 
 # Network
-    * firefox-esr
     * ufw
     * curl
     * wget
-    * network-manager
+    * networkmanager
 
-# Utilities
-    * tlp
-    * libnotify-bin
-    * playerctl
-    * udiskie
-    * light
+# Bluetooth
+    * bluez
+    * bluez-utils
 
-# Conky
-    * conky-all
-    * lm-sensors
-    * hddtemp
+# Audio
+    * alsa-utils
+    * pulseaudio
+    * pipewire
+    * pipewire-pulse
+    * pipewire-alsa
+    * pipewire-jack
+    * gst-plugin-pipewire
+    * xdg-desktop-portal
+    * xdg-desktop-portal-wlr
+    * pipewire-media-session
 
-# Command-line
-    * neovim
+# Command-line utilities
     * zsh
-    * silversearcher-ag
-    * htop
-    * neofetch
-    * git
+    * neovim
+    * ripgrep
+    * fzf
     * bc
-    * time
+    * fd
+    * bat
+    * exa
     * tree
+    * time
+    * upower
+    * neofetch
+    * libnotify
+    * wl-clipboard
+    * inotify-tools
+
+# ZSH plugins
+    * zsh-completions
+    * zsh-syntax-highlighting
+
+# Monitoring tools
+    * mtr
+    * htop
+    * kmon
+    * iftop
 
 # Linter
     * shellcheck
-    * pylint
+    * python-pylint
 
 # Golang
-    * golang-go
-    * golang-dbus-dev
+    * go
+
+# Python
+    * python
+    * python-pydbus
+    * python-gobject
+
+# Audio/Video
+    * mpv
+    * mpd
+    * ffmpeg
+    * ncmpcpp
+    * wf-recorder
+
+# Images
+    * imv
+    * grim
+    * slurp
+
+# Documents
+    * zathura
+
+# Email
+    * neomutt
+
+# Authentication
+    * bitwarden
+    * bitwarden-cli
 
 # Appearance
-    * fonts-jetbrains-mono
-    * fonts-symbola
-    * arc-theme
-    * breeze-cursor-theme
+    * arc-gtk-theme
+    * breeze-gtk
     * papirus-icon-theme
-    * qt5-style-plugins
 
-# File Management
-    * xarchiver
-
-# Image viewer
-    * imv (use 'imv-wayland' for wayland)
+# Fonts
+    * ttf-jetbrains-mono
+    * ttf-opensans
+    * otf-font-awesome
+    * noto-fonts-emoji
 
 # Others
-    * atril
-    * ristretto
-    * moc
-    * mpv
-    * neomutt
-    * gtypist
+    * d-feet
+    * firefox
+    * youtube-dl

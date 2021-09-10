@@ -39,8 +39,8 @@
         "tooltip": false
     },
     "network": {
-        "format-wifi": " {essid} ({signalStrength}%) - ↑{bandwidthUpBits} ↓{bandwidthDownBits}",
-        "format-ethernet": " {ifname} ({ipaddr}/{cidr}) - ↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+        "format-wifi": " {essid} ({signalStrength}%)",
+        "format-ethernet": " {ifname} ({ipaddr}/{cidr})",
         "format-linked": " {ifname} (No IP)",
         "format-disconnected": " Disconnected",
         "format-disabled": "",

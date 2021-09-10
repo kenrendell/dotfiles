@@ -24,21 +24,18 @@ else
         rm -rf "$runtime_dir"
     fi
 
-    # Get the statusbar process on the current login session.
-    regex="\s+[0-9]+\s+$XDG_SESSION_ID\s+waybar"
-    ps="$(ps -e -o 'pid,lsession,comm' | grep -E "$regex")"
+    # Get the statusbar process id on the current login session.
+    pattern="s/^[[:space:]]*([0-9]+)[[:space:]]+${XDG_SESSION_ID}[[:space:]]+waybar/\1/p"
+    pid="$(ps -eo 'pid,lsession,comm' | sed --posix -nE "$pattern")"
 
-    if [ -n "$ps" ]; then
-        # Extract the process ID
-        pid="$(printf '%s' "$ps" | awk '{ print $1 }' | tr '\n' ' ' | sed 's/[[:space:]]*$//')"
-
+    if [ -n "$pid" ]; then
         # Terminate statusbar
-        kill $pid 2>/dev/null
+        printf '%s' "$pid" | xargs kill >/dev/null 2>&1
 
         # If the statusbar process is still exists after 10 seconds, kill it with 'SIGKILL'.
         timeout 10 sh -c \
-            "while ps -p '$pid' >/dev/null; do sleep 0.5; done" || \
-                kill -KILL $pid 2>/dev/null
+            "while printf '$pid' | xargs ps -p >/dev/null 2>&1; do sleep 1; done" || \
+                printf '%s' "$pid" | xargs kill -KILL >/dev/null 2>&1
     fi
 
     # 'exit' is the only allowed argument when the passed arguments is equal to 1.

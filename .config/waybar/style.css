@@ -74,7 +74,9 @@ window#waybar {
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    color: @BASE_0;
+    border: 1px solid @RED_0;
+    background-color: @RED_1;
 }
 
 #idle_inhibitor.activated {
@@ -114,12 +116,14 @@ window#waybar {
     background-color: @GREEN_1;
 }
 
+#custom-battery.unknown,
 #custom-battery.warning {
     color: @BASE_1;
     border: 1px solid @YELLOW_0;
     background-color: @YELLOW_1;
 }
 
+#custom-battery.empty,
 #custom-battery.critical {
     color: @BASE_1;
     border: 1px solid @RED_0;

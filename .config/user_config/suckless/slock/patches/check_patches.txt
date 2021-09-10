@@ -1,9 +1,0 @@
-
-# slock version 1.4
-# Patches
-
-[*] slock-dpms-1.4.diff
-[*] slock-quickcancel-1.4.diff
-[*] slock-terminalkeys-1.4.diff
-[*] slock-capscolor-20170106-2d2a21a.diff
-[*] slock-xresources-20191126-53e56c7.diff

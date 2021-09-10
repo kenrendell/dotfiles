@@ -1,9 +1,0 @@
-[user]
-	name = kenrendell
-	email = kenrendell.caoile.01@gmail.com
-[credential]
-	helper = cache --timeout 3600
-[core]
-	pager = nvim -R
-[color]
-	pager = no

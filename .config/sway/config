@@ -3,7 +3,7 @@
 
 ### Variables
 set $MOD Mod1
-set $BG_IMAGE '~/Pictures/Wallpapers/img04.jpg'
+set $BG_IMAGE '~/Pictures/Wallpapers/background.jpg'
 set $FONT Open Sans 9
 set $CURSOR_THEME Breeze_Snow
 set $CURSOR_SIZE 24
@@ -39,8 +39,4 @@ exec_always gsettings set org.gnome.desktop.interface {
 ### Statusbar ###
 exec_always statusbar.sh
 
-include {
-    /etc/sway/config-vars.d/*
-    ~/.config/sway/config.d/*
-    /etc/sway/config.d/*
-}
+include ~/.config/sway/config.d/*

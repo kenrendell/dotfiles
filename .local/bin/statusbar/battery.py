@@ -183,7 +183,7 @@ class BatteryMonitor:
 if __name__ == "__main__":
     argv = sys.argv
     if len(argv) != 2 or not argv[1].isdigit():
-        sys.stderr.write(f"Usage: {argv[0]} <N in '/sys/class/power_supply/BAT[N]'>\n")
+        sys.stderr.write("Usage: battery.py <N in '/sys/class/power_supply/BAT[N]'>\n")
         sys.exit(1)
 
     sys.exit(BatteryMonitor(argv[1]).run())

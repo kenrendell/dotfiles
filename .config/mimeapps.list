@@ -8,5 +8,5 @@
 # xdg-mime query default <MIME-TYPE>  // Prints the .desktop filename of the application
                                       // which is registered to open <MIME-TYPE>.
 
-image/jpeg=feh.desktop;
-image/png=feh.desktop;
+image/jpeg=imv.desktop;
+image/png=imv.desktop;

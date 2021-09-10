@@ -1,6 +1,7 @@
---theme="base16"
---style="full"
+--theme='base16'
+--color='auto'
+--style='full'
 
 # Syntax
---map-syntax=".zprofile:zsh"
---map-syntax=".zshenv:zsh"
+--map-syntax='.zprofile:zsh'
+--map-syntax='.zshenv:zsh'
