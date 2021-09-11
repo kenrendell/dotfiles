@@ -6,7 +6,7 @@
 # xdg-open will use these settings to determine how to open filetypes.
 # xdg-mime query filetype <FILE>      // Prints the MIME type of the file <FILE>.
 # xdg-mime query default <MIME-TYPE>  // Prints the .desktop filename of the application
-                                      // which is registered to open <MIME-TYPE>.
+#                                     // which is registered to open <MIME-TYPE>.
 
 image/jpeg=imv.desktop;
 image/png=imv.desktop;
