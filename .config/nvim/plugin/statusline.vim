@@ -1,4 +1,4 @@
-if exists('g:loaded_statusline') || $DISPLAY == ''
+if exists('g:loaded_statusline') || $WAYLAND_DISPLAY == ''
     finish
 else
     let g:loaded_statusline = 1

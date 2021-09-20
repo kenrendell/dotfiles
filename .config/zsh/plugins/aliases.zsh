@@ -7,9 +7,6 @@
 # Use sudo with aliased commands
 alias sudo='sudo '
 
-# System information
-alias info='neofetch'
-
 # Open a file or URL in the user's preferred application.
 alias o='xdg-open'
 
@@ -27,10 +24,10 @@ alias ll='exa -Flhamg --color=auto -s type'
 alias du='du -csh'
 
 # Viewing files
-alias cat='batcat'
+alias cat='bat --plain --color auto --theme base16'
 
 # Finding files
-alias fd='fdfind --color auto --hidden --follow'
+alias fd='fd --color auto --hidden --follow'
 
 # Calculator
 alias bc='bc -ql'

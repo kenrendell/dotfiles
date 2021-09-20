@@ -14,4 +14,4 @@ command -v snap >/dev/null 2>&1 && {
 }
 
 # Execute wayland compositor
-[ "$(tty)" = '/dev/tty1' ] && exec sway
+[ "$(tty)" = '/dev/tty1' ] && exec sway >/dev/null 2>&1

@@ -1,4 +1,4 @@
-if exists('g:loaded_comments') || $DISPLAY == ''
+if exists('g:loaded_comments') || $WAYLAND_DISPLAY == ''
     finish
 else
     let g:loaded_comments = 1

@@ -1,11 +1,17 @@
 # ARCH LINUX
 
-# Essential packages
-    * linux-lts
+# Essentials
     * linux-lts-headers
     * intel-ucode
+    * mesa
+    * f2fs-tools
+    * base-devel
+
+# Desktop specifications and helpers
+    * desktop-file-utils
+    * shared-mime-info
     * xdg-utils
-    * sudo
+    * xdg-user-dirs
 
 # QT
     * qt5-base
@@ -22,10 +28,8 @@
     * sway
     * swayidle
     * swaylock
-    * xorg-xwayland
 
 # Wayland utilities
-    * alacritty
     * waybar
     * wofi
     * mako
@@ -39,8 +43,9 @@
 
 # Network
     * ufw
-    * curl
     * wget
+    * net-tools
+    * inetutils
     * networkmanager
 
 # Bluetooth
@@ -71,7 +76,6 @@
     * tree
     * time
     * upower
-    * neofetch
     * libnotify
     * wl-clipboard
     * inotify-tools
@@ -111,18 +115,19 @@
     * slurp
 
 # Documents
+    * man-db
+    * man-pages
+    * texinfo
     * zathura
 
 # Email
     * neomutt
 
-# Authentication
-    * bitwarden
+# Password manager
     * bitwarden-cli
 
 # Appearance
     * arc-gtk-theme
-    * breeze-gtk
     * papirus-icon-theme
 
 # Fonts
@@ -130,8 +135,17 @@
     * ttf-opensans
     * otf-font-awesome
     * noto-fonts-emoji
+    * terminus-font
 
 # Others
     * d-feet
     * firefox
     * youtube-dl
+
+
+###### AUR packages ######
+    @ foot
+    @ wev
+    @ xcursor-breeze
+    @ mkinitcpio-firmware
+    @ ckbcomp

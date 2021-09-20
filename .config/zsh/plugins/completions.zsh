@@ -12,11 +12,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# Additional completions
-# 'rm -f <zcompdump>' to force the rebuild of zcompdump.
-completions="$XDG_DATA_HOME/zsh/zsh-completions/src"
-[ -d "$completions" ] && fpath+="$completions"
-
 # Autoload compinit function for completion system
 autoload -Uz compinit
 zcompdump="$XDG_CACHE_HOME/.zcompdump"

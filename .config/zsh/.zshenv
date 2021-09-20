@@ -1,6 +1,4 @@
 # ZSH Environment Variables
-
-# Change default shell: sudo chsh -s "$(which zsh)" [username]
 # Order: .zshenv -> .zprofile -> .zshrc -> .zlogout
 
 # XDG Base directory
@@ -58,8 +56,8 @@ export MAGENTA_1='#C095C6'
 export CYAN_1='#73C4BC'
 
 # FZF configurations
-export FZF_DEFAULT_COMMAND='fdfind --type file --hidden --follow'
-export FZF_PREVIEW_COMMAND='batcat -pp --color always --line-range :$FZF_PREVIEW_LINES {}'
+export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'
+export FZF_PREVIEW_COMMAND='bat -pp --color always --theme base16 --line-range :$FZF_PREVIEW_LINES {}'
 export FZF_DEFAULT_OPTS="
 --bind='ctrl-space:toggle-preview'
 --height=60%
@@ -78,20 +76,9 @@ export FZF_DEFAULT_OPTS="
 export MANPAGER="sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 export PAGER='less'
 export LESS='-RF'
-export LESSHISTFILE="$XDG_STATE_HOME/.less_history"
-export LESSHISTSIZE=100
-export LESS_TERMCAP_mb="$(tput bold; tput setaf 5)"
-export LESS_TERMCAP_md="$(tput bold; tput setaf 4)"
-export LESS_TERMCAP_me="$(tput sgr0)"
-export LESS_TERMCAP_so="$(tput bold; tput setaf 3)"
-export LESS_TERMCAP_se="$(tput rmso; tput sgr0)"
-export LESS_TERMCAP_us="$(tput setaf 1)"
-export LESS_TERMCAP_ue="$(tput rmul; tput sgr0)"
-export LESS_TERMCAP_mr="$(tput rev)"
-export LESS_TERMCAP_mh="$(tput dim)"
+export LESSHISTFILE='/dev/null'
 
 # GUI settings
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export QT_QPA_PLATFORM='wayland' # 'qtwayland5' is needed for Wayland support.
 export QT_QPA_PLATFORMTHEME='gtk2' # 'qt5-style-plugins' is needed to use gtk2 theme.
-export MOZ_ENABLE_WAYLAND=1

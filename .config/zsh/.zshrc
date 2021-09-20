@@ -1,8 +1,5 @@
 # ZSH Interactive Shell
 
-# Exit when in console terminal.
-[ -n "$DISPLAY" ] || return
-
 # Prompt
 . "$ZDOTDIR/plugins/prompt.zsh"
 
@@ -26,10 +23,10 @@ bindkey -M viins '^?' backward-delete-char
 
 # Load FZF bindings
 command -v fzf >/dev/null 2>&1 && {
-    . '/usr/share/doc/fzf/examples/key-bindings.zsh'
-    . '/usr/share/doc/fzf/examples/completion.zsh'
+    . '/usr/share/fzf/key-bindings.zsh'
+    . '/usr/share/fzf/completion.zsh'
 }
 
 # Syntax Highlighting (must be sourced at the end of this file)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-. '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+. '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'

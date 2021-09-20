@@ -1,8 +1,14 @@
 # Initialize prompt
 
+[ -n "$WAYLAND_DISPLAY" ] || {
 PS1='%F{8}%~%f
-%(1j.%F{6}%j%f .)%(?.%F{12}❯%f.%F{1}❯%f) '
-PS2='%F{8}❯%f '
+%(1j.%F{6}%j%f .)%(?.%F{12}▶%f.%F{1}▶%f) '
+PS2='%F{8}▶%f '
+return }
+
+PS1='%F{8}%~%f
+%(1j.%F{6}%j%f .)%(?.%F{12}▶%f.%F{1}▶%f) '
+PS2='%F{8}▶%f '
 
 # Emit OSC 7 escape sequence
 _osc7_cwd() {

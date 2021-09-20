@@ -21,11 +21,20 @@ trap _exit INT TERM
 
 {
 	while true; do
-		audio_info="$(amixer sget "$scontrol" | tail -1)"
-		volume="$(printf '%s' "$audio_info" | grep -oE '[0-9]+%' | tr -d '%')"
-		class=''
+		while true; do
+			audio_info="$(amixer sget "$scontrol" | \
+				sed --posix -nE 's/^.+\[([0-9]+)%\].+\[(on|off)\].*$/\1:\2/p' | tail -1)"
 
-		if printf '%s' "$audio_info" | grep -q '\[off\]'; then
+			[ -z "$audio_info" ] || break
+			printf '{"text": "", "class": ""}\n'
+			sleep 1
+		done
+
+		volume="$(printf '%s' "$audio_info" | cut -d ':' -f 1)"
+		switch="$(printf '%s' "$audio_info" | cut -d ':' -f 2)"
+		class=
+
+		if [ "$switch" = 'off' ]; then
 			text=" $volume%"
 			class='muted'
 		elif [ "$volume" -gt 100 ]; then

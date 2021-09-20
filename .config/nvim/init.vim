@@ -1,6 +1,6 @@
 " NEOVIM Configuration file
 
-if $DISPLAY == ''
+if $WAYLAND_DISPLAY == ''
     finish
 endif
 
@@ -49,10 +49,10 @@ set shortmess+=I
 set autoindent
 set smartindent
 set smarttab
-set expandtab
+set noexpandtab
+set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set tabstop=4
 
 " Scrolling
 set nowrap
