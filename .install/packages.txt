@@ -148,4 +148,3 @@
     @ wev
     @ xcursor-breeze
     @ mkinitcpio-firmware
-    @ ckbcomp
