@@ -25,7 +25,7 @@ else
     fi
 
     # Get the statusbar process id on the current login session.
-    pattern="s/^[[:space:]]*([0-9]+)[[:space:]]+${XDG_SESSION_ID}[[:space:]]+waybar/\1/p"
+    pattern="s/^[[:space:]]*([0-9]+)[[:space:]]+${XDG_SESSION_ID}[[:space:]]+waybar.*$/\1/p"
     pid="$(ps -eo 'pid,lsession,comm' | sed --posix -nE "$pattern")"
 
     if [ -n "$pid" ]; then

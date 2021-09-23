@@ -47,7 +47,7 @@ alias rm='rm -Iv'
 alias mkdir='mkdir -pv'
 
 # Managing dotfiles
-alias gitdf='git --git-dir="$HOME/.gitdf" --work-tree="$HOME"'
+alias dotfiles='git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
 
 # Network
 alias ip='ip -c'
