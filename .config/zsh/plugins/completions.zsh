@@ -1,7 +1,7 @@
 # Completions
 
 # Completion behavior
-set -o menucomplete -o globdots -o nocaseglob
+set -o menucomplete -o completealiases -o globdots -o nocaseglob
 
 # Load complist before loading compinit.
 zmodload zsh/complist
