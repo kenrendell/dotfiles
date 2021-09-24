@@ -1,4 +1,4 @@
-DOTFILES with Wayland on Arch Linux
+DOTFILES with Wayland (Sway) on Arch Linux
 
 ### Installation:
 ``` sh
