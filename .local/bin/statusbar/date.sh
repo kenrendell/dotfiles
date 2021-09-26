@@ -6,10 +6,7 @@ script_name="${0##*/}"
 runtime_dir="$XDG_RUNTIME_DIR/statusbar-modules-$XDG_SESSION_ID"
 pipe="$runtime_dir/${script_name%.*}-pipe"
 
-if [ -p "$pipe" ]; then
-	printf 'This program is already running!\n' 1>&2
-	exit 1
-fi
+[ -p "$pipe" ] && { printf 'This program is already running!\n' 1>&2; exit 1; }
 
 [ -d "$runtime_dir" ] || mkdir -m 700 "$runtime_dir"
 mkfifo -m 600 "$pipe"
@@ -17,12 +14,11 @@ mkfifo -m 600 "$pipe"
 _exit() { printf 'exit\n' > "$pipe"; }
 trap _exit INT TERM
 
-{
-	sleep_pid=
+( sleep_pid=
 	mode=0
 
 	toggle() { mode="$(((mode + 1) % 2))"; }
-	_stop() { kill $sleep_pid 2>/dev/null; exit; }
+	_stop() { kill "$sleep_pid" 2>/dev/null; exit; }
 
 	trap toggle USR1
 	trap _stop USR2
@@ -41,16 +37,14 @@ trap _exit INT TERM
 
 		printf '{"text": "%s"}\n' "$text"
 		sleep $H $M $S & sleep_pid=$!; wait
-		kill $sleep_pid 2>/dev/null
+		kill "$sleep_pid" 2>/dev/null
 	done
-} & pid=$!
+) & pid=$!
 
-{
-	while true; do
-		read -r mes < "$pipe"
-		case $mes in
-			toggle) kill -USR1 $pid;;
-			exit) rm -f "$pipe"; kill -USR2 $pid; exit;;
-		esac
-	done
-} & wait
+while true; do
+	read -r mes < "$pipe"
+	case $mes in
+		toggle) kill -USR1 $pid;;
+		exit) rm -f "$pipe"; kill -USR2 $pid; exit;;
+	esac
+done & wait
