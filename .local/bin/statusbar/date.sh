@@ -24,19 +24,16 @@ trap _exit INT TERM
 	trap _stop USR2
 
 	while true; do
-		H=0h; M=0m; S=0s
 		if [ "$mode" -eq 0 ]; then
-			S="$((60 - $(date +%-S)))s"
+			sec="$((60 - $(date +%-S)))"
 			text=" $(date +%R)"
 		else
-			H="$((23 - $(date +%-H)))h"
-			M="$((59 - $(date +%-M)))m"
-			S="$((60 - $(date +%-S)))s"
+			sec="$((((24 - $(date +%-H)) * 60 - $(date +%-M)) * 60 - $(date +%-S)))"
 			text=" $(date +'%a %F')"
 		fi
 
 		printf '{"text": "%s"}\n' "$text"
-		sleep $H $M $S & sleep_pid=$!; wait
+		sleep "$sec" & sleep_pid=$!; wait
 		kill "$sleep_pid" 2>/dev/null
 	done
 ) & pid=$!
@@ -44,7 +41,7 @@ trap _exit INT TERM
 while true; do
 	read -r mes < "$pipe"
 	case $mes in
-		toggle) kill -USR1 $pid;;
-		exit) rm -f "$pipe"; kill -USR2 $pid; exit;;
+		toggle) kill -USR1 $pid ;;
+		exit) rm -f "$pipe"; kill -USR2 $pid; break ;;
 	esac
 done & wait

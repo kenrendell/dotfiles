@@ -1,6 +1,6 @@
 " NEOVIM Configuration file
 
-if $WAYLAND_DISPLAY == ''
+if $WAYLAND_DISPLAY ==# ''
     finish
 endif
 
@@ -112,8 +112,8 @@ endif
 
 " Load plugins
 call plug#begin('$XDG_DATA_HOME/nvim/plugged')
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'dense-analysis/ALE'
 Plug 'sheerun/vim-polyglot'
 Plug 'Raimondi/delimitMate'
@@ -122,10 +122,8 @@ Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Fuzzy finder
-let g:fzf_layout = { 'down': '40%' }
-let g:fzf_action = { 'ctrl-t': 'tab split',
-                   \ 'ctrl-s': 'split',
-                   \ 'ctrl-v': 'vsplit' }
+let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.7}}
+let g:fzf_action = {'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit'}
 
 " ALE Linter
 let g:ale_lint_on_enter = 1
@@ -175,8 +173,8 @@ let g:loaded_netrwPlugin = 1
 " alt + shift + q             := Close (without checking for changes) the current window.
 
 for mde in ['n', 't', 'i', 'v']
-    let nmde = (mde == 'n' ? '' : '<C-\><C-n>')
-    let tmde = [(mde == 't' ? ' \| else \| startinsert' : ''), (mde == 't' ? '<Esc>' : ''), (mde == 't' ? ' \| startinsert' : '')]
+    let nmde = (mde ==# 'n' ? '' : '<C-\><C-n>')
+    let tmde = [(mde ==# 't' ? ' \| else \| startinsert' : ''), (mde ==# 't' ? '<Esc>' : ''), (mde ==# 't' ? ' \| startinsert' : '')]
 
     for nr in range(1, 12)
         let checktab = ':if tabpagenr("$") >= ' . nr . ' && tabpagenr() != ' . nr . ' \| '
@@ -191,7 +189,7 @@ for mde in ['n', 't', 'i', 'v']
     exe mde . 'noremap <silent> <A-C-i> ' . nmde . ':tabnew<CR>' . tmde[1]
 
     for key in [['h', 'a'], ['j', 's'], ['k', 'w'], ['l', 'd']]
-        let res = [(key[0] == 'h' || key[0] == 'l' ? 'vertical ' : ''), (key[0] == 'h' || key[0] == 'j' ? '-' : '+')]
+        let res = [(key[0] ==# 'h' || key[0] ==# 'l' ? 'vertical ' : ''), (key[0] ==# 'h' || key[0] ==# 'j' ? '-' : '+')]
         exe mde . 'noremap <silent> <A-' . key[1] . '> ' . nmde . ':if winnr() != winnr("' . key[0] . '") \| wincmd ' . key[0] . tmde[0] . ' \| endif<CR>'
         exe mde . 'noremap <silent> <A-S-' . key[1] . '> ' . nmde . ':if winnr("$") > 1 \| wincmd ' . toupper(key[0]) . ' \| endif' . tmde[2] . '<CR>'
         exe mde . 'noremap <silent> <A-C-' . key[0] . '> ' . nmde . ':if winnr("$") > 1 \| ' . res[0] . 'resize ' . res[1] . '5 \| endif' . tmde[2] . '<CR>'

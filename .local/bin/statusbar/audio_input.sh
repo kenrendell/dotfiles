@@ -17,7 +17,7 @@ trap _exit INT TERM
 ( pactl subscribe | while read -r event; do
 	[ -f "${pipe}.lock" ] && continue
 	
-	printf '%s\n' "$event" | grep -qE "'(change|new|remove)' on source" && \
+	printf '%s\n' "$event" | grep -E -q "'(change|new|remove)' on source" && \
 		{ [ -p "$pipe" ] && printf '\n' > "$pipe"; }
 done ) & pid=$!
 
@@ -25,7 +25,7 @@ touch "${pipe}.lock"
 while true; do
 	while true; do
 		volume="$(pactl get-source-volume @DEFAULT_SOURCE@ | \
-			sed --posix -nE 's/^V.+\/[[:space:]]+([0-9]+)%.+$/\1/p')"
+			sed -E -n 's/^V.+\/[[:space:]]+([0-9]+)%.+$/\1/p')"
 		mute="$(pactl get-source-mute @DEFAULT_SOURCE@ | cut -d ' ' -f 2)"
 
 		[ -n "$volume" ] && [ -n "$mute" ] && break
@@ -57,6 +57,6 @@ while true; do
 		mute) pactl set-source-mute @DEFAULT_SOURCE@ toggle ;;
 		inc) pactl set-source-volume @DEFAULT_SOURCE@ +5% ;;
 		dec) pactl set-source-volume @DEFAULT_SOURCE@ -5% ;;
-		exit) pkill -P $pid; rm -f "$pipe"; exit ;;
+		exit) pkill -P $pid; rm -f "$pipe"; break ;;
 	esac
 done & wait

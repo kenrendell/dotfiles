@@ -39,4 +39,8 @@ exec_always gsettings set org.gnome.desktop.interface {
 ### Statusbar ###
 exec_always statusbar.sh
 
+### Notification ###
+exec fnott
+
 include ~/.config/sway/config.d/*
+include /etc/sway/config.d/*

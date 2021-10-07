@@ -61,7 +61,7 @@ function! s:hl(hlgroup)
         let l:bg = (!empty(bg) ? bg : ['NONE', 'NONE'])
         let l:attr = (attr !=# '' ? attr : 'NONE')
 
-        exe 'highlight ' . group   . ' guisp='   . 'NONE'  .
+        execute 'highlight ' . group   . ' guisp='   . 'NONE'  .
             \ ' guifg='   . l:fg[0] . ' ctermfg=' . l:fg[1] .
             \ ' guibg='   . l:bg[0] . ' ctermbg=' . l:bg[1] .
             \ ' gui='     . l:attr  . ' cterm='   . l:attr
@@ -70,7 +70,7 @@ endfunction
 
 " Syntax Groups (see 'W18')
 let s:hlsyntax = [
-    \ ['Comment',         s:base[3],    s:base[0], 'italic'],
+    \ ['Comment',         s:base[3],    s:base[0], ''],
     \ ['Constant',        s:red[0],     s:base[0], ''],
     \ ['String',          s:yellow[0],  s:base[0], ''],
     \ ['Character',       s:yellow[0],  s:base[0], ''],

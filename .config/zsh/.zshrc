@@ -1,16 +1,31 @@
 # ZSH Interactive Shell
 
 # Prompt
-. "$ZDOTDIR/plugins/prompt.zsh"
+PS1=$'%{\e[38;5;8m%}%~%{\e[m%}\n%(1j.%{\e[38;5;6m%}%j%{\e[m%} .)%(?.%{\e[38;5;12m%}.%{\e[38;5;1m%})▶%{\e[m%} '
+PS2=$'%{\e[38;5;8m%}▶%{\e[m%} '
+
+# Emit OSC 7 escape sequence
+_osc7_cwd() { printf '\033]7;%s\033\\' \
+	"file://$(hostname)$(urlencode.lua "$PWD")"
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook -Uz chpwd _osc7_cwd
+
+# Changing directories
+set -o autocd \
+	-o cdsilent \
+	-o autopushd \
+	-o pushdsilent \
+	-o pushdignoredups
 
 # History
 set -o histverify \
-    -o histreduceblanks \
-    -o histignorespace \
-    -o histignorealldups \
-    -o histsavenodups \
-    -o extendedhistory \
-    -o sharehistory
+	-o histreduceblanks \
+	-o histignorespace \
+	-o histignorealldups \
+	-o histsavenodups \
+	-o extendedhistory \
+	-o sharehistory
 
 # Key bindings
 bindkey -M viins '^?' backward-delete-char
@@ -23,8 +38,8 @@ bindkey -M viins '^?' backward-delete-char
 
 # Load FZF bindings
 command -v fzf >/dev/null 2>&1 && {
-    . '/usr/share/fzf/key-bindings.zsh'
-    . '/usr/share/fzf/completion.zsh'
+	. '/usr/share/fzf/key-bindings.zsh'
+	. '/usr/share/fzf/completion.zsh'
 }
 
 # Syntax Highlighting (must be sourced at the end of this file)

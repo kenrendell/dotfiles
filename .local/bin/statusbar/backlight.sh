@@ -21,8 +21,8 @@ while true; do
 
     read -r mes < "$pipe"
     case $mes in
-        inc) light -A "$value";;
-        dec) light -U "$value";;
-        exit) rm -f "$pipe"; exit;;
+        inc) light -A "$value" ;;
+        dec) light -U "$value" ;;
+        exit) rm -f "$pipe"; break ;;
     esac
 done & wait

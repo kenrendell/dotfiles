@@ -9,26 +9,25 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 #
 [ -z "$XDG_DATA_DIRS" ] && \
-    export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+	export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 #
 [ -z "$XDG_RUNTIME_DIR" ] && \
-    export XDG_RUNTIME_DIR="/run/user/$UID"
+	export XDG_RUNTIME_DIR="/run/user/$UID"
 
 # ZSH configuration files
 export HISTFILE="$XDG_STATE_HOME/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 export KEYTIMEOUT=1
-
-# GNU coreutils
-export POSIXLY_CORRECT=1
+export ZCOMPCACHE="$XDG_CACHE_HOME/.zcompcache"
+export ZCOMPDUMP="$XDG_CACHE_HOME/.zcompdump"
 
 # Editor
 export EDITOR='nvim'
 export VISUAL='nvim'
 
 # GO environment
-export GOPATH="$XDG_DATA_HOME/go:/usr/share/gocode"
+export GOPATH="$XDG_DATA_HOME/go"
 
 # Set LS_COLORS
 eval "$(dircolors -b "$ZDOTDIR/colors/.dircolors")"
@@ -57,20 +56,17 @@ export CYAN_1='#73C4BC'
 
 # FZF configurations
 export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'
-export FZF_PREVIEW_COMMAND='bat -pp --color always --theme base16 --line-range :$FZF_PREVIEW_LINES {}'
-export FZF_DEFAULT_OPTS="
---bind='ctrl-space:toggle-preview'
+export FZF_DEFAULT_OPTS="\
+--bind='ctrl-space:toggle-search,btab:toggle-preview'
 --height=60%
---layout=reverse
---prompt='❯ '
---marker='❯ '
+--reverse
+--prompt='▶ '
+--marker='> '
 --pointer=' ▶'
---no-bold
---color='fg:7,bg:$BASE_0,preview-fg:7,preview-bg:$BASE_0'
---color='gutter:$BASE_0,fg+:15,bg+:0,hl:4,hl+:12'
---color='border:8,info:5,header:2'
---color='prompt:12,pointer:14,marker:9,spinner:3'
-"
+--color='fg:8,bg:-1,preview-fg:7,preview-bg:-1,hl:4,hl+:4'
+--color='fg+:8,bg+:-1,gutter:-1,query:4,disabled:8,info:5'
+--color='border:0,prompt:8,pointer:12,marker:9,spinner:3,header:2'
+--no-bold$(tty | grep -q '^/dev/tty' && printf '\n--no-unicode')"
 
 # Pager settings
 export MANPAGER="sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
