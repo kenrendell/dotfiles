@@ -61,16 +61,6 @@ alias df='df -hT --sync'
 # Run programs and summarize system resource usage.
 alias time='command time -f "Program: %C\nReal: %e s - User: %U s - System: %S s - CPU: %P"'
 
-# Update pacman mirrorlist
-update_mirrorlist() {
-	command cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-
-	reflector --verbose --protocol https --latest 30 \
-		--fastest 5 --save /etc/pacman.d/mirrorlist
-
-	less /etc/pacman.d/mirrorlist
-}
-
 # Update compinit
 update_compinit() {
 	command rm -rf "$ZCOMPDUMP"
