@@ -1,22 +1,33 @@
 #!/bin/sh
-# See 'free' documentation for more details.
+# Memory module for statusbar
+# NOTE: Only one process (per session) of this script is allowed!
 
-export LANG=C
-export LC_ALL=C
+mode=0
+script_name="${0##*/}"
+runtime_dir="$XDG_RUNTIME_DIR/statusbar-modules-$XDG_SESSION_ID"
+pipe="$runtime_dir/${script_name%.*}-pipe"
+cmd_dir="${0%/*}/bin"
 
-meminfo="$(cat /proc/meminfo)"
+[ -p "$pipe" ] && { printf 'This program is already running!\n' 1>&2; exit 1; }
 
-mem_total="$(printf '%s' "$meminfo" | sed -E -n 's/^MemTotal:[[:space:]]+([0-9]+).+$/\1/p')"
-mem_free="$(printf '%s' "$meminfo" | sed -E -n 's/^MemFree:[[:space:]]+([0-9]+).+$/\1/p')"
-buffers="$(printf '%s' "$meminfo" | sed -E -n 's/^Buffers:[[:space:]]+([0-9]+).+$/\1/p')"
-cached="$(printf '%s' "$meminfo" | sed -E -n 's/^Cached:[[:space:]]+([0-9]+).+$/\1/p')"
-sreclaimable="$(printf '%s' "$meminfo" | sed -E -n 's/^SReclaimable:[[:space:]]+([0-9]+).+$/\1/p')"
-cache="$((cached + sreclaimable))"
-mem_used="$((mem_total - mem_free - buffers - cache))"
+[ -d "$runtime_dir" ] || mkdir -m 700 "$runtime_dir"
+mkfifo -m 600 "$pipe"
 
-swap_total="$(printf '%s' "$meminfo" | sed -E -n 's/^SwapTotal:[[:space:]]+([0-9]+).+$/\1/p')"
-swap_free="$(printf '%s' "$meminfo" | sed -E -n 's/^SwapFree:[[:space:]]+([0-9]+).+$/\1/p')"
-swap_used="$((swap_total - swap_free))"
+_exit() { printf 'exit' > "$pipe"; }
+trap _exit INT TERM
 
-printf 'Memory: %s / %s\n' "$(iecbyte.lua "$mem_used" KiB)" "$(iecbyte.lua "$mem_total" KiB)"
-printf 'Swap: %s / %s\n' "$(iecbyte.lua "$swap_used" KiB)" "$(iecbyte.lua "$swap_total" KiB)"
+while true; do
+	if [ "$mode" -eq 1 ]; then
+		"$cmd_dir/mem_usage.lua" --expand & pid=$!
+	else
+		"$cmd_dir/mem_usage.lua" & pid=$!
+	fi
+
+	read -r mes < "$pipe"
+	kill -TERM $pid 2>/dev/null
+
+	case "$mes" in
+		toggle) mode="$(((mode + 1) % 2))" ;;
+		exit) rm -f "$pipe"; break ;;
+	esac
+done & wait

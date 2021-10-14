@@ -14,7 +14,6 @@ import os
 import sys
 import signal
 
-from threading import Thread, ThreadError
 from gi.repository.GLib import MainLoop
 from pydbus import SystemBus
 
@@ -65,31 +64,13 @@ BAT_LEVEL = {
 
 class BatteryMonitor:
     """ Class for Battery Monitoring """
-    def __init__(self, batn):
-        self.use_design_capacity = 1
+    def __init__(self, batn, design):
+        self.use_design_capacity = design
         self.bat_path = f"{IFACE_PATH}/devices/battery_BAT{batn}"
-        self.pipe = f"{RUNTIME_DIR}/BAT{batn}-pipe"
         self.upower = self.bus = self.bat = self.loop = None
 
     def run(self):
         """ Runs event loop """
-        if os.path.exists(self.pipe):
-            sys.stderr.write("This program is already running!\n")
-            return 1
-
-        try:
-            if not os.path.exists(RUNTIME_DIR):
-                os.mkdir(RUNTIME_DIR, 0o700)
-
-            os.mkfifo(self.pipe, 0o600)
-            Thread(target=self.read_pipe).start()
-
-        except (ThreadError, OSError):
-            if os.path.exists(self.pipe):
-                os.remove(self.pipe)
-
-            return 1
-
         self.loop = MainLoop()
         self.bus = SystemBus()
         self.upower = self.bus.get(IFACE, IFACE_PATH)
@@ -103,26 +84,10 @@ class BatteryMonitor:
         signal.signal(signal.SIGINT, self.end_loop)
 
         self.loop.run()
-        return 0
 
     def end_loop(self, signal_num=None, frame=None):
         """ End event loop """
         del signal_num, frame
-        with open(self.pipe, 'w') as pipe:
-            pipe.write("exit\n")
-
-    def read_pipe(self):
-        """ Read FIFO file """
-        mes = None
-        while mes != "exit":
-            with open(self.pipe) as pipe:
-                mes = (pipe.read()).rstrip('\n')
-
-            if mes == "toggle":
-                self.use_design_capacity = (self.use_design_capacity + 1) % 2
-                self.update_battery()
-
-        os.remove(self.pipe)
         self.loop.quit()
 
     def add_battery(self, dev_path=None):
@@ -181,9 +146,10 @@ class BatteryMonitor:
 
 
 if __name__ == "__main__":
-    argv = sys.argv
-    if len(argv) != 2 or not argv[1].isdigit():
-        sys.stderr.write("Usage: battery.py <N in '/sys/class/power_supply/BAT[N]'>\n")
+    arg = sys.argv[1:]
+
+    if not ((len(arg) == 1 or (len(arg) == 2 and arg[1] == '--design')) and arg[0].isdigit()):
+        sys.stderr.write("Usage: bat_status.py <battery number> [--design]\n")
         sys.exit(1)
 
-    sys.exit(BatteryMonitor(argv[1]).run())
+    BatteryMonitor(arg[0], 1 if len(arg) == 2 else 0).run()

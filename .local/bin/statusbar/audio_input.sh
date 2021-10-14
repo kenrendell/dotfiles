@@ -11,14 +11,14 @@ pipe="$runtime_dir/${script_name%.*}-pipe"
 [ -d "$runtime_dir" ] || mkdir -m 700 "$runtime_dir"
 mkfifo -m 600 "$pipe"
 
-_exit() { printf 'exit\n' > "$pipe"; }
+_exit() { printf 'exit' > "$pipe"; }
 trap _exit INT TERM
 
 ( pactl subscribe | while read -r event; do
 	[ -f "${pipe}.lock" ] && continue
 	
 	printf '%s\n' "$event" | grep -E -q "'(change|new|remove)' on source" && \
-		{ [ -p "$pipe" ] && printf '\n' > "$pipe"; }
+		{ [ -p "$pipe" ] && printf '' > "$pipe"; }
 done ) & pid=$!
 
 touch "${pipe}.lock"
@@ -53,10 +53,11 @@ while true; do
 
 	[ -n "$mes" ] && [ "$mes" != 'exit' ] && touch "${pipe}.lock"
 
-	case $mes in
+	case "$mes" in
 		mute) pactl set-source-mute @DEFAULT_SOURCE@ toggle ;;
 		inc) pactl set-source-volume @DEFAULT_SOURCE@ +5% ;;
 		dec) pactl set-source-volume @DEFAULT_SOURCE@ -5% ;;
-		exit) pkill -P $pid; rm -f "$pipe"; break ;;
+		exit) ps -o pid= --ppid=$pid | xargs kill 2>/dev/null
+			rm -f "$pipe"; break ;;
 	esac
 done & wait

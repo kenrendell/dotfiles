@@ -12,17 +12,17 @@ pipe="$runtime_dir/${script_name%.*}-pipe"
 [ -d "$runtime_dir" ] || mkdir -m 700 "$runtime_dir"
 mkfifo -m 600 "$pipe"
 
-_exit() { printf 'exit\n' > "$pipe"; }
+_exit() { printf 'exit' > "$pipe"; }
 trap _exit INT TERM
 
 while true; do
-    text=" $(printf '%.f' "$(light)")%"
-    printf '{"text": "%s"}\n' "$text"
+	text=" $(printf '%.f' "$(light)")%"
+	printf '{"text": "%s"}\n' "$text"
 
-    read -r mes < "$pipe"
-    case $mes in
-        inc) light -A "$value" ;;
-        dec) light -U "$value" ;;
-        exit) rm -f "$pipe"; break ;;
-    esac
+	read -r mes < "$pipe"
+	case "$mes" in
+		inc) light -A "$value" ;;
+		dec) light -U "$value" ;;
+		exit) rm -f "$pipe"; break ;;
+	esac
 done & wait
