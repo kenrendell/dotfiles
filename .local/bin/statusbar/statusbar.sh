@@ -14,12 +14,15 @@ if [ "$#" -eq 2 ]; then
 	[ -d "$runtime_dir" ] && [ -p "$runtime_dir/$2" ] && \
 		printf '%s' "$1" > "$runtime_dir/$2"
 else
-	ps_output="$(ps -eo 'pid,lsession,comm')" # Get the list of processes
-	p="s/^[[:space:]]*([0-9]+)[[:space:]]+${XDG_SESSION_ID}[[:space:]]+"
+	# Get the list of processes
+	ps_output="$(ps -eo 'pid,lsession,comm')"
+
+	# Substitution patterns for 'sed'
+	s="s/^[[:space:]]*([0-9]+)[[:space:]]+${XDG_SESSION_ID}[[:space:]]+"
+	e='[[:space:]]*$/\1/p'
 
 	# Prevent the multiple execution of this script.
-	[ "$(printf '%s\n' "$ps_output" | sed -E -n \
-		"${p}statusbar\.sh\$/\1/p")" = "$$" ] || exit 1
+	[ "$(printf '%s\n' "$ps_output" | sed -E -n "${s}statusbar\.sh${e}")" = "$$" ] || exit 1
 
 	# Terminate all statusbar custom modules.
 	if [ -d "$runtime_dir" ]; then
@@ -31,7 +34,7 @@ else
 	fi
 
 	# Get the pid of statusbar
-	pid="$(printf '%s\n' "$ps_output" | sed -E -n "${p}waybar\$/\1/p" | xargs)"
+	pid="$(printf '%s\n' "$ps_output" | sed -E -n "${s}waybar${e}" | xargs)"
 
 	# shellcheck disable=SC2086
 	if [ -n "$pid" ]; then
