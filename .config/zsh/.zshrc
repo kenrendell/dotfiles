@@ -4,8 +4,10 @@
 PS1=$'%{\e[38;5;8m%}%~%{\e[m%}\n%(1j.%{\e[38;5;6m%}%j%{\e[m%} .)%(?.%{\e[38;5;12m%}.%{\e[38;5;1m%})▶%{\e[m%} '
 PS2=$'%{\e[38;5;8m%}▶%{\e[m%} '
 
-# Required by GPG agent for pinentry
-export GPG_TTY="$(tty)"
+# Tell ssh to use gpg-agent for ssh authentication
+unset SSH_AGENT_PID; export GPG_TTY="$(tty)"
+[ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne "$$" ] && \
+	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
 # Emit OSC 7 escape sequence
 _osc7_cwd() ( str="$PWD"
