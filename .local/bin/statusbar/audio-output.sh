@@ -6,9 +6,6 @@
 ps -e -o comm | grep -q '^pipewire$' || \
 	{ printf "'pipewire' is not running!\n" 1>&2; exit 1; }
 
-ps -e -o comm | grep -q '^pipewire-pulse$' || \
-	{ printf "'pipewire-pulse' is not running!\n" 1>&2; exit 1; }
-
 script_name="${0##*/}"
 runtime_dir="$XDG_RUNTIME_DIR/statusbar-modules-$XDG_SESSION_ID"
 pipe="$runtime_dir/${script_name%.*}-pipe"
