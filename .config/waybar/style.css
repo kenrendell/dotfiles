@@ -1,131 +1,98 @@
 @import "colors/colors.css";
 
 * {
-    font-family: "JetBrains Mono";
-    font-size: 10px;
-    min-height: 0;
+	font-family: "JetBrains Mono", "Font Awesome 6 Free Solid"; /* Run 'fc-list' command to list available fonts */
+	font-size: 10px;
+	min-height: 0;
+	min-width: 0;
 }
 
-window#waybar {
-    border-radius: 2px;
-    border: 1px solid @BASE_1;
-    background-color: @BASE_0;
-    color: @BASE_4;
-}
+/* Main waybar window */
+window#waybar { background-color: @COLOR_0; }
 
-
-/* SWAY WORKSPACES */
-
-#workspaces {
-    margin-left: 3px;
-}
-
+/* Inactive workspace */
 #workspaces button {
-    color: @BASE_0;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 0 2px;
-    margin: 3px 3px 3px 0;
-    border: 1px solid @BASE_1;
-    background-color: @BASE_3;
-    border-radius: 2px;
+	color: @COLOR_0;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0 6px;
+	margin: 2px 0 2px 2px;
+	border-radius: 2px;
+	border: 1px solid @COLOR_0;
+	background-color: @COLOR_8;
 }
 
+/* Focused workspace */
 #workspaces button.focused {
-    color: @BASE_1;
-    border-color: @CYAN_0;
-    background-color: @CYAN_1;
+	color: @COLOR_0;
+	border-color: @COLOR_6;
+	background-color: @COLOR_14;
 }
 
-#workspaces button.urgent {
-    color: @BASE_1;
-    border-color: @RED_0;
-    background-color: @RED_1;
-}
-
-
+/* Key modes */
 #mode {
-    color: @BASE_1;
-    background-color: @YELLOW_1;
-    border: 1px solid @YELLOW_0;
-    border-radius: 2px;
-    padding: 0 7px;
-    margin: 3px;
+	color: @COLOR_13;
+	font-weight: bold;
+	padding: 0 8px;
+	border-right: 1px dotted @COLOR_8;
 }
 
+/* Window title */
 #window {
-    color: @BASE_3;
-    padding: 0 6px;
+	color: @COLOR_8;
+	padding: 0 8px;
 }
 
-#tray,
-#network,
+/* Right modules default */
 #idle_inhibitor,
-#custom-date,
-#custom-battery,
+#custom-mpd,
+#custom-cpu,
+#custom-memory,
+#custom-camera,
+#custom-conntrack,
+#custom-audio-output,
+#custom-audio-input,
 #custom-backlight,
-#custom-audio_input,
-#custom-audio_output {
-    border: 1px solid @BASE_2;
-    border-radius: 2px;
-    padding: 0 7px;
-    margin: 3px;
-    background-color: @BASE_1;
+#custom-battery,
+#custom-date,
+#tray {
+	color: @COLOR_7;
+	padding: 0 8px;
+	background-color: @COLOR_0;
+	border-left: 1px dotted @COLOR_8;
 }
 
-#network.disconnected {
-    color: @BASE_0;
-    border: 1px solid @RED_0;
-    background-color: @RED_1;
-}
+/* Presentation mode */
+#idle_inhibitor.activated { color: @COLOR_5; }
 
-#idle_inhibitor.activated {
-    color: @BASE_0;
-    border: 1px solid @MAGENTA_0;
-    background-color: @MAGENTA_1;
-}
+/* Music Player Daemon */
+#custom-mpd.no-output { color: @COLOR_1; }
+#custom-mpd.playing { color: @COLOR_12; }
 
-/* AUDIO */
+/* Camera */
+#custom-camera.active { color: @COLOR_12; }
 
-#custom-audio_input.muted,
-#custom-audio_output.muted {
-    color: @BASE_0;
-    border: 1px solid @YELLOW_0;
-    background-color: @YELLOW_1;
-}
+/* CPU */
+#custom-cpu.critical { color: @COLOR_1; }
+#custom-cpu.warning { color: @COLOR_3; }
 
-#custom-audio_input.exceeded,
-#custom-audio_output.exceeded {
-    color: @BASE_0;
-    border: 1px solid @RED_0;
-    background-color: @RED_1;
-}
+/* Memory */
+#custom-memory.critical { color: @COLOR_1; }
+#custom-memory.warning { color: @COLOR_3; }
 
+/* Conntrack */
+#custom-conntrack.critical { color: @COLOR_1; }
+#custom-conntrack.warning { color: @COLOR_3; }
 
-/* BATTERY */
+/* Audio */
+#custom-audio-input.muted,
+#custom-audio-output.muted { color: @COLOR_3; }
+#custom-audio-input.exceeded,
+#custom-audio-output.exceeded { color: @COLOR_1; }
 
-#custom-battery.full {
-    color: @BASE_1;
-    border: 1px solid @BLUE_0;
-    background-color: @BLUE_1;
-}
-
-#custom-battery.charging {
-    color: @BASE_1;
-    border: 1px solid @GREEN_0;
-    background-color: @GREEN_1;
-}
-
+/* Battery */
+#custom-battery.critical { color: @COLOR_1; }
 #custom-battery.unknown,
-#custom-battery.warning {
-    color: @BASE_1;
-    border: 1px solid @YELLOW_0;
-    background-color: @YELLOW_1;
-}
-
-#custom-battery.empty,
-#custom-battery.critical {
-    color: @BASE_1;
-    border: 1px solid @RED_0;
-    background-color: @RED_1;
-}
+#custom-battery.warning { color: @COLOR_3; }
+#custom-battery.charging { color: @COLOR_2; }
+#custom-battery.full { color: @COLOR_12; }

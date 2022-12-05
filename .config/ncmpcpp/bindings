@@ -1,0 +1,67 @@
+# NCMPCPP Configuration File (Key Bindings)
+# For reference, see '/usr/share/doc/ncmpcpp/bindings'
+
+def_key "J"
+	select_item
+	scroll_down
+
+def_key "K"
+	select_item
+	scroll_up
+
+def_key "h"
+	previous_column
+
+def_key "h"
+	jump_to_parent_directory
+
+def_key "j"
+	scroll_down
+
+def_key "k"
+	scroll_up
+
+def_key "l"
+	next_column
+
+def_key "l"
+	enter_directory
+
+def_key "b"
+	page_up
+
+def_key "f"
+	page_down
+
+def_key "g"
+	move_home
+
+def_key "G"
+	move_end
+
+def_key ";"
+	select_item
+
+def_key "D"
+	delete_playlist_items
+
+def_key "D"
+	delete_browser_items
+
+def_key "D"
+	delete_stored_playlist
+
+def_key "_"
+	set_volume
+
+def_key "H"
+	seek_backward
+
+def_key "L"
+	seek_forward
+
+def_key "'"
+	show_lyrics
+
+def_key "\\"
+	jump_to_position_in_song

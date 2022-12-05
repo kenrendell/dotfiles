@@ -47,6 +47,9 @@ TERM Eterm
 TERM eterm-color
 TERM fbterm
 TERM foot
+TERM foot+base
+TERM foot-extra
+TERM foot-extra-direct
 TERM gnome
 TERM gnome-256color
 TERM hurd

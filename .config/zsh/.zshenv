@@ -1,18 +1,4 @@
 # ZSH Environment Variables
-# Order: .zshenv -> .zprofile -> .zshrc -> .zlogout
-
-# XDG Base directory
-# see 'https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html'
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_CACHE_HOME="$HOME/.cache"
-#
-[ -z "$XDG_DATA_DIRS" ] && \
-	export XDG_DATA_DIRS="/usr/local/share:/usr/share"
-#
-[ -z "$XDG_RUNTIME_DIR" ] && \
-	export XDG_RUNTIME_DIR="/run/user/$UID"
 
 # ZSH configuration files
 export HISTFILE="$XDG_STATE_HOME/.zsh_history"
@@ -22,9 +8,13 @@ export KEYTIMEOUT=1
 export ZCOMPCACHE="$XDG_CACHE_HOME/.zcompcache"
 export ZCOMPDUMP="$XDG_CACHE_HOME/.zcompdump"
 
-# Editor
+# Default programs
 export EDITOR='nvim'
 export VISUAL='nvim'
+export BROWSER='lynx'
+
+# Sudo
+export SUDO_ASKPASS="$HOME/.local/bin/ask-passwd.sh"
 
 # GO environment
 export GOPATH="$XDG_DATA_HOME/go"
@@ -33,26 +23,20 @@ export GOPATH="$XDG_DATA_HOME/go"
 eval "$(dircolors -b "$ZDOTDIR/colors/.dircolors")"
 
 # Colors
-export BASE_0='#1D2025'
-export BASE_1='#282D33'
-export BASE_2='#363B45'
-export BASE_3='#5E6878'
-export BASE_4='#A1A8B5'
-export BASE_5='#BAC0C9'
-#
-export RED_0='#DC657D'
-export GREEN_0='#79B370'
-export YELLOW_0='#E18051'
-export BLUE_0='#5596E2'
-export MAGENTA_0='#B07AB8'
-export CYAN_0='#4AB0A6'
-#
-export RED_1='#E48698'
-export GREEN_1='#98C491'
-export YELLOW_1='#E79D78'
-export BLUE_1='#78ACE7'
-export MAGENTA_1='#C095C6'
-export CYAN_1='#73C4BC'
+for color in $(cat "$ZDOTDIR/colors/colors.txt" | xargs)
+do eval "export COLOR_${i:=0}='${color}'"; i=$((i + 1)); done
+
+# Dynamic Menu
+export BEMENU_OPTS="\
+--wrap \
+--prompt menu \
+--line-height 24 \
+--fn 'JetBrains Mono 9' \
+--tf '#${COLOR_2}' --tb '#${COLOR_0}' \
+--ff '#${COLOR_4}' --fb '#${COLOR_0}' \
+--nf '#${COLOR_7}' --nb '#${COLOR_0}' \
+--hf '#${COLOR_3}' --hb '#${COLOR_0}' \
+--sf '#${COLOR_5}' --sb '#${COLOR_15}'"
 
 # FZF configurations
 export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'
@@ -69,12 +53,31 @@ export FZF_DEFAULT_OPTS="\
 --no-bold$(tty | grep -q '^/dev/tty' && printf '\n--no-unicode')"
 
 # Pager settings
-export MANPAGER="sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+export MANPAGER='nvim +Man!'
 export PAGER='less'
 export LESS='-RF'
 export LESSHISTFILE='/dev/null'
 
-# GUI settings
-export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
-export QT_QPA_PLATFORM='wayland' # 'qtwayland5' is needed for Wayland support.
-export QT_QPA_PLATFORMTHEME='gtk2' # 'qt5-style-plugins' is needed to use gtk2 theme.
+# Music Player Daemon (for MPD clients)
+export MPD_HOST='::'
+export MPD_PORT=6600
+
+# GPG
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+
+# Git
+export GIT_CONFIG_COUNT=6
+export GIT_CONFIG_KEY_0='init.defaultbranch' GIT_CONFIG_VALUE_0='main'
+export GIT_CONFIG_KEY_1='user.name' GIT_CONFIG_VALUE_1='Ken Rendell L. Caoile'
+export GIT_CONFIG_KEY_2='user.email' GIT_CONFIG_VALUE_2='kaoile.cenrendell@gmail.com'
+export GIT_CONFIG_KEY_3='user.signingkey' GIT_CONFIG_VALUE_3="$GIT_CONFIG_VALUE_1 <${GIT_CONFIG_VALUE_2}>"
+export GIT_CONFIG_KEY_4='commit.gpgsign' GIT_CONFIG_VALUE_4=true
+export GIT_CONFIG_KEY_5='tag.gpgsign' GIT_CONFIG_VALUE_5=true
+
+# Wayland
+export MOZ_ENABLE_WAYLAND=1
+
+# Lynx
+export LYNX_CFG_PATH="$XDG_CONFIG_HOME/lynx"
+export LYNX_CFG="$LYNX_CFG_PATH/lynx.cfg"
+export LYNX_LSS="$LYNX_CFG_PATH/lynx.lss"

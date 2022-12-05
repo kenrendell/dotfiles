@@ -23,11 +23,11 @@ while true; do
 		"$cmd_dir/time.lua" & pid=$!
 	fi
 
-	read -r mes < "$pipe"
-	kill -TERM $pid 2>/dev/null
-
-	case "$mes" in
-		toggle) mode="$(((mode + 1) % 2))" ;;
-		exit) rm -f "$pipe"; break ;;
-	esac
+	while true; do read -r mes < "$pipe"
+		case "$mes" in
+			toggle) mode="$(((mode + 1) % 2))"; break ;;
+			exit) rm -f "$pipe"; break ;;
+		esac
+	done; kill -TERM $pid 2>/dev/null
+	[ "$mes" = 'exit' ] && break
 done & wait

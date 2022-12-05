@@ -3,21 +3,10 @@
 
 ### Variables
 set $MOD Mod1
-set $BG_IMAGE '~/Pictures/Wallpapers/background.jpg'
+set $SUPER Mod4
 set $FONT Open Sans 9
-set $CURSOR_THEME Breeze_Snow
+set $CURSOR_THEME capitaine-cursors-light
 set $CURSOR_SIZE 24
-
-# Colors
-set $BASE_0 '#1D2025'
-set $BASE_1 '#282D33'
-set $BASE_2 '#363B45'
-set $BASE_3 '#5E6878'
-set $BASE_4 '#A1A8B5'
-set $BLUE_0 '#5596E2'
-set $BLUE_1 '#78ACE7'
-set $RED_0  '#DC657D'
-set $RED_1  '#E48698'
 
 ### Sway Idle ###
 exec swayidle -w
@@ -36,11 +25,8 @@ exec_always gsettings set org.gnome.desktop.interface {
     toolbar-icons-size 'small'
 }
 
-### Statusbar ###
-exec_always statusbar.sh
+### Start programs ###
+exec_always start.sh
 
-### Notification ###
-exec fnott
-
-include ~/.config/sway/config.d/*
+include ./config.d/*
 include /etc/sway/config.d/*

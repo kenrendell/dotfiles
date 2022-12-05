@@ -18,16 +18,16 @@ trap _exit INT TERM
 
 while true; do
 	if [ "$mode" -eq 1 ]; then
-		"$cmd_dir/mem_usage.lua" --expand & pid=$!
+		"$cmd_dir/mem-usage.lua" --expand & pid=$!
 	else
-		"$cmd_dir/mem_usage.lua" & pid=$!
+		"$cmd_dir/mem-usage.lua" & pid=$!
 	fi
 
-	read -r mes < "$pipe"
-	kill -TERM $pid 2>/dev/null
-
-	case "$mes" in
-		toggle) mode="$(((mode + 1) % 2))" ;;
-		exit) rm -f "$pipe"; break ;;
-	esac
+	while true; do read -r mes < "$pipe"
+		case "$mes" in
+			toggle) mode="$(((mode + 1) % 2))"; break ;;
+			exit) rm -f "$pipe"; break ;;
+		esac
+	done; kill -TERM $pid 2>/dev/null
+	[ "$mes" = 'exit' ] && break
 done & wait

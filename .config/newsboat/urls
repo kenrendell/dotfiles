@@ -1,0 +1,98 @@
+https://github.com/kenrendell.atom
+
+https://github.com/swaywm/sway/releases.atom "~Sway updates"
+https://github.com/newsboat/newsboat/releases.atom "~Newsboat updates"
+https://github.com/neovim/neovim/releases.atom "~Neovim updates"
+
+https://git.gnupg.org/cgi-bin/gitweb.cgi?p=gnupg.git;a=atom;h=refs/heads/master "~GnuPG updates"
+https://git.kernel.org/pub/scm/git/git.git/atom "~Git updates"
+https://www.kernel.org/feeds/kdist.xml "~Linux Kernel updates"
+https://buildah.io/feed.xml "~Buildah updates"
+https://podman.io/feed.xml  "~Podman updates"
+
+https://www.lesswrong.com/feed.xml?view=curated-rss
+
+# Standards
+https://www.rfc-editor.org/rfcrss.xml "~Recent RFCs"
+
+# Linux
+https://news.ycombinator.com/rss
+https://distrowatch.com/news/dw.xml
+https://www.phoronix.com/rss.php
+https://www.linux.com/feed/
+https://www.linuxjournal.com/node/feed/
+https://itsfoss.com/feed/
+https://linuxhandbook.com/rss/
+https://linuxtoday.com/feed/
+https://opensource.com/feed/
+https://www.tecmint.com/feed/
+https://ostechnix.com/feed/
+
+# Arch Linux
+https://archlinux.org/feeds/news/                                       "~Arch Linux | News"
+https://archlinux.org/feeds/packages/added/all/stable-repos/            "~Arch Linux | Recently added packages"
+https://archlinux.org/feeds/packages/removed/all/stable-repos/          "~Arch Linux | Recently removed packages"
+https://bbs.archlinux.org/extern.php?action=feed&fid=22&type=atom       "~Arch Linux | Kernel & Hardware forum"
+https://bbs.archlinux.org/extern.php?action=feed&fid=8&type=atom        "~Arch Linux | Networking & Server forum"
+https://bbs.archlinux.org/extern.php?action=feed&fid=50&type=atom       "~Arch Linux | System Administration forum"
+https://bbs.archlinux.org/extern.php?action=feed&fid=32&type=atom       "~Arch Linux | Multimedia & Games forum"
+https://bbs.archlinux.org/extern.php?action=feed&fid=27&type=atom       "~Arch Linux | Community Contributions forum"
+
+# Crytocurrency News
+https://cointelegraph.com/rss                                           "~Coin Telegraph | Cryptocurrency News"
+https://www.newsbtc.com/feed/                                           "~News BTC | Cryptocurrency News"
+https://cryptoslate.com/feed/
+https://bitcoinmagazine.com/feed/
+https://bitcoinist.com/feed/
+https://www.forbes.com/crypto-blockchain/feed/
+https://nulltx.com/feed/
+https://blockonomi.com/feed/
+
+# World News
+https://rss.csmonitor.com/feeds/world                                   "~Christian Science Monitor | World News"
+https://feeds.a.dj.com/rss/RSSWorldNews.xml                             "~Wall Street Journal | World News"
+https://feeds.washingtonpost.com/rss/world                              "~Washington Post | World News"
+https://rss.nytimes.com/services/xml/rss/nyt/World.xml                  "~The New York Times | World News"
+https://thehill.com/taxonomy/term/43/feed                               "~The Hill | International Policy"
+https://www.theguardian.com/world/rss                                   "~The Guardian | World News"
+https://www.france24.com/en/rss                                         "~France 24 | World News"
+https://globalnews.ca/world/feed/                                       "~Global | World News"
+https://www.cnbc.com/id/100727362/device/rss/rss.html                   "~CNBC | World News"
+https://rss.dw.com/atom/rss-en-world                                    "~DW | World News"
+https://abcnews.go.com/abcnews/internationalheadlines                   "~ABC | World News"
+https://www.cbsnews.com/latest/rss/world                                "~CBS | World News"
+https://rss.cbc.ca/lineup/world.xml                                     "~CBC | World News"
+https://feeds.skynews.com/feeds/rss/world.xml                           "~Sky | World News"
+https://feeds.bbci.co.uk/news/world/rss.xml                             "~BBC | World News"
+https://www.pbs.org/newshour/feeds/rss/world                            "~PBS | World News"
+https://www.efe.com/efe/english/4/rss                                   "~EFE | World News"
+https://rss.upi.com/news/tn_int.rss                                     "~UPI | World News"
+https://bnonews.com/index.php/category/world/feed                       "~BNO | World News"
+https://www.foreignaffairs.com/rss.xml                                  "~Foreign Affairs"
+https://theconversation.com/articles.atom                               "~The Conversation"
+https://www.economist.com/international/rss.xml                         "~The Economist | International"
+https://feeds.npr.org/500005/podcast.xml                                "~NPR News Now"
+
+# Climate & Disasters
+https://climate.nasa.gov/news/rss.xml                                   "~Global Climate Change: NASA News"
+https://climate.nasa.gov/ask-nasa-climate/rss.xml                       "~Global Climate Change: Ask NASA Climate"
+https://www.earthobservatory.nasa.gov/feeds/earth-observatory.rss       "~NASA Earth Observatory"
+https://www.volcanodiscovery.com/earthquake-news.rss                    "~Volcano Discovery: Earthquake News"
+https://www.volcanodiscovery.com/volcanonews.rss                        "~Volcano Discovery: Volcano News"
+https://www.gdacs.org/xml/gdacs_cap.xml                                 "~GDACS: Disaster Alert"
+
+# Science News
+https://www.science.org/rss/news_current.xml                            "~Science.org"
+https://www.livescience.com/feeds/all                                   "~Live Science | All Topics"
+https://www.sciencenews.org/feed/                                       "~Science News | All Topics"
+https://www.newscientist.com/section/news/feed/                         "~New Scientist | News"
+https://phys.org/rss-feed/                                              "~Phys | Science News"
+https://techxplore.com/rss-feed/                                        "~Tech Xplore | Technology News"
+https://medicalxpress.com/rss-feed/                                     "~Medical Xpress | Medical and Health News"
+
+# Space & Astronomy News
+https://www.space.com/feeds/all                                         "~Space.com | Space & Astronomy News"
+https://www.nasaspaceflight.com/feed/                                   "~NASA Space Flight News"
+https://spaceflightnow.com/feed/                                        "~Space Flight Now"
+https://skyandtelescope.org/astronomy-news/feed/                        "~Sky & Telescope | Astronomy & Observing News"
+https://skyandtelescope.org/astronomy-news/observing-news/feed/         "~Sky & Telescope | Celestial News & Events"

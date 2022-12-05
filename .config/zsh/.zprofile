@@ -1,7 +1,8 @@
 # ZSH Profile
 
-# Include user local binaries in PATH.
-export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/statusbar"
+# Start GPG agent
+eval "$(ssh-agent -sk)"
+eval "$(gpg-agent --sh --daemon)"
 
 # Execute wayland compositor
-[ "$(tty)" = '/dev/tty1' ] && exec sway >/dev/null 2>&1
+[ "$(tty)" = '/dev/tty1' ] && exec sway

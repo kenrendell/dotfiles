@@ -4,10 +4,16 @@
 PS1=$'%{\e[38;5;8m%}%~%{\e[m%}\n%(1j.%{\e[38;5;6m%}%j%{\e[m%} .)%(?.%{\e[38;5;12m%}.%{\e[38;5;1m%})▶%{\e[m%} '
 PS2=$'%{\e[38;5;8m%}▶%{\e[m%} '
 
+# Required by GPG agent for pinentry
+export GPG_TTY="$(tty)"
+
 # Emit OSC 7 escape sequence
-_osc7_cwd() { printf '\033]7;%s\033\\' \
-	"file://$(hostname)$(urlencode.lua "$PWD")"
-}
+_osc7_cwd() ( str="$PWD"
+	while [ -n "${char:="${str%"${str#?}"}"}" ]; do
+		[ "$char" = '%' ] && char='%25'
+		cwd="${cwd}${char}"; str="${str#?}"; char=
+	done; printf '\033]7;%s\033\\' "file://$(hostname)$cwd"
+)
 autoload -Uz add-zsh-hook
 add-zsh-hook -Uz chpwd _osc7_cwd
 

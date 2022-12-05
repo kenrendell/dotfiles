@@ -28,7 +28,7 @@ function! Tabline()
         let l:modifiable = getbufvar(l:bufnum, '&modifiable')
 
         let l:activetab = (l:active ? l:tab : l:activetab)
-        let l:color = (l:active ? (l:modified ? '2' : '1' ) : (l:modified ? '7' : '3' )) . '*'
+        let l:color = (l:active ? (l:modified ? '2' : '1' ) : (l:modified ? '4' : '3' )) . '*'
 
         let [l:lsym, l:rsym] = [(l:tab > 1 && empty(l:tablist) ? l:prevsym : (!empty(l:tablist) ? l:sepsym : '')), l:nextsym]
         let l:tabnum = ' ' . l:tab . (l:splits > 1 ? '.' . l:splits : '') . ' '

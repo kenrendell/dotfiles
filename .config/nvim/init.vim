@@ -6,7 +6,7 @@ endif
 
 " Colors
 syntax on
-colorscheme hidark
+colorscheme ansi
 
 " ====================== OPTIONS ====================== "
 
@@ -104,47 +104,25 @@ set clipboard=unnamedplus
 " Upgrade vim-plug itself：   :PlugUpgrade
 
 " Install vim-plug if not installed
-if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync
-endif
+" if empty(glob('$XDG_DATA_HOME/nvim/site/autoload/plug.vim'))
+    " silent !curl -fLo $XDG_DATA_HOME/nvim/site/autoload/plug.vim --create-dirs
+        " \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    " autocmd VimEnter * PlugInstall --sync
+" endif
 
 " Load plugins
-call plug#begin('$XDG_DATA_HOME/nvim/plugged')
-Plug 'junegunn/fzf.vim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'dense-analysis/ALE'
-Plug 'sheerun/vim-polyglot'
-Plug 'Raimondi/delimitMate'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-call plug#end()
+" call plug#begin('$XDG_DATA_HOME/nvim/plugged')
+" Plug 'junegunn/fzf.vim'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/nvim-cmp'
+" Plug 'mfussenegger/nvim-dap'
+" Plug 'lewis6991/gitsigns.nvim'
+" Plug 'dense-analysis/ALE'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'airblade/vim-gitgutter'
+" call plug#end()
 
-" Fuzzy finder
-let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.7}}
-let g:fzf_action = {'ctrl-t': 'tab split', 'ctrl-s': 'split', 'ctrl-v': 'vsplit'}
-
-" ALE Linter
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_filetype_changed = 1
-let g:ale_lint_on_text_changed = 1
-let g:ale_lint_delay = 1000
-let g:ale_sign_error = '●'
-let g:ale_sign_warning = '•'
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_set_highlights = 1
-let g:ale_set_signs = 1
-let g:ale_echo_cursor = 1
-let g:ale_virtualtext_cursor = 0
-let g:ale_cursor_detail = 0
-let g:ale_set_balloons = 0
-
-" Disable netrw file explorer
-let g:loaded_netrwPlugin = 1
 
 " ===================== MAPPINGS ====================== "
 
@@ -160,9 +138,9 @@ let g:loaded_netrwPlugin = 1
 
 "==== Window management ===="
 
-" alt + {a, s, w, d}          := Move current window focus to the {left, bottom, top, right}.
-" alt + shift + {a, s, w, d}  := Move current window to be at the far {left, bottom, top, right}.
-" alt + ctrl + {h, j, k, l}   := Resize current window.
+" alt + shift + {a, s, w, d}  := Resize current window.
+" alt + shift + {h, j, k, l}  := Move current window focus to the {left, bottom, top, right}.
+" alt + ctrl + {h, j, k, l}   := Move current window to be at the far {left, bottom, top, right}.
 " alt + e                     := Edit new window in horizontal split.
 " alt + shift + e             := Edit new window in vertical split.
 " alt + r                     := Equalize all windows.
@@ -190,9 +168,9 @@ for mde in ['n', 't', 'i', 'v']
 
     for key in [['h', 'a'], ['j', 's'], ['k', 'w'], ['l', 'd']]
         let res = [(key[0] ==# 'h' || key[0] ==# 'l' ? 'vertical ' : ''), (key[0] ==# 'h' || key[0] ==# 'j' ? '-' : '+')]
-        exe mde . 'noremap <silent> <A-' . key[1] . '> ' . nmde . ':if winnr() != winnr("' . key[0] . '") \| wincmd ' . key[0] . tmde[0] . ' \| endif<CR>'
-        exe mde . 'noremap <silent> <A-S-' . key[1] . '> ' . nmde . ':if winnr("$") > 1 \| wincmd ' . toupper(key[0]) . ' \| endif' . tmde[2] . '<CR>'
-        exe mde . 'noremap <silent> <A-C-' . key[0] . '> ' . nmde . ':if winnr("$") > 1 \| ' . res[0] . 'resize ' . res[1] . '5 \| endif' . tmde[2] . '<CR>'
+        exe mde . 'noremap <silent> <A-S-' . key[1] . '> ' . nmde . ':if winnr("$") > 1 \| ' . res[0] . 'resize ' . res[1] . '5 \| endif' . tmde[2] . '<CR>'
+        exe mde . 'noremap <silent> <A-S-' . key[0] . '> ' . nmde . ':if winnr() != winnr("' . key[0] . '") \| wincmd ' . key[0] . tmde[0] . ' \| endif<CR>'
+        exe mde . 'noremap <silent> <A-C-' . key[0] . '> ' . nmde . ':if winnr("$") > 1 \| wincmd ' . toupper(key[0]) . ' \| endif' . tmde[2] . '<CR>'
     endfor
 
     exe mde . 'noremap <silent> <A-e> ' . nmde . ':new<CR>' . tmde[1]
@@ -232,10 +210,52 @@ nnoremap <silent> <leader>m :setlocal invmodifiable<CR>
 nnoremap <silent> <leader>p :setlocal invpaste<CR>
 nnoremap <silent> <leader>s :setlocal invspell<CR>
 
-" FZF
-nnoremap <silent> <leader>fr :Rg<CR>
-nnoremap <silent> <leader>ff :Files<CR>
-nnoremap <silent> <leader>fb :Buffers<CR>
-nnoremap <silent> <leader>fl :BLines<CR>
-nnoremap <silent> <leader>f\ :Lines<CR>
-nnoremap <silent> <leader>fh :History<CR>
+lua << EOF
+require('packman.setup') {
+	-- Additional module for nvim-treesitter
+	'https://github.com/p00f/nvim-ts-rainbow.git',
+
+	-- Dependency for gitsigns and telescope plugin
+	'https://github.com/nvim-lua/plenary.nvim.git',
+
+	{ -- Highlighting
+		'https://github.com/nvim-treesitter/nvim-treesitter.git',
+		config = 'plugin-config/nvim-treesitter.lua'
+	},
+
+	{ -- Git decorations
+		'https://github.com/lewis6991/gitsigns.nvim.git',
+		config = 'plugin-config/gitsigns.lua'
+	},
+
+	{ -- Fuzzy finder
+		'https://github.com/nvim-telescope/telescope.nvim.git',
+		config = 'plugin-config/telescope.lua'
+	},
+
+	{ -- File explorer tree
+		'https://github.com/kyazdani42/nvim-tree.lua.git',
+		config = 'plugin-config/nvim-tree.lua'
+	},
+
+	{ -- Commenter
+		'https://github.com/numToStr/Comment.nvim.git',
+		config = 'plugin-config/comment.lua'
+	},
+	
+	{ -- Debugger
+		'https://github.com/mfussenegger/nvim-dap.git',
+		config = 'plugin-config/nvim-dap.lua'
+	},
+
+	{ -- Notes
+		'https://github.com/nvim-neorg/neorg',
+		config = 'plugin-config/neorg.lua'
+	},
+
+	{
+		'https://github.com/mickael-menu/zk-nvim',
+		config = 'plugin-config/zk-nvim.lua'
+	}
+}
+EOF

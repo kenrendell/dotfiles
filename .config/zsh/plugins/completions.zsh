@@ -2,14 +2,12 @@
 
 # Completion behavior
 set -o menucomplete \
-	-o completealiases \
 	-o nocaseglob \
 	-o globdots
 
 # Key bindings for completion menu
 zmodload zsh/complist
 bindkey -M menuselect '^u' undo
-bindkey -M menuselect '^i' vi-insert
 bindkey -M menuselect '^ ' accept-and-hold
 bindkey -M menuselect 'h'  vi-backward-char
 bindkey -M menuselect 'k'  vi-up-line-or-history

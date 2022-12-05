@@ -1,8 +1,8 @@
 #!/bin/sh
 # Backlight module for statusbar
+# Dependencies: light
 # NOTE: Only one process (per session) of this script is allowed!
 
-value=5
 script_name="${0##*/}"
 runtime_dir="$XDG_RUNTIME_DIR/statusbar-modules-$XDG_SESSION_ID"
 pipe="$runtime_dir/${script_name%.*}-pipe"
@@ -19,10 +19,11 @@ while true; do
 	text=" $(printf '%.f' "$(light)")%"
 	printf '{"text": "%s"}\n' "$text"
 
-	read -r mes < "$pipe"
-	case "$mes" in
-		inc) light -A "$value" ;;
-		dec) light -U "$value" ;;
-		exit) rm -f "$pipe"; break ;;
-	esac
+	while true; do read -r mes < "$pipe"
+		case "$mes" in
+			inc) light -A 5; break ;;
+			dec) light -U 5; break ;;
+			exit) rm -f "$pipe"; break ;;
+		esac
+	done; [ "$mes" = 'exit' ] && break
 done & wait

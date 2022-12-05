@@ -1,0 +1,87 @@
+# NCMPCPP Configuration File
+# For reference, see '/usr/share/doc/ncmpcpp/config'
+
+### Directories ###
+ncmpcpp_directory                               = ~/.local/share/ncmpcpp
+lyrics_directory                                = ~/.local/share/ncmpcpp/lyrics
+mpd_music_dir                                   = ~/Music
+
+### Visualizer ###
+visualizer_data_source                          = /tmp/mpd.fifo
+visualizer_output_name                          = visualizer-feed
+visualizer_in_stereo                            = yes
+visualizer_type                                 = spectrum
+visualizer_look                                 = ||
+visualizer_spectrum_smooth_look                 = no
+
+### Colors ###
+colors_enabled                                  = yes
+color1                                          = 8
+color2                                          = 3
+empty_tag_color                                 = 2
+header_window_color                             = 8
+volume_color                                    = 3
+state_line_color                                = 6
+state_flags_color                               = 9
+main_window_color                               = 6
+statusbar_color                                 = 8
+statusbar_time_color                            = 7
+player_state_color                              = 8
+window_border_color                             = 6
+active_window_border                            = 6
+progressbar_color                               = 9:b
+progressbar_elapsed_color                       = 6:b
+visualizer_color                                = 5:b, 13:b, 15:b, 7:b, 3:b, 11:b, 12:b, 4:b, 2:b, 10:b, 14:b, 6:b
+
+### Structure ###
+user_interface                                  = classic
+playlist_display_mode                           = classic
+browser_display_mode                            = classic
+search_engine_display_mode                      = classic
+playlist_editor_display_mode                    = classic
+
+### Format ###
+song_list_format                                = {$(5)%t$(end)}|{$(2)%f$(end)}{$(9) - $(end)$(4)%a$(end)}{$(9) - %b$(end)}
+song_status_format                              = {$(5)%t$(end)}|{$(2)%f$(end)}{$(9) - $(end)$(4)%a$(end)}{$(9) - %b$(end)}
+song_library_format                             = {$(5)%t$(end)}|{$(2)%f$(end)}
+song_window_title_format                        = {%t}|{%f}{ - %a}{ - %b}
+browser_sort_format                             = {%t - %a - %b}
+browser_playlist_prefix                         = "$(3)Playlist$(end) "
+current_item_prefix                             = "$b$(15)◀$(end) "
+current_item_suffix                             = " $(15)▶$(end)$/b"
+current_item_inactive_column_prefix             = "$b$(15)<$(end) "
+current_item_inactive_column_suffix             = " $(15)>$(end)$/b"
+modified_item_prefix                            = "$(3)$b+$/b$(end) "
+selected_item_prefix                            = $(16)$b
+selected_item_suffix                            = $/b$(end)
+now_playing_prefix                              = $b
+now_playing_suffix                              = $/b
+progressbar_look                                = =|-
+
+### Other Settings ###
+mpd_connection_timeout                          = 10
+playlist_show_remaining_time                    = yes
+playlist_shorten_total_times                    = yes
+playlist_disable_highlight_delay                = 10
+message_delay_time                              = 2
+browser_sort_mode                               = name
+show_duplicate_tags                             = yes
+default_find_mode                               = wrapped
+incremental_seeking                             = yes
+seek_time                                       = 1
+volume_change_step                              = 2
+clock_display_seconds                           = yes
+cyclic_scrolling                                = yes
+follow_now_playing_lyrics                       = yes
+fetch_lyrics_for_current_song_in_background     = no
+startup_screen                                  = playlist
+screen_switcher_mode                            = previous
+regular_expressions                             = extended
+allow_for_physical_item_deletion                = yes
+block_search_constraints_change_if_items_found  = no
+discard_colors_if_item_is_selected              = yes
+search_engine_default_search_mode               = 1
+header_text_scrolling                           = yes
+external_editor                                 = nvim
+use_console_editor                              = yes
+enable_window_title                             = yes
