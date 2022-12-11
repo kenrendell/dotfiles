@@ -1,4 +1,5 @@
 [Default]
-save_dir=$HOME/Pictures
+save_dir=$XDG_PICTURES_DIR
 save_filename_format=screenshot-%Y%m%d-%H%M%S.png
 show_panel=false
+early_exit=true

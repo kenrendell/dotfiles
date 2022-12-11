@@ -8,6 +8,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+# XDG user directory
+sed -E -n 's/^[[:space:]]*([_a-zA-Z][_a-zA-Z0-9]*)=.*$/\1/p' '/etc/xdg/user-dirs.defaults' \
+| while read -r userdir; do eval "export XDG_${userdir}_DIR='$(xdg-user-dir ${userdir})'"; done
+
 # To execute user binaries without specifying the relative/absolute path
 export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/statusbar"
 
