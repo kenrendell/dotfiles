@@ -210,7 +210,14 @@ nnoremap <silent> <leader>m :setlocal invmodifiable<CR>
 nnoremap <silent> <leader>p :setlocal invpaste<CR>
 nnoremap <silent> <leader>s :setlocal invspell<CR>
 
+lua vim.api.nvim_create_augroup('terminal-window', { clear = true })
+lua vim.api.nvim_create_autocmd({'WinEnter', 'BufWinEnter', 'TermOpen'}, { pattern = 'term://*', group = 'terminal-window', callback = function () vim.api.nvim_input('i') end })
+lua vim.api.nvim_create_autocmd('TermEnter', { pattern = '*', group = 'terminal-window', callback = function () vim.opt_local.number, vim.opt_local.relativenumber = false, false end })
+lua vim.api.nvim_create_autocmd('TermClose', { pattern = '*', group = 'terminal-window', callback = function () vim.api.nvim_input('<Esc>') end })
+
 lua << EOF
+require('statusline')
+require('tabline')
 require('packman.setup') {
 	-- Additional module for nvim-treesitter
 	'https://github.com/p00f/nvim-ts-rainbow.git',

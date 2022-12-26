@@ -1,3 +1,4 @@
+finish
 if exists('g:loaded_statusline') || $WAYLAND_DISPLAY ==# ''
     finish
 else

@@ -1,0 +1,1 @@
+-- 'nvim-telescope/telescope.nvim' plugin configuration

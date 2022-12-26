@@ -1,3 +1,4 @@
+finish
 if exists('g:loaded_tabline') || $WAYLAND_DISPLAY == ''
     finish
 else
@@ -80,9 +81,7 @@ endfunction
 " ==== Set options ==== "
 
 set tabline=%!Tabline()
-set showtabline=1
-set tabpagemax=12
-set hidden
+set showtabline=2
 
 " =================================== "
 " =================================== "
