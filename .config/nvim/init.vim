@@ -10,32 +10,6 @@ colorscheme ansi
 
 " ====================== OPTIONS ====================== "
 
-if !isdirectory(expand('$XDG_DATA_HOME/nvim/undo/', 1))
-    silent call mkdir(expand('$XDG_DATA_HOME/nvim/undo', 1), 'p')
-endif
-
-if !isdirectory(expand('$XDG_DATA_HOME/nvim/backup/', 1))
-    silent call mkdir(expand('$XDG_DATA_HOME/nvim/backup', 1), 'p')
-endif
-
-if !isdirectory(expand('$XDG_DATA_HOME/nvim/swap/', 1))
-    silent call mkdir(expand('$XDG_DATA_HOME/nvim/swap', 1), 'p')
-endif
-
-" Swap file
-set directory=$XDG_DATA_HOME/nvim/swap
-
-" Backup file
-set backup
-set writebackup
-set backupdir=$XDG_DATA_HOME/nvim/backup
-
-" Undo file
-set undodir=$XDG_DATA_HOME/nvim/undo
-set undofile
-set undolevels=1000
-set undoreload=10000
-
 filetype plugin indent on
 
 set title
