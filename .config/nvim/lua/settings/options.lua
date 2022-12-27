@@ -1,9 +1,9 @@
-
+local set = vim.opt
 local temp_file_dirs = { set = function(self)
 	for opt, dir in pairs(self) do if type(dir) == 'string' then
 		dir = string.match(dir, '^(.+[^/])/*$')
 		if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, 'p') end
-		vim.opt[opt] = string.format('%s//', dir)
+		set[opt] = string.format('%s//', dir)
 	end end
 end }
 
@@ -13,11 +13,80 @@ temp_file_dirs.backupdir = string.format('%s/nvim/backup', vim.env.XDG_STATE_HOM
 temp_file_dirs.undodir = string.format('%s/nvim/undo', vim.env.XDG_STATE_HOME)
 temp_file_dirs:set()
 
-vim.opt.backup = true
-vim.opt.writebackup = true
-vim.opt.backupcopy = 'auto'
-vim.opt.backupext = '.bak'
+set.backup = true
+set.writebackup = true
+set.backupcopy = 'auto'
+set.backupext = '.bak'
 
-vim.opt.undofile = true
-vim.opt.undolevels = 1000
-vim.opt.undoreload = 10000
+set.undofile = true
+set.undolevels = 1000
+set.undoreload = 10000
+
+vim.cmd('syntax on')
+vim.cmd('colorscheme ansi')
+vim.cmd('filetype plugin indent on')
+
+set.title = false
+set.autoread = true
+set.wildmenu = true
+
+vim.opt.shortmess:append('I')
+
+-- Indentation
+set.autoindent = true
+set.smartindent = true
+set.smarttab = true
+set.expandtab = false
+set.tabstop = 4
+set.shiftwidth = 4
+set.softtabstop = 4
+
+-- Scrolling
+set.wrap = false
+set.sidescrolloff = 4
+set.scrolloff = 4
+
+-- Searching
+set.inccommand = 'nosplit'
+set.incsearch = true
+set.hlsearch = true
+set.ignorecase = true
+set.smartcase = true
+
+-- Line number
+set.number = true
+set.relativenumber = true
+set.numberwidth = 5
+
+-- List
+set.list = true
+set.listchars = { tab = '> ' , trail = '-', extends = '>', precedes = '<', nbsp = '+' }
+
+set.fillchars = {
+	horiz = '─',
+	horizup = '┴',
+	horizdown = '┬',
+	vert = '│',
+	vertleft = '┤',
+	vertright = '├',
+	verthoriz = '┼',
+}
+
+-- Spelling
+set.spelllang = 'en_us'
+
+-- Folding
+set.foldenable = false
+set.foldmethod = 'indent'
+set.foldlevel = 20
+
+-- Windows
+set.equalalways = true
+set.eadirection = 'both'
+set.winminheight = 1
+set.winminwidth = 1
+set.splitbelow = true
+set.splitright = true
+
+-- Clipboard
+set.clipboard:append('unnamedplus')

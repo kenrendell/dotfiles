@@ -90,7 +90,7 @@ let s:hlgroup = [
     \ ['TermCursor',      s:black[1],  s:white[1],   ''],
     \ ['TermCursorNC',    '',          '',          ''],
     \ ['ErrorMsg',        s:red[0],    s:black[0],   ''],
-    \ ['VertSplit',       s:black[1],   s:black[1],   ''],
+    \ ['WinSeparator',       s:black[1],   s:black[0],   ''],
     \ ['Folded',          s:black[1],   s:black[0],   ''],
     \ ['FoldColumn',      s:white[0],   s:black[1],   ''],
     \ ['SignColumn',      s:white[0],   s:black[0],   ''],
