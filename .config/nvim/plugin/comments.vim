@@ -1,3 +1,4 @@
+finish
 if exists('g:loaded_comments') || $WAYLAND_DISPLAY == ''
     finish
 else

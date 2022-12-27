@@ -58,18 +58,16 @@ set.number = true
 set.relativenumber = true
 set.numberwidth = 5
 
--- List
+-- Decorations
 set.list = true
+set.ambiwidth = 'single'
 set.listchars = { tab = '> ' , trail = '-', extends = '>', precedes = '<', nbsp = '+' }
-
 set.fillchars = {
-	horiz = '─',
-	horizup = '┴',
-	horizdown = '┬',
-	vert = '│',
-	vertleft = '┤',
-	vertright = '├',
-	verthoriz = '┼',
+	stl = ' ', stlnc = ' ', wbr = ' ',
+	horiz = '─', horizup = '┴', horizdown = '┬',
+	vert = '│', vertleft = '┤', vertright = '├', verthoriz = '┼',
+	fold = '·', foldopen = '-', foldclose = '+', foldsep = '│',
+	diff = '-', msgsep = ' ', eob = ' '
 }
 
 -- Spelling

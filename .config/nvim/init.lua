@@ -1,11 +1,14 @@
 -- NEOVIM Configuration file
 
-require('settings.statusline')
 require('settings.tabline')
+require('settings.statusline')
+require('settings.winbar')
 require('settings.options')
 require('settings.autocmds')
 require('settings.mappings')
+require('plugins.init')
 
+--[[
 require('packman.setup') {
 	-- Additional module for nvim-treesitter
 	'https://github.com/p00f/nvim-ts-rainbow.git',
@@ -53,3 +56,4 @@ require('packman.setup') {
 		config = 'plugin-config/zk-nvim.lua'
 	}
 }
+]]

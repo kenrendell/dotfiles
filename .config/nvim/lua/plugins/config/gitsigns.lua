@@ -23,4 +23,4 @@ c.status_formatter = function (status)
 		.. removed)) or '')
 end
 
-require('gitsigns').setup(c)
+return function () require('gitsigns').setup(c) end

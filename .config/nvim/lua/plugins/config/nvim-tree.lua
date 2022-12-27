@@ -18,4 +18,4 @@ c.hijack_netrw = true
 c.hijack_cursor = true
 c.update_cwd = false
 
-require('nvim-tree').setup(c)
+return function () require('nvim-tree').setup(c) end
