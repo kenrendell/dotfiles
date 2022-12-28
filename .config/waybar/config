@@ -71,7 +71,7 @@
 		"exec-on-event": false,
 		"tooltip": false
 	},
-	"custom/memory": {
+	"custom/conntrack": {
 		"format": "{}",
 		"exec": "conntrack.sh",
 		"on-click": "statusbar.sh toggle conntrack-pipe",
