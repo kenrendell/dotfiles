@@ -28,6 +28,4 @@ return function ()
 			},
 		},
 	})
-
-	lspconfig.zk.setup({ capabilities = capabilities })
 end

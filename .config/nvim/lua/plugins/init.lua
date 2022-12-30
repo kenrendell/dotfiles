@@ -17,7 +17,7 @@ require('lazy').setup({ -- Plugins
 		dependencies = {
 			'williamboman/mason.nvim',
 			'jay-babu/mason-nvim-dap.nvim',
-		}, config = require('plugins.config.nvim-dap')
+		}, config = require('plugins.config.dap')
 	},
 	{ -- LSP client for non-LSP sources
 		'jose-elias-alvarez/null-ls.nvim',
@@ -35,7 +35,7 @@ require('lazy').setup({ -- Plugins
 			'hrsh7th/cmp-nvim-lsp',
 			'williamboman/mason.nvim',
 			'williamboman/mason-lspconfig.nvim',
-		}, config = require('plugins.config.nvim-lspconfig')
+		}, config = require('plugins.config.lsp')
 	},
 	{ -- Snippet Engine
 		'L3MON4D3/LuaSnip',
@@ -55,7 +55,7 @@ require('lazy').setup({ -- Plugins
 			'hrsh7th/cmp-cmdline',
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-path',
-		}, config = require('plugins.config.nvim-cmp')
+		}, config = require('plugins.config.cmp')
 	},
 	{ -- Treesitter
 		'nvim-treesitter/nvim-treesitter',
@@ -63,7 +63,7 @@ require('lazy').setup({ -- Plugins
 		build = ':TSUpdate',
 		event = 'BufReadPost',
 		dependencies = { 'p00f/nvim-ts-rainbow' },
-		config = require('plugins.config.nvim-treesitter')
+		config = require('plugins.config.treesitter')
 	},
 	{ -- Fuzzy finder
 		'nvim-telescope/telescope.nvim',
@@ -78,24 +78,31 @@ require('lazy').setup({ -- Plugins
 		enabled = false,
 		config = require('plugins.config.comment')
 	},
-	{ -- Git integration
+	{ -- Git decorations
 		'lewis6991/gitsigns.nvim',
 		enabled = true,
 		config = require('plugins.config.gitsigns')
 	},
 	{ -- Note taking
 		'nvim-neorg/neorg',
-		enabled = false,
+		enabled = true,
+		build = ':Neorg sync-parsers', ft = 'norg',
+		dependencies = { 'nvim-treesitter/nvim-treesitter' },
 		config = require('plugins.config.neorg')
 	},
 	{ -- Note taking assistant
 		'mickael-menu/zk-nvim',
 		enabled = false,
-		config = require('plugins.config.zk-nvim')
+		config = require('plugins.config.zk')
 	},
 }, {
 	install = {
 		missing = true,
-		colorscheme = nil
+		colorscheme = { 'ansi' }
+	},
+	ui = {
+		size = { width = 0.8, height = 0.8 },
+		border = 'single',
+		icons = {}
 	}
 })
