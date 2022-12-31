@@ -21,7 +21,7 @@ require('lazy').setup({ -- Plugins
 	},
 	{ -- LSP client for non-LSP sources
 		'jose-elias-alvarez/null-ls.nvim',
-		enabled = false,
+		enabled = true,
 		dependencies = {
 			'williamboman/mason.nvim',
 			'jay-babu/mason-null-ls.nvim',
@@ -30,27 +30,27 @@ require('lazy').setup({ -- Plugins
 	{ -- LSP configurations
 		'neovim/nvim-lspconfig',
 		enabled = true,
-		event = 'BufReadPre',
 		dependencies = {
-			'hrsh7th/cmp-nvim-lsp',
 			'williamboman/mason.nvim',
 			'williamboman/mason-lspconfig.nvim',
+			'hrsh7th/cmp-nvim-lsp-signature-help',
+			'hrsh7th/cmp-nvim-lsp',
 		}, config = require('plugins.config.lsp')
 	},
 	{ -- Snippet Engine
 		'L3MON4D3/LuaSnip',
 		enabled = true,
-		dependencies = { 'rafamadriz/friendly-snippets' },
-		config = require('plugins.config.luasnip')
+		dependencies = {
+			'saadparwaiz1/cmp_luasnip',
+			'rafamadriz/friendly-snippets',
+		}, config = require('plugins.config.luasnip')
 	},
 	{ -- Auto-completion
 		'hrsh7th/nvim-cmp',
 		enabled = true,
-		event = 'InsertEnter',
-		dependencies = { -- see 'https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources'
-			'saadparwaiz1/cmp_luasnip',
-			'hrsh7th/cmp-nvim-lsp-signature-help',
-			'hrsh7th/cmp-nvim-lsp',
+		dependencies = {
+			'L3MON4D3/LuaSnip',
+			'neovim/nvim-lspconfig',
 			'hrsh7th/cmp-nvim-lua',
 			'hrsh7th/cmp-cmdline',
 			'hrsh7th/cmp-buffer',
