@@ -16,12 +16,16 @@ return function ()
 		-- and will be called for each installed server that doesn't have
 		-- a dedicated handler.
 		function (server_name) -- default handler (optional)
-			lspconfig[server_name].setup({ capabilities = capabilities })
+			lspconfig[server_name].setup({
+				capabilities = capabilities,
+				single_file_support = true
+			})
 		end,
 
 		sumneko_lua = function ()
 			lspconfig.sumneko_lua.setup({
 				capabilities = capabilities,
+				root_dir = lspconfig.util.find_git_ancestor,
 				single_file_support = true,
 				settings = {
 					Lua = {
