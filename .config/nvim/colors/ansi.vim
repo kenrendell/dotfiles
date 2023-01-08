@@ -93,6 +93,8 @@ let s:hlgroup = [
     \ ['WinBar',          s:black[1],   s:black[0],   ''],
     \ ['WinBarNC',        s:black[1],   s:black[0],   ''],
     \ ['WinSeparator',    s:black[1],   s:black[0],   ''],
+    \ ['LspInfoBorder',   s:black[1],   s:black[0],   ''],
+    \ ['FloatBorder',     s:black[1],   s:black[0],   ''],
     \ ['Folded',          s:black[1],   s:black[0],   ''],
     \ ['FoldColumn',      s:white[0],   s:black[1],   ''],
     \ ['SignColumn',      s:white[0],   s:black[0],   ''],

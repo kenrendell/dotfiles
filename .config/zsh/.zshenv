@@ -77,6 +77,9 @@ export GIT_CONFIG_KEY_5='tag.gpgsign' GIT_CONFIG_VALUE_5=true
 # Wayland
 export MOZ_ENABLE_WAYLAND=1
 
+# Zettelkasten
+export ZK_NOTEBOOK_DIR="$XDG_DOCUMENTS_DIR/Notes"
+
 # Lynx
 export LYNX_CFG_PATH="$XDG_CONFIG_HOME/lynx"
 export LYNX_CFG="$LYNX_CFG_PATH/lynx.cfg"

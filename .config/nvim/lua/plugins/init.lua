@@ -62,8 +62,9 @@ require('lazy').setup({ -- Plugins
 		enabled = true,
 		build = ':TSUpdate',
 		event = 'BufReadPost',
-		dependencies = { 'p00f/nvim-ts-rainbow' },
-		config = require('plugins.config.treesitter')
+		dependencies = {
+			'p00f/nvim-ts-rainbow' -- no longer maintained (see 'HiPhish/nvim-ts-rainbow2')
+		}, config = require('plugins.config.treesitter')
 	},
 	{ -- Fuzzy finder
 		'nvim-telescope/telescope.nvim',
@@ -92,7 +93,8 @@ require('lazy').setup({ -- Plugins
 	},
 	{ -- Note taking assistant
 		'mickael-menu/zk-nvim',
-		enabled = false,
+		enabled = true,
+		dependencies = { 'hrsh7th/cmp-nvim-lsp' },
 		config = require('plugins.config.zk')
 	},
 }, {

@@ -1,13 +1,19 @@
 
+local window_border = 'single'
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = window_border })
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = window_border })
+vim.diagnostic.config({ float = { border = window_border }})
+
 return function ()
 	local lspconfig = require('lspconfig')
 	local mason_lspconfig = require('mason-lspconfig')
-
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 	capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+	require('lspconfig.ui.windows').default_options.border = window_border
 
 	mason_lspconfig.setup({
-		ensure_installed = { 'clangd', 'sumneko_lua', 'awk_ls', 'bashls', 'marksman' },
+		ensure_installed = { 'arduino_language_server', 'clangd', 'sumneko_lua', 'awk_ls', 'bashls', 'marksman' },
 		automatic_installation = false
 	})
 
@@ -17,15 +23,14 @@ return function ()
 		-- a dedicated handler.
 		function (server_name) -- default handler (optional)
 			lspconfig[server_name].setup({
-				capabilities = capabilities,
-				single_file_support = true
+				capabilities = capabilities
 			})
 		end,
 
 		sumneko_lua = function ()
 			lspconfig.sumneko_lua.setup({
 				capabilities = capabilities,
-				root_dir = lspconfig.util.find_git_ancestor,
+				root_dir = lspconfig.util.root_pattern('.git', 'lua'),
 				single_file_support = true,
 				settings = {
 					Lua = {
