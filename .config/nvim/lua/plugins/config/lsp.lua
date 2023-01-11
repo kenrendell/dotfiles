@@ -1,8 +1,16 @@
 
 local window_border = 'single'
+local map = vim.keymap.set
+local opts = { remap = false, silent = false }
+
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = window_border })
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = window_border })
 vim.diagnostic.config({ float = { border = window_border }})
+
+map('n', '<leader>do', vim.diagnostic.open_float, opts)
+map('n', '<leader>d[', vim.diagnostic.goto_prev, opts)
+map('n', '<leader>d]', vim.diagnostic.goto_next, opts)
+map('n', '<leader>dl', vim.diagnostic.setloclist, opts)
 
 return function ()
 	local lspconfig = require('lspconfig')
@@ -13,7 +21,7 @@ return function ()
 	require('lspconfig.ui.windows').default_options.border = window_border
 
 	mason_lspconfig.setup({
-		ensure_installed = { 'arduino_language_server', 'clangd', 'sumneko_lua', 'awk_ls', 'bashls', 'marksman' },
+		ensure_installed = { 'arduino_language_server', 'clangd', 'sumneko_lua', 'awk_ls', 'bashls', 'ltex', 'texlab', 'marksman' },
 		automatic_installation = false
 	})
 
@@ -24,6 +32,25 @@ return function ()
 		function (server_name) -- default handler (optional)
 			lspconfig[server_name].setup({
 				capabilities = capabilities
+			})
+		end,
+
+		ltex = function ()
+			-- see https://github.com/vigoux/ltex-ls.nvim
+			lspconfig.ltex.setup({
+				capabilities = capabilities,
+				settings = { -- see https://valentjn.github.io/ltex/settings.html
+					ltex = {
+						language = 'en-US',
+						completionEnabled = false,
+						checkFrequency = 'edit',
+						diagnosticSeverity = 'information'
+					}
+				},
+				on_attach = function (_, bufnr)
+					local opts = { buffer = bufnr, remap = false, silent = false }
+					map('n', '<leader>la', vim.lsp.buf.code_action, opts)
+				end
 			})
 		end,
 
