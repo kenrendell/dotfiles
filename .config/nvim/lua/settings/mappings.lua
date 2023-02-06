@@ -13,7 +13,7 @@
 ==== Window management ====
 
  alt + shift + {a, s, w, d}  := Resize current window.
- alt + shift + {h, j, k, l}  := Move current window focus to the {left, bottom, top, right}.
+ alt + ctrl + shift + {h, j, k, l}  := Move current window focus to the {left, bottom, top, right}.
  alt + ctrl + {h, j, k, l}   := Move current window to be at the far {left, bottom, top, right}.
  alt + e                     := Edit new window in horizontal split.
  alt + shift + e             := Edit new window in vertical split.
@@ -25,64 +25,144 @@
  alt + shift + q             := Close (without checking for changes) the current window.
 --]]
 
-local map = string.format('%s]]\n%s', [[
-for mde in ['n', 't', 'i', 'v']
-    let nmde = (mde ==# 'n' ? '' : '<C-\><C-n>')
-    let tmde = [(mde ==# 't' ? ' \| else \| startinsert' : ''), (mde ==# 't' ? '<Esc>' : ''), (mde ==# 't' ? ' \| startinsert' : '')]
+vim.g.mapleader = ' '
+local map = vim.keymap.set
+local opts = { remap = false, silent = true }
 
-    for nr in range(1, 12)
-        let checktab = ':if tabpagenr("$") >= ' . nr . ' && tabpagenr() != ' . nr . ' \| '
-        exe mde . 'noremap <silent> <F' . nr . '> ' . nmde . checktab . 'tabnext ' . nr . tmde[0] . ' \| endif<CR>'
-        exe mde . 'noremap <silent> <F' . (nr + 12) . '> ' . nmde . checktab . 'let step = ' . nr . ' - tabpagenr() \| exec "tabmove " . (step > 0 ? "+" . step : step) \| unlet step \| endif' . tmde[2] . '<CR>'
-    endfor
+for _,mode in ipairs({'n', 't', 'i', 'v'}) do
+	for _,key in ipairs({'h', 'j', 'k', 'l'}) do
+		map(mode, string.format('<A-C-%s>', key), function ()
+			if vim.fn.winnr() ~= vim.fn.winnr(key) then
+				vim.cmd(string.format('wincmd %s', key))
+			end
+		end, opts)
 
-    exe mde . 'noremap <silent> <A-C-n> ' . nmde . ':if tabpagenr("$") > 1 \| tabnext' . tmde[0] . ' \| endif<CR>'
-    exe mde . 'noremap <silent> <A-C-p> ' . nmde . ':if tabpagenr("$") > 1 \| tabprevious' . tmde[0] . ' \| endif<CR>'
-    exe mde . 'noremap <silent> <A-C-u> ' . nmde . ':if tabpagenr("$") > 1 \| tabclose' . tmde[0] . ' \| endif<CR>'
-    exe mde . 'noremap <silent> <A-C-o> ' . nmde . ':if tabpagenr("$") > 1 \| tabonly \| endif' . tmde[2] . '<CR>'
-    exe mde . 'noremap <silent> <A-C-i> ' . nmde . ':tabnew<CR>' . tmde[1]
+		map(mode, string.format('<A-C-S-%s>', key), function ()
+			if vim.fn.winnr('$') > 1 then
+				vim.cmd(string.format('wincmd %s', string.upper(key)))
+			end
+		end, opts)
+	end
 
-    for key in [['h', 'a'], ['j', 's'], ['k', 'w'], ['l', 'd']], [[
-        let res = [(key[0] ==# 'h' || key[0] ==# 'l' ? 'vertical ' : ''), (key[0] ==# 'h' || key[0] ==# 'j' ? '-' : '+')]
-        exe mde . 'noremap <silent> <A-S-' . key[1] . '> ' . nmde . ':if winnr("$") > 1 \| ' . res[0] . 'resize ' . res[1] . '5 \| endif' . tmde[2] . '<CR>'
-        exe mde . 'noremap <silent> <A-S-' . key[0] . '> ' . nmde . ':if winnr() != winnr("' . key[0] . '") \| wincmd ' . key[0] . tmde[0] . ' \| endif<CR>'
-        exe mde . 'noremap <silent> <A-C-' . key[0] . '> ' . nmde . ':if winnr("$") > 1 \| wincmd ' . toupper(key[0]) . ' \| endif' . tmde[2] . '<CR>'
-    endfor
+	-- Move current window to a new tab.
+	map(mode, [[<A-C-u>]], function ()
+		if vim.fn.winnr('$') > 1 then
+			if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+			vim.cmd('wincmd T')
+			if mode == 't' then vim.api.nvim_input('i')
+			else vim.api.nvim_input([[<C-\><C-n>]]) end
+		end
+	end, opts)
 
-    exe mde . 'noremap <silent> <A-e> ' . nmde . ':new<CR>' . tmde[1]
-    exe mde . 'noremap <silent> <A-S-e> ' . nmde . ':vnew<CR>' . tmde[1]
-    exe mde . 'noremap <silent> <A-r> ' . nmde . ':if winnr("$") > 1 \| wincmd = \| endif' . tmde[2] . '<CR>'
-    exe mde . 'noremap <silent> <A-S-r> ' . nmde . ':if winnr("$") > 1 \| wincmd _ \| wincmd \| \| endif' . tmde[2] . '<CR>'
-    exe mde . 'noremap <silent> <A-x> ' . nmde . ':if winnr("$") > 1 \| only \| endif' . tmde[2] . '<CR>'
-    exe mde . 'noremap <silent> <A-S-x> ' . nmde . ':if winnr("$") > 1 \| wincmd T \| endif' . tmde[2] . '<CR>'
-    exe mde . 'noremap <silent> <A-q> ' . nmde . ':exit<CR>'
-    exe mde . 'noremap <silent> <A-S-q> ' . nmde . ':quit!<CR>'
-endfor
+	-- Minimize window size.
+	map(mode, '<A-C-m>', function ()
+		if vim.fn.winnr('$') > 1 then vim.cmd('wincmd =') end
+	end, opts)
 
-unlet mde nmde tmde nr checktab key res
-]])
+	-- Maximize window size.
+	map(mode, '<A-C-S-m>', function ()
+		if vim.fn.winnr('$') > 1 then vim.cmd('wincmd _') vim.cmd('wincmd |') end
+	end, opts)
 
-vim.cmd(map)
+	-- Close all windows except the current window.
+	map(mode, '<A-C-o>', function ()
+		if vim.fn.winnr('$') > 1 then vim.cmd('only') end
+	end, opts)
 
-vim.cmd [[
-" Map leader
-let mapleader = ' '
+	-- Close the current window.
+	map(mode, '<A-C-BS>', function ()
+		local success, result = pcall(vim.cmd, 'exit')
+		if not success then vim.notify(result, vim.log.levels.WARN) end
+	end, opts)
 
-" Radraw
-nnoremap <silent> <C-l> :nohlsearch<C-r>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-l>
+	-- Create a new vertical window.
+	map(mode, '<A-C-CR>', function ()
+		if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+		vim.cmd('vnew') vim.api.nvim_input([[<C-\><C-n>]])
+	end, opts)
 
-" Location list
-nnoremap <silent> <A-z> :lopen<CR>
-nnoremap <silent> <A-S-z> :lclose<CR>
-nnoremap <silent> <A-S-n> :lnext<CR>
-nnoremap <silent> <A-S-p> :lprevious<CR>
+	-- Create a new horizontal window.
+	map(mode, '<A-C-S-CR>', function ()
+		if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+		vim.cmd('new') vim.api.nvim_input([[<C-\><C-n>]])
+	end, opts)
 
-" Formatting (Remove trail whitespaces and fix indentation)
-nnoremap <silent> <leader><space> mz:%s/\s\+$//e<CR>`z
-nnoremap <silent> <leader><tab> mzgg=G`z
+	-- Create a new tab after the current tab.
+	map(mode, '<A-C-i>', function ()
+		if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+		vim.cmd('tabnew') vim.api.nvim_input([[<C-\><C-n>]])
+	end, opts)
 
-" Invert options
-nnoremap <silent> <leader>m :setlocal invmodifiable<CR>
-nnoremap <silent> <leader>p :setlocal invpaste<CR>
-nnoremap <silent> <leader>s :setlocal invspell<CR>
-]]
+	-- Create a new tab before the current tab.
+	map(mode, '<A-C-S-i>', function ()
+		if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+		vim.cmd('-tabnew') vim.api.nvim_input([[<C-\><C-n>]])
+	end, opts)
+
+	-- Close all tabs except the current tab.
+	map(mode, '<A-C-S-o>', function ()
+		if vim.fn.tabpagenr('$') > 1 then vim.cmd('tabonly') end
+	end, opts)
+
+	-- Close the current tab.
+	map(mode, '<A-C-S-BS>', function ()
+		if vim.fn.tabpagenr('$') > 1 then vim.cmd('tabclose') end
+	end, opts)
+
+	-- Go to the next tab.
+	map(mode, '<A-C-n>', function ()
+		if vim.fn.tabpagenr('$') > 1 then
+			if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+			vim.cmd('tabnext')
+		end
+	end, opts)
+
+	-- Go to the previous tab.
+	map(mode, '<A-C-p>', function ()
+		if vim.fn.tabpagenr('$') > 1 then
+			if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+			vim.cmd('tabprevious')
+		end
+	end, opts)
+
+	-- Move current tab to the next tab.
+	map(mode, '<A-C-S-n>', function ()
+		local last_tab = vim.fn.tabpagenr('$')
+		if last_tab > 1 then
+			if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+			if vim.fn.tabpagenr() == last_tab then vim.cmd('tabmove 0') else vim.cmd('tabmove +1') end
+			if mode == 't' then vim.api.nvim_input('i') end
+		end
+	end, opts)
+
+	-- Move current tab to the previous tab.
+	map(mode, '<A-C-S-p>', function ()
+		if vim.fn.tabpagenr('$') > 1 then
+			if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+			if vim.fn.tabpagenr() == 1 then vim.cmd('tabmove $') else vim.cmd('tabmove -1') end
+			if mode == 't' then vim.api.nvim_input('i') end
+		end
+	end, opts)
+
+	-- Mappings for function keys (1-12).
+	for nr = 1, 12 do
+		-- Go to the specified tab.
+		map(mode, string.format('<F%d>', nr), function ()
+			if vim.fn.tabpagenr('$') >= nr and vim.fn.tabpagenr() ~= nr then
+				if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+				vim.cmd('tabnext ' .. nr)
+			end
+		end, opts)
+
+		-- Move current tab to the specified tab.
+		map(mode, string.format('<F%d>', nr + 12), function ()
+			local current_tab = vim.fn.tabpagenr()
+			if vim.fn.tabpagenr('$') >= nr and current_tab ~= nr then
+				local step = nr - current_tab
+				if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
+				vim.cmd(string.format('tabmove %s%d', (step > 0 and '+') or '', step))
+				if mode == 't' then vim.api.nvim_input('i') end
+			end
+		end, opts)
+	end
+end

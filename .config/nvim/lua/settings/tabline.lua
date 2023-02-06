@@ -23,7 +23,7 @@ local function get_tab_item(current_tab, tab)
 	}
 end
 
-function tabline()
+function Tabline()
 	local tabs = { length = 0 }
 	local current_tab, last_tab = tabpagenr(), tabpagenr('$')
 	local prev_sym, sep_sym, next_sym = '<|', '|', '|>'
@@ -55,4 +55,4 @@ function tabline()
 end
 
 vim.opt.showtabline = 2
-vim.opt.tabline = '%!luaeval("tabline()")'
+vim.opt.tabline = '%!luaeval("Tabline()")'

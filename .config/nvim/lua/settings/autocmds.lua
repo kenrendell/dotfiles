@@ -1,7 +1,7 @@
 
 local function create_autocmd(group, clear, autocmds)
 	local group_id = vim.api.nvim_create_augroup(group, { clear = clear })
-	for k, autocmd in ipairs(autocmds) do
+	for _,autocmd in ipairs(autocmds) do
 		autocmd[2].group = group_id
 		vim.api.nvim_create_autocmd(autocmd[1], autocmd[2])
 	end

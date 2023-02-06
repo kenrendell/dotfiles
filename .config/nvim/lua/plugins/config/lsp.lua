@@ -39,6 +39,7 @@ return function ()
 			-- see https://github.com/vigoux/ltex-ls.nvim
 			lspconfig.ltex.setup({
 				capabilities = capabilities,
+				autostart = false,
 				settings = { -- see https://valentjn.github.io/ltex/settings.html
 					ltex = {
 						language = 'en-US',
