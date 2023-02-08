@@ -10,14 +10,14 @@ local function get_lsp_diagnostics(bufnr)
 	}
 end
 
-function statusline()
+function Statusline()
 	local statusline = ''
 	local diagnostic = get_lsp_diagnostics(0)
 
 	if vim.bo.buftype == 'terminal' then statusline = ' %3*%{b:term_title}%* %=%< '
 	else
 		statusline = '%{%&modified?"%2*":"%1*"%}%( %{get(b:,"gitsigns_status","")} |%) '
-		.. '%t%( %{&modifiable?"":"-"}%)%( %{&modified?"+":""}%) %* %=%<%9*%{expand("%:~:.:h")}%* '
+		.. '%t%( %{&modifiable?"":"-"}%)%( %{&modified?"+":""}%) %* %=%< '
 		.. '%3*%{&filetype!=#""?&filetype:"no-ft"} %{&fileencoding!=#""?&fileencoding:&encoding}%*'
 		.. '%8*%( %{&readonly?"RO":""}%)%( %{&previewwindow?"PRV":""}%)%( %{&spell?"SPELL":""}%)'
 		.. '%( %{&paste?"PASTE":""}%)%* %c:0x%B %l/%L %*'
@@ -28,4 +28,4 @@ end
 vim.opt.ruler = false
 vim.opt.showmode = true
 vim.opt.laststatus = 3
-vim.opt.statusline = '%!luaeval("statusline()")'
+vim.opt.statusline = '%!luaeval("Statusline()")'

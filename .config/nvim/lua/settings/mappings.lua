@@ -16,7 +16,7 @@
 -- alt + ctrl + shift + {h, j, k, l}  := Move current window to be at the very {left, bottom, top, right}.
 -- alt + ctrl + m                     := Minimize window size.
 -- alt + ctrl + shift + m             := Maximize window size.
--- alt + ctrl + u                     := Move current window to a new tab.
+-- alt + ctrl + backslash             := Move current window to a new tab.
 -- alt + ctrl + return                := Create a new vertical window.
 -- alt + ctrl + shift + return        := Create a new horizontal window.
 -- alt + ctrl + o                     := Close all windows except the current window.
@@ -51,7 +51,7 @@ for _,mode in ipairs({'n', 't', 'i', 'v'}) do
 	end, opts)
 
 	-- Move current window to a new tab.
-	map(mode, [[<A-C-u>]], function ()
+	map(mode, [[<A-C-Bslash>]], function ()
 		if vim.fn.winnr('$') > 1 then
 			if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
 			local success, result = pcall(vim.cmd, 'wincmd T')
@@ -66,6 +66,7 @@ for _,mode in ipairs({'n', 't', 'i', 'v'}) do
 		-- Move current window focus to the {left, bottom, top, right}.
 		map(mode, string.format('<A-C-%s>', key), function ()
 			if vim.fn.winnr() ~= vim.fn.winnr(key) then
+				if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
 				local success, result = pcall(vim.cmd, 'wincmd ' .. key)
 				if not success then vim.notify(result, vim.log.levels.WARN) end
 			end
@@ -74,8 +75,10 @@ for _,mode in ipairs({'n', 't', 'i', 'v'}) do
 		-- Move current window to be at the very {left, bottom, top, right}.
 		map(mode, string.format('<A-C-S-%s>', key), function ()
 			if vim.fn.winnr('$') > 1 then
+				if mode ~= 'n' then vim.api.nvim_input([[<C-\><C-n>]]) end
 				local success, result = pcall(vim.cmd, 'wincmd ' .. string.upper(key))
 				if not success then vim.notify(result, vim.log.levels.WARN) end
+				if mode == 't' then vim.api.nvim_input('i') end
 			end
 		end, opts)
 	end

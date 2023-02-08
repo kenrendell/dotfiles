@@ -90,8 +90,6 @@ let s:hlgroup = [
     \ ['TermCursor',      s:black[1],  s:white[1],   ''],
     \ ['TermCursorNC',    '',          '',          ''],
     \ ['ErrorMsg',        s:red[0],    s:black[0],   ''],
-    \ ['WinBar',          s:black[1],   s:black[0],   ''],
-    \ ['WinBarNC',        s:black[1],   s:black[0],   ''],
     \ ['WinSeparator',    s:black[1],   s:black[0],   ''],
     \ ['LspInfoBorder',   s:black[1],   s:black[0],   ''],
     \ ['FloatBorder',     s:black[1],   s:black[0],   ''],
@@ -171,6 +169,8 @@ let s:status = [
     \ ['TabLineSel',   s:black[1],   s:green[0], ''],
     \ ['StatusLine',   s:white[1],   s:black[1],  ''],
     \ ['StatusLineNC', s:white[0],   s:black[1],  ''],
+    \ ['WinBar',       s:black[1],   s:black[0],   ''],
+    \ ['WinBarNC',     s:black[1],   s:black[0],   ''],
     \ ]
 
 call s:hl(s:status)
