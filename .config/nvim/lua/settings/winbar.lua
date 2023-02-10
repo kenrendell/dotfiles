@@ -1,17 +1,24 @@
+local function get_winbar(buf_id)
+	local buf_type, name = vim.api.nvim_buf_get_option(buf_id, 'buftype')
 
-local function get_winbar(bufnr)
-	local modified = vim.api.nvim_buf_get_option(bufnr, 'modified')
-	local modifiable = vim.api.nvim_buf_get_option(bufnr, 'modifiable')
-	local bufname = vim.api.nvim_buf_get_name(bufnr)
-	local fname = (bufname == '' and '') or vim.fn.fnamemodify(bufname, ':~:p')
+	if buf_type == '' or buf_type == 'help' then
+		local buf_name = vim.api.nvim_buf_get_name(buf_id)
+		name = (buf_name == '' and '') or vim.fn.fnamemodify(buf_name, ':~:p')
+	elseif buf_type == 'terminal' then
+		name = vim.api.nvim_buf_get_var(buf_id, 'term_title')
+	else return '' end
+
+	local modified = vim.api.nvim_buf_get_option(buf_id, 'modified')
+	local modifiable = vim.api.nvim_buf_get_option(buf_id, 'modifiable')
 	local status = (modified and not modifiable and ' [~]') or (modified and ' [+]') or (modifiable and '') or ' [-]'
-	return string.format('%%=%%<%%%d*%s%%*%s', (modified and 4) or 3, fname, status)
+
+	return (name == '' and '') or string.format('%%=%%<%s%s', name, status)
 end
 
 local function set_winbar()
-	for _,winnr in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-		local bufnr = vim.api.nvim_win_get_buf(winnr)
-		vim.api.nvim_win_set_option(winnr, 'winbar', get_winbar(bufnr))
+	for _,win_id in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+		local buf_id = vim.api.nvim_win_get_buf(win_id)
+		vim.api.nvim_win_set_option(win_id, 'winbar', get_winbar(buf_id))
 	end
 end
 

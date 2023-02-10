@@ -1,19 +1,13 @@
-local tabpagenr = vim.fn.tabpagenr
-local tabpagewinnr = vim.fn.tabpagewinnr
-local tabpagebuflist = vim.fn.tabpagebuflist
-local bufname = vim.fn.bufname
-local getbufvar = vim.fn.getbufvar
-local fnamemodify = vim.fn.fnamemodify
+local function get_tab_item(current_tab, tab, tab_id)
+	local wins = #vim.api.nvim_tabpage_list_wins(tab_id)
+	local win_id = vim.api.nvim_tabpage_get_win(tab_id)
+	local buf_id = vim.api.nvim_win_get_buf(win_id)
+	local buf_name = vim.api.nvim_buf_get_name(buf_id)
+	local modified = vim.api.nvim_buf_get_option(buf_id, 'modified')
+	local modifiable = vim.api.nvim_buf_get_option(buf_id, 'modifiable')
 
-local function get_tab_item(current_tab, tab)
-	local splits = tabpagewinnr(tab, '$')
-	local buffer_id = tabpagebuflist(tab)[tabpagewinnr(tab)]
-	local buffer_name = bufname(buffer_id)
-	local modified = getbufvar(buffer_id, '&modified') == 1
-	local modifiable = getbufvar(buffer_id, '&modifiable') == 1
-
-	local tab_name = (buffer_name == '' and '') or string.format('%s ', fnamemodify(buffer_name, ':t'))
-	local tab_index = string.format(' %s%s%s ', tab, (splits > 1 and string.format('.%s', splits))
+	local tab_name = (buf_name == '' and '') or string.format('%s ', vim.fn.fnamemodify(buf_name, ':t'))
+	local tab_index = string.format(' %s%s%s ', tab, (wins > 1 and string.format('.%s', wins))
 	or '', (modified and not modifiable and '[~]') or (modified and '[+]') or (modifiable and '') or '[-]')
 
 	return {
@@ -25,12 +19,15 @@ end
 
 function Tabline()
 	local tabs = { length = 0 }
-	local current_tab, last_tab = tabpagenr(), tabpagenr('$')
+	local current_tab = vim.api.nvim_tabpage_get_number(0)
+	local tab_ids = vim.api.nvim_list_tabpages()
+	local last_tab = #tab_ids
+
 	local prev_sym, sep_sym, next_sym = '<|', '|', '|>'
 	local columns = vim.o.columns
 
-	for tab = 1, last_tab, 1 do
-		local tab_item = get_tab_item(current_tab, tab)
+	for tab,tab_id in ipairs(tab_ids) do
+		local tab_item = get_tab_item(current_tab, tab, tab_id)
 		local next_sym_len = (tab < last_tab and #next_sym) or 0
 
 		if tab > 1 and tabs.length + ((#tabs > 0 and #sep_sym) or 0) + tab_item.length + next_sym_len > columns then

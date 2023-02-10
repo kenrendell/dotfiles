@@ -169,7 +169,7 @@ let s:status = [
     \ ['TabLineSel',   s:black[1],   s:green[0], ''],
     \ ['StatusLine',   s:white[1],   s:black[1],  ''],
     \ ['StatusLineNC', s:white[0],   s:black[1],  ''],
-    \ ['WinBar',       s:black[1],   s:black[0],   ''],
+    \ ['WinBar',       s:white[0],   s:black[0],   ''],
     \ ['WinBarNC',     s:black[1],   s:black[0],   ''],
     \ ]
 
