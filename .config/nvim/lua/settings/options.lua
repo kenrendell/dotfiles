@@ -22,9 +22,13 @@ set.undofile = true
 set.undolevels = 1000
 set.undoreload = 10000
 
-vim.cmd('syntax on')
-vim.cmd('colorscheme ansi')
 vim.cmd('filetype plugin indent on')
+
+set.cursorline = true
+
+-- Command window
+set.cmdheight = 1
+set.cmdwinheight = 10
 
 set.title = false
 set.autoread = true
@@ -67,7 +71,7 @@ set.fillchars = {
 	horiz = '─', horizup = '┴', horizdown = '┬',
 	vert = '│', vertleft = '┤', vertright = '├', verthoriz = '┼',
 	fold = '·', foldopen = '-', foldclose = '+', foldsep = '│',
-	diff = '-', msgsep = ' ', eob = ' '
+	diff = '-', msgsep = '─', eob = '~'
 }
 
 -- Spelling
@@ -88,3 +92,6 @@ set.splitright = true
 
 -- Clipboard
 set.clipboard:append('unnamedplus')
+
+-- Highlighting
+vim.cmd.colorscheme('terminal-colors')

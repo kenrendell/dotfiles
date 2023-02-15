@@ -1,19 +1,25 @@
 local function get_tab_item(current_tab, tab, tab_id)
-	local wins = #vim.api.nvim_tabpage_list_wins(tab_id)
+	local wins = vim.api.nvim_tabpage_list_wins(tab_id)
+	local wins_count, modified = #wins, false
+
+	-- Check if one of the buffers in a tabpage is modified.
+	for _,win_id in ipairs(wins) do
+		local buf_id = vim.api.nvim_win_get_buf(win_id)
+		if vim.api.nvim_buf_get_option(buf_id, 'modified')
+		then modified = true break end
+	end
+
+	-- Get the current buffer name of the tabpage.
 	local win_id = vim.api.nvim_tabpage_get_win(tab_id)
 	local buf_id = vim.api.nvim_win_get_buf(win_id)
 	local buf_name = vim.api.nvim_buf_get_name(buf_id)
-	local modified = vim.api.nvim_buf_get_option(buf_id, 'modified')
-	local modifiable = vim.api.nvim_buf_get_option(buf_id, 'modifiable')
 
 	local tab_name = (buf_name == '' and '') or string.format('%s ', vim.fn.fnamemodify(buf_name, ':t'))
-	local tab_index = string.format(' %s%s%s ', tab, (wins > 1 and string.format('.%s', wins))
-	or '', (modified and not modifiable and '[~]') or (modified and '[+]') or (modifiable and '') or '[-]')
+	local tab_index = string.format(' %s%s%s ', tab, (wins_count > 1 and string.format(':%s', wins_count)) or '', (modified and '[+]') or '')
 
 	return {
-		string.format('%%%sT%%%s*', tab,
-		(current_tab == tab and ((modified and '2') or '1')) or (modified and '4') or '3'),
-		tab_index, tab_name, '%*%T', length = #tab_index + #tab_name
+		string.format('%%%sT%%#%s#', tab, (current_tab == tab and 'TabLineSel') or 'TabLine'),
+		tab_index, tab_name, '%T%#TabLineFill#', length = #tab_index + #tab_name
 	}
 end
 
@@ -44,7 +50,7 @@ function Tabline()
 		end
 
 		tabs.length = tabs.length + tab_item.length
-		table.insert(tabs, table.concat(tab_item))
+		table.insert(tabs, string.format('%%#TabLineFill#%s', table.concat(tab_item)))
 	end
 
 	table.insert(tabs, 1, '%<')

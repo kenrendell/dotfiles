@@ -14,7 +14,7 @@ c.ensure_installed = {
 c.highlight = { enable = true }
 c.incremental_selection = { enable = true }
 c.rainbow = {
-	enable = true,
+	enable = false,
 	extended_mode = true,
 	max_file_lines = nil
 }

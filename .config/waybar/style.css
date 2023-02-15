@@ -8,24 +8,24 @@
 }
 
 /* Main waybar window */
-window#waybar { background-color: @COLOR_0; }
+window#waybar { background-color: @COLOR_BG; }
 
 /* Inactive workspace */
 #workspaces button {
-	color: @COLOR_0;
+	color: @COLOR_BG;
 	font-size: 12px;
 	font-weight: bold;
 	padding: 0 6px;
 	margin: 2px 0 2px 2px;
 	border-radius: 2px;
-	border: 1px solid @COLOR_0;
-	background-color: @COLOR_8;
+	border: 1px solid @COLOR_BG;
+	background-color: @COLOR_08;
 }
 
 /* Focused workspace */
 #workspaces button.focused {
-	color: @COLOR_0;
-	border-color: @COLOR_6;
+	color: @COLOR_BG;
+	border-color: @COLOR_06;
 	background-color: @COLOR_14;
 }
 
@@ -34,12 +34,12 @@ window#waybar { background-color: @COLOR_0; }
 	color: @COLOR_13;
 	font-weight: bold;
 	padding: 0 8px;
-	border-right: 1px dotted @COLOR_8;
+	border-right: 1px dotted @COLOR_08;
 }
 
 /* Window title */
 #window {
-	color: @COLOR_8;
+	color: @COLOR_08;
 	padding: 0 8px;
 }
 
@@ -56,43 +56,43 @@ window#waybar { background-color: @COLOR_0; }
 #custom-battery,
 #custom-date,
 #tray {
-	color: @COLOR_7;
+	color: @COLOR_07;
 	padding: 0 8px;
-	background-color: @COLOR_0;
-	border-left: 1px dotted @COLOR_8;
+	background-color: @COLOR_BG;
+	border-left: 1px dotted @COLOR_08;
 }
 
 /* Presentation mode */
-#idle_inhibitor.activated { color: @COLOR_5; }
+#idle_inhibitor.activated { color: @COLOR_05; }
 
 /* Music Player Daemon */
-#custom-mpd.no-output { color: @COLOR_1; }
+#custom-mpd.no-output { color: @COLOR_01; }
 #custom-mpd.playing { color: @COLOR_12; }
 
 /* Camera */
 #custom-camera.active { color: @COLOR_12; }
 
 /* CPU */
-#custom-cpu.critical { color: @COLOR_1; }
-#custom-cpu.warning { color: @COLOR_3; }
+#custom-cpu.critical { color: @COLOR_01; }
+#custom-cpu.warning { color: @COLOR_03; }
 
 /* Memory */
-#custom-memory.critical { color: @COLOR_1; }
-#custom-memory.warning { color: @COLOR_3; }
+#custom-memory.critical { color: @COLOR_01; }
+#custom-memory.warning { color: @COLOR_03; }
 
 /* Conntrack */
-#custom-conntrack.critical { color: @COLOR_1; }
-#custom-conntrack.warning { color: @COLOR_3; }
+#custom-conntrack.critical { color: @COLOR_01; }
+#custom-conntrack.warning { color: @COLOR_03; }
 
 /* Audio */
 #custom-audio-input.muted,
-#custom-audio-output.muted { color: @COLOR_3; }
+#custom-audio-output.muted { color: @COLOR_03; }
 #custom-audio-input.exceeded,
-#custom-audio-output.exceeded { color: @COLOR_1; }
+#custom-audio-output.exceeded { color: @COLOR_01; }
 
 /* Battery */
-#custom-battery.critical { color: @COLOR_1; }
+#custom-battery.critical { color: @COLOR_01; }
 #custom-battery.unknown,
-#custom-battery.warning { color: @COLOR_3; }
-#custom-battery.charging { color: @COLOR_2; }
+#custom-battery.warning { color: @COLOR_03; }
+#custom-battery.charging { color: @COLOR_02; }
 #custom-battery.full { color: @COLOR_12; }

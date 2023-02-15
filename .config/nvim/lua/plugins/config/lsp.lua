@@ -21,7 +21,7 @@ return function ()
 	require('lspconfig.ui.windows').default_options.border = window_border
 
 	mason_lspconfig.setup({
-		ensure_installed = { 'arduino_language_server', 'clangd', 'sumneko_lua', 'awk_ls', 'bashls', 'ltex', 'texlab', 'marksman' },
+		ensure_installed = { 'arduino_language_server', 'clangd', 'lua_ls', 'awk_ls', 'bashls', 'ltex', 'texlab', 'marksman' },
 		automatic_installation = false
 	})
 
@@ -55,8 +55,8 @@ return function ()
 			})
 		end,
 
-		sumneko_lua = function ()
-			lspconfig.sumneko_lua.setup({
+		lua_ls = function ()
+			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				root_dir = lspconfig.util.root_pattern('.git', 'lua'),
 				single_file_support = true,

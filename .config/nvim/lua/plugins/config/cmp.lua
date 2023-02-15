@@ -1,11 +1,6 @@
 
 return function ()
 	local cmp = require('cmp')
-	local window = cmp.config.window.bordered({
-		winhighlight = 'Normal:Normal,FloatBorder:WinSeparator,CursorLine:Visual,Search:None',
-		scrollbar = false,
-		border = 'single'
-	})
 
 	vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
@@ -25,9 +20,33 @@ return function ()
 			{ name = 'path' },
 		}),
 		window = {
-			completion = window,
-			documentation = window
+			completion = cmp.config.window.bordered({
+				winhighlight = 'CursorLine:PmenuSel,Search:None',
+				border = 'single',
+				scrolloff = 2,
+			}),
+			documentation = cmp.config.window.bordered({
+				winhighlight = '',
+				border = 'single'
+			})
 		},
+		formatting = {
+			format = require('lspkind').cmp_format({
+				mode = 'text',
+				maxwidth = 50,
+				ellipsis_char = '...',
+				menu = {
+					buffer = '[Buffer]',
+					nvim_lsp = '[LSP]',
+					nvim_lsp_signature_help = '[LSP-signature]',
+					nvim_lua = '[Lua]',
+					luasnip = '[Snip]',
+					path = '[Path]',
+					cmdline = '[Command]',
+				}
+			})
+		},
+		experimental = { ghost_text = true },
 		mapping = cmp.mapping.preset.insert({
 			['<C-b>'] = cmp.mapping.scroll_docs(-4),
 			['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -46,4 +65,8 @@ return function ()
 		mapping = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({{ name = 'path' }}, {{ name = 'cmdline' }})
 	})
+
+	--[[ cmp.event:on('menu_closed', function ()
+		vim.api.nvim_exec_autocmds('WinEnter', { group = 'window-bar' })
+	end) ]]
 end

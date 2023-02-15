@@ -23,8 +23,25 @@ export GOPATH="$XDG_DATA_HOME/go"
 eval "$(dircolors -b "$ZDOTDIR/colors/.dircolors")"
 
 # Colors
-for color in $(cat "$ZDOTDIR/colors/colors.txt" | xargs)
-do eval "export COLOR_${i:=0}='${color}'"; i=$((i + 1)); done
+export \
+	COLOR_00='1E1E1E' \
+	COLOR_01='9D535D' \
+	COLOR_02='5D9D53' \
+	COLOR_03='9D9353' \
+	COLOR_04='535D9D' \
+	COLOR_05='93539D' \
+	COLOR_06='539D93' \
+	COLOR_07='787878' \
+	COLOR_08='383838' \
+	COLOR_09='B37079' \
+	COLOR_10='79B370' \
+	COLOR_11='B3AA70' \
+	COLOR_12='7079B3' \
+	COLOR_13='AA70B3' \
+	COLOR_14='70B3AA' \
+	COLOR_15='929292' \
+	COLOR_FG='787878' \
+	COLOR_BG='000000'
 
 # Dynamic Menu
 export BEMENU_OPTS="\
@@ -32,11 +49,11 @@ export BEMENU_OPTS="\
 --prompt menu \
 --line-height 24 \
 --fn 'JetBrains Mono 9' \
---tf '#${COLOR_2}' --tb '#${COLOR_0}' \
---ff '#${COLOR_4}' --fb '#${COLOR_0}' \
---nf '#${COLOR_7}' --nb '#${COLOR_0}' \
---hf '#${COLOR_3}' --hb '#${COLOR_0}' \
---sf '#${COLOR_5}' --sb '#${COLOR_15}'"
+--tf '#${COLOR_02}' --tb '#${COLOR_BG}' \
+--ff '#${COLOR_04}' --fb '#${COLOR_BG}' \
+--nf '#${COLOR_07}' --nb '#${COLOR_BG}' \
+--hf '#${COLOR_03}' --hb '#${COLOR_BG}' \
+--sf '#${COLOR_05}' --sb '#${COLOR_15}'"
 
 # FZF configurations
 export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'

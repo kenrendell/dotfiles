@@ -55,6 +55,7 @@ require('lazy').setup({ -- Plugins
 			'hrsh7th/cmp-cmdline',
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-path',
+			'onsails/lspkind.nvim',
 		}, config = require('plugins.config.cmp')
 	},
 	{ -- Treesitter
@@ -76,7 +77,7 @@ require('lazy').setup({ -- Plugins
 	},
 	{ -- Commenter
 		'numToStr/Comment.nvim',
-		enabled = false,
+		enabled = true,
 		config = require('plugins.config.comment')
 	},
 	{ -- Git decorations
@@ -100,7 +101,7 @@ require('lazy').setup({ -- Plugins
 }, {
 	install = {
 		missing = true,
-		colorscheme = { 'ansi' }
+		colorscheme = { 'terminal-colors' }
 	},
 	ui = {
 		size = { width = 0.8, height = 0.8 },
