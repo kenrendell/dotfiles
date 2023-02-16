@@ -67,7 +67,7 @@ local highlights = {
 	['VisualNOS'] = { reverse = true },
 
 	-- Window
-	['WinSeparator'] = { fg = colors.gray[1] },
+	['WinSeparator'] = { fg = colors.gray[2] },
 	['LspInfoBorder'] = { link = 'WinSeparator' },
 	['FloatBorder'] = { link = 'WinSeparator' },
 
@@ -141,21 +141,35 @@ local highlights = {
 	['SpellLocal'] = { fg = colors.yellow[1] },
 	['SpellRare'] = { fg = colors.yellow[1] },
 
-	-- Statusline, Tabline, and Winbar
-	['User1'] = { fg = colors.red[1], bg = colors.gray[1] },
-	['User2'] = { fg = colors.green[1], bg = colors.gray[1] },
-	['User3'] = { fg = colors.yellow[1], bg = colors.gray[1] },
-	['User4'] = { fg = colors.blue[1], bg = colors.gray[1] },
-	['User5'] = { fg = colors.magenta[1], bg = colors.gray[1] },
-	['User6'] = { fg = colors.cyan[1], bg = colors.gray[1] },
-	['User7'] = { fg = colors.gray[2] },
-	['User8'] = { fg = colors.green[1] },
-	['User9'] = { fg = colors.magenta[1] },
-	['TabLine'] = { fg = colors.white[1], bg = colors.gray[1] },
-	['TabLineFill'] = { fg = colors.gray[2], bg = colors.gray[1] },
-	['TabLineSel'] = { fg = colors.gray[1], bg = colors.green[1] },
+	-- Status line
+	['User1'] = { fg = colors.gray[2], bg = colors.gray[1] },
+	['User2'] = { fg = colors.red[2], bg = colors.gray[1] },
+	['User3'] = { fg = colors.green[2], bg = colors.gray[1] },
+	['User4'] = { fg = colors.yellow[2], bg = colors.gray[1] },
+	['User5'] = { fg = colors.blue[2], bg = colors.gray[1] },
+	['User6'] = { fg = colors.magenta[2], bg = colors.gray[1] },
+	['User7'] = { fg = colors.cyan[2], bg = colors.gray[1] },
+	['User8'] = { fg = colors.white[1], bg = colors.gray[1] },
+	['User9'] = { fg = colors.white[2], bg = colors.gray[1] },
 	['StatusLine'] = { fg = colors.white[1], bg = colors.gray[1] },
-	['StatusLineNC'] = { fg = colors.gray[1], bg = colors.gray[1] },
+	['StatusLineNC'] = { fg = colors.gray[2], bg = colors.gray[1] },
+	['StatusLineModeNormal'] = { fg = colors.gray[1], bg = colors.green[1], bold = true },
+	['StatusLineModeVisual'] = { fg = colors.gray[1], bg = colors.cyan[1], bold = true },
+	['StatusLineModeSelect'] = { fg = colors.gray[1], bg = colors.cyan[2], bold = true },
+	['StatusLineModeInsert'] = { fg = colors.gray[1], bg = colors.blue[1], bold = true },
+	['StatusLineModeReplace'] = { fg = colors.gray[1], bg = colors.red[1], bold = true },
+	['StatusLineModeCommand'] = { fg = colors.gray[1], bg = colors.yellow[1], bold = true },
+	['StatusLineModePrompt'] = { fg = colors.gray[1], bg = colors.magenta[1], bold = true },
+	['StatusLineModeShell'] = { fg = colors.gray[1], bg = colors.yellow[2], bold = true },
+	['StatusLineModeTerminal'] = { fg = colors.gray[1], bg = colors.blue[2], bold = true },
+	['StatusLineModeUnknown'] = { fg = colors.gray[1], bg = colors.white[1], bold = true },
+
+	-- Tab line
+	['TabLine'] = { fg = colors.white[1], bg = colors.gray[1] },
+	['TabLineModified'] = { fg = colors.cyan[1], bg = colors.gray[1] },
+	['TabLineFill'] = { fg = colors.gray[2], bg = colors.gray[1] },
+	['TabLineSel'] = { fg = colors.gray[1], bg = colors.cyan[1] },
+	['TabLineSelModified'] = { fg = colors.gray[1], bg = colors.cyan[2] },
 
 	-- Window bar
 	['WinBar'] = { fg = colors.white[1] },
@@ -180,10 +194,10 @@ local highlights = {
 	['GitSignsChange'] = { fg = colors.magenta[1] },
 
 	-- LSP diagnostics
-	['DiagnosticHint'] = { fg = colors.cyan[2] },
+	['DiagnosticHint'] = { fg = colors.white[2] },
 	['DiagnosticInfo'] = { fg = colors.blue[2] },
-	['DiagnosticWarn'] = { fg = colors.yellow[1] },
-	['DiagnosticError'] = { fg = colors.red[1] },
+	['DiagnosticWarn'] = { fg = colors.yellow[2] },
+	['DiagnosticError'] = { fg = colors.red[2] },
 }
 
 -- Set highlights

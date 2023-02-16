@@ -12,14 +12,18 @@ local function get_tab_item(current_tab, tab, tab_id)
 	-- Get the current buffer name of the tabpage.
 	local win_id = vim.api.nvim_tabpage_get_win(tab_id)
 	local buf_id = vim.api.nvim_win_get_buf(win_id)
-	local buf_name = vim.api.nvim_buf_get_name(buf_id)
+	local buf_name, buf_type = '', vim.api.nvim_buf_get_option(buf_id, 'buftype')
+	if buf_type == '' or buf_type == 'help' then buf_name = vim.api.nvim_buf_get_name(buf_id) end
 
-	local tab_name = (buf_name == '' and '') or string.format('%s ', vim.fn.fnamemodify(buf_name, ':t'))
+	local tab_name = (buf_name == '' and '') or string.format('%s ', buf_name:match('^.*/([^/]+)$'))
 	local tab_index = string.format(' %s%s%s ', tab, (wins_count > 1 and string.format(':%s', wins_count)) or '', (modified and '[+]') or '')
 
 	return {
-		string.format('%%%sT%%#%s#', tab, (current_tab == tab and 'TabLineSel') or 'TabLine'),
-		tab_index, tab_name, '%T%#TabLineFill#', length = #tab_index + #tab_name
+		table.concat({
+			'%', tab, 'T%#TabLine',
+			(current_tab == tab and 'Sel') or '',
+			(modified and 'Modified#') or '#'
+		}), tab_index, tab_name, '%T%#TabLineFill#', length = #tab_index + #tab_name
 	}
 end
 

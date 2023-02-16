@@ -1,43 +1,40 @@
 local modes = {
-	['n'] = {'NORMAL', 2},
-	['v'] = {'VISUAL', 6},
-	['V'] = {'VISUAL-LINE', 6},
-	['\022'] = {'VISUAL-BLOCK', 6},
-	['s'] = {'SELECT', 3},
-	['S'] = {'SELECT-LINE', 3},
-	['\019'] = {'SELECT-BLOCK', 3},
-	['i'] = {'INSERT', 4},
-	['R'] = {'REPLACE', 4},
-	['c'] = {'COMMAND', 5},
-	['r'] = {'PROMPT', 5},
-	['!'] = {'SHELL', 5},
-	['t'] = {'TERMINAL', 5},
+	['n'] = {'NORMAL', 'Normal'},
+	['v'] = {'VISUAL', 'Visual'},
+	['V'] = {'VISUAL-LINE', 'Visual'},
+	['\022'] = {'VISUAL-BLOCK', 'Visual'},
+	['s'] = {'SELECT', 'Select'},
+	['S'] = {'SELECT-LINE', 'Select'},
+	['\019'] = {'SELECT-BLOCK', 'Select'},
+	['i'] = {'INSERT', 'Insert'},
+	['R'] = {'REPLACE', 'Replace'},
+	['c'] = {'COMMAND', 'Command'},
+	['r'] = {'PROMPT', 'Prompt'},
+	['!'] = {'SHELL', 'Shell'},
+	['t'] = {'TERMINAL', 'Terminal'},
 }
 
 local function get_mode()
-	local mode = modes[vim.api.nvim_get_mode().mode:sub(1, 1)]
-	return string.format(' %%0*[%%%d*%s%%*%%0*]', mode[2] or 1, mode[1])
+	local mode = modes[vim.api.nvim_get_mode().mode:sub(1, 1)] or { 'UNKNOWN', 'Unknown' }
+	return table.concat({ '%#StatusLineMode', mode[2], '# ', mode[1], ' %#StatusLine#' })
 end
 
 local function get_lsp_diagnostics()
-	local diagnostics = {}
 	local get, severity = vim.diagnostic.get, vim.diagnostic.severity
-
 	local error = #get(0, { severity = severity.ERROR })
 	local warn = #get(0, { severity = severity.WARN })
 	local info = #get(0, { severity = severity.INFO })
 	local hint = #get(0, { severity = severity.HINT })
 
-	table.insert(diagnostics, (hint > 0 and string.format(' %%6*H:%d%%*', hint)) or '')
-	table.insert(diagnostics, (info > 0 and string.format(' %%4*I:%d%%*', info)) or '')
-	table.insert(diagnostics, (warn > 0 and string.format(' %%3*W:%d%%*', warn)) or '')
-	table.insert(diagnostics, (error > 0 and string.format(' %%1*E:%d%%*', error)) or '')
-
-	return table.concat(diagnostics)
+	return table.concat({
+		(hint > 0 and string.format(' %%9*H:%d%%*', hint)) or '',
+		(info > 0 and string.format(' %%5*I:%d%%*', info)) or '',
+		(warn > 0 and string.format(' %%4*W:%d%%*', warn)) or '',
+		(error > 0 and string.format(' %%2*E:%d%%*', error)) or ''
+	})
 end
 
 local function get_git_status()
-	local gitsigns_status = {}
 	local gitsigns_status_dict = vim.b.gitsigns_status_dict
 	if not gitsigns_status_dict then return '' end
 
@@ -46,29 +43,44 @@ local function get_git_status()
 	local changed = gitsigns_status_dict['changed'] or 0
 	local removed = gitsigns_status_dict['removed'] or 0
 
-	table.insert(gitsigns_status, (head ~= '' and string.format(' %%4*%s%%*', head)) or '')
-	table.insert(gitsigns_status, (added > 0 and string.format(' %%3*+%d%%*', added)) or '')
-	table.insert(gitsigns_status, (changed > 0 and string.format(' %%8*~%d%%*', changed)) or '')
-	table.insert(gitsigns_status, (removed > 0 and string.format(' %%7*-%d%%*', removed)) or '')
-
-	return table.concat(gitsigns_status)
+	return table.concat({
+		(head ~= '' and string.format(' %%7*%s%%*', head)) or '',
+		(added > 0 and string.format(' %%3*+%d%%*', added)) or '',
+		(changed > 0 and string.format(' %%6*~%d%%*', changed)) or '',
+		(removed > 0 and string.format(' %%2*-%d%%*', removed)) or ''
+	})
 end
 
-function Statusline()
-	local statusline = {}
+local function set_statusline()
 
-	table.insert(statusline, get_mode())
-	table.insert(statusline, get_git_status())
-	table.insert(statusline, get_lsp_diagnostics())
-	table.insert(statusline, ' %=%< ')
-	table.insert(statusline, '%3*%{&filetype!=#""?&filetype:"no-ft"} %{&fileencoding!=#""?&fileencoding:&encoding}%*')
-	table.insert(statusline, '%8*%( %{&readonly?"RO":""}%)%( %{&previewwindow?"PRV":""}%)%( %{&spell?"SPELL":""}%)')
-	table.insert(statusline, '%( %{&paste?"PASTE":""}%)%* %c:0x%B %l/%L %*')
+	-- table.insert(statusline, ' %=%< ')
+	-- table.insert(statusline, '%3*%{&filetype!=#""?&filetype:"no-ft"} %{&fileencoding!=#""?&fileencoding:&encoding}%*')
+	-- table.insert(statusline, '%8*%( %{&readonly?"RO":""}%)%( %{&previewwindow?"PRV":""}%)%( %{&spell?"SPELL":""}%)')
+	-- table.insert(statusline, '%( %{&paste?"PASTE":""}%)%* %c:0x%B %l/%L %*')
 
-	return table.concat(statusline)
+	vim.opt.statusline = table.concat({
+		get_mode(), get_git_status(), get_lsp_diagnostics(), '%=',
+		(vim.bo.filetype ~= '' and string.format(' %%6*%s%%*', vim.bo.filetype)) or '',
+		' %8*', (vim.bo.fileencoding ~= '' and vim.bo.fileencoding) or vim.go.encoding, '%*',
+		' %8*', vim.bo.fileformat, '%*', (vim.bo.bomb and ' %8*BOM%*') or '',
+		(vim.bo.binary and ' %2*BIN%*') or '',
+		(vim.bo.readonly and ' %2*RO%*') or '',
+		(vim.wo.spell and ' %2*SPELL%*') or '',
+	})
 end
 
 vim.opt.ruler = false
 vim.opt.showmode = false
 vim.opt.laststatus = 3
-vim.opt.statusline = '%!luaeval("Statusline()")'
+
+local group_id = vim.api.nvim_create_augroup('statusline', { clear = true })
+
+vim.api.nvim_create_autocmd(
+	{ 'VimEnter', 'WinEnter', 'BufWinEnter' },
+	{ group = group_id, callback = set_statusline }
+)
+
+vim.api.nvim_create_autocmd('OptionSet', {
+	pattern = { 'encoding', 'fileencoding', 'fileformat', 'bomb', 'binary', 'readonly', 'spell' },
+	callback = set_statusline, group = group_id
+})
