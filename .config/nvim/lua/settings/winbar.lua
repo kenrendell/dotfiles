@@ -30,11 +30,6 @@ end
 local group_id = vim.api.nvim_create_augroup('window-bar', { clear = true })
 
 vim.api.nvim_create_autocmd(
-	{ 'VimEnter', 'WinEnter', 'BufWinEnter', 'BufModifiedSet', 'BufFilePost', 'CmdwinEnter' },
+	{ 'VimEnter', 'WinEnter', 'BufWinEnter', 'BufModifiedSet', 'BufFilePost', 'FileChangedShell', 'OptionSet', 'CmdwinEnter' },
 	{ group = group_id, callback = set_winbar }
 )
-
-vim.api.nvim_create_autocmd('OptionSet', {
-	pattern = { 'modified', 'modifiable', 'encoding', 'fileencoding', 'fileformat', 'bomb', 'binary' },
-	callback = set_winbar, group = group_id
-})

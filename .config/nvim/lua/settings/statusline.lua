@@ -52,35 +52,29 @@ local function get_git_status()
 end
 
 local function set_statusline()
-
-	-- table.insert(statusline, ' %=%< ')
-	-- table.insert(statusline, '%3*%{&filetype!=#""?&filetype:"no-ft"} %{&fileencoding!=#""?&fileencoding:&encoding}%*')
-	-- table.insert(statusline, '%8*%( %{&readonly?"RO":""}%)%( %{&previewwindow?"PRV":""}%)%( %{&spell?"SPELL":""}%)')
-	-- table.insert(statusline, '%( %{&paste?"PASTE":""}%)%* %c:0x%B %l/%L %*')
-
 	vim.opt.statusline = table.concat({
 		get_mode(), get_git_status(), get_lsp_diagnostics(), '%=',
 		(vim.bo.filetype ~= '' and string.format(' %%6*%s%%*', vim.bo.filetype)) or '',
-		' %8*', (vim.bo.fileencoding ~= '' and vim.bo.fileencoding) or vim.go.encoding, '%*',
-		' %8*', vim.bo.fileformat, '%*', (vim.bo.bomb and ' %8*BOM%*') or '',
-		(vim.bo.binary and ' %2*BIN%*') or '',
-		(vim.bo.readonly and ' %2*RO%*') or '',
-		(vim.wo.spell and ' %2*SPELL%*') or '',
+		' %3*', (vim.bo.fileencoding ~= '' and vim.bo.fileencoding) or vim.go.encoding, '%*',
+		' %3*', vim.bo.fileformat, '%*', (vim.bo.bomb and ' %3*BOM%*') or '',
+		(vim.bo.binary and ' %2*BIN%*') or '', (vim.bo.readonly and ' %2*RO%*') or '',
+		(vim.wo.spell and ' %2*SPELL%*') or '', ' %8*%c:0x%B %l/%L%* '
 	})
 end
-
-vim.opt.ruler = false
-vim.opt.showmode = false
-vim.opt.laststatus = 3
 
 local group_id = vim.api.nvim_create_augroup('statusline', { clear = true })
 
 vim.api.nvim_create_autocmd(
-	{ 'VimEnter', 'WinEnter', 'BufWinEnter' },
+	{ 'VimEnter', 'WinEnter', 'BufWinEnter', 'FileChangedShell', 'FileType', 'OptionSet', 'ModeChanged', 'DiagnosticChanged' },
 	{ group = group_id, callback = set_statusline }
 )
 
-vim.api.nvim_create_autocmd('OptionSet', {
-	pattern = { 'encoding', 'fileencoding', 'fileformat', 'bomb', 'binary', 'readonly', 'spell' },
-	callback = set_statusline, group = group_id
+vim.api.nvim_create_autocmd('User', {
+	pattern = 'GitSignsUpdate',
+	callback = set_statusline,
+	group = group_id
 })
+
+vim.opt.ruler = false
+vim.opt.showmode = false
+vim.opt.laststatus = 3
