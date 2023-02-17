@@ -58,7 +58,7 @@ local function set_statusline()
 		' %3*', (vim.bo.fileencoding ~= '' and vim.bo.fileencoding) or vim.go.encoding, '%*',
 		' %3*', vim.bo.fileformat, '%*', (vim.bo.bomb and ' %3*BOM%*') or '',
 		(vim.bo.binary and ' %2*BIN%*') or '', (vim.bo.readonly and ' %2*RO%*') or '',
-		(vim.wo.spell and ' %2*SPELL%*') or '', ' %8*%c:0x%B %l/%L%* '
+		(vim.wo.spell and ' %2*SPELL%*') or '', ' %8*%c:0x%B %l/%L%* %<'
 	})
 end
 
