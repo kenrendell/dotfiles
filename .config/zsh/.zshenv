@@ -79,9 +79,6 @@ export LESSHISTFILE='/dev/null'
 export MPD_HOST='::'
 export MPD_PORT=6600
 
-# GPG
-export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-
 # Git
 export GIT_CONFIG_COUNT=6
 export GIT_CONFIG_KEY_0='init.defaultbranch' GIT_CONFIG_VALUE_0='main'
