@@ -16,10 +16,8 @@ c.lsp.auto_attach = {
 }
 
 c.lsp.config.on_attach = function (_, bufnr)
-	local opts = { buffer = bufnr, remap = false, silent = false }
+	local opts = { buffer = bufnr, remap = false, silent = true }
 	local commands = require('zk.commands')
-	local zk_backlinks = commands.get('ZkBacklinks')
-	local zk_links = commands.get('ZkLinks')
 
 	-- Open the link under the caret.
 	map('n', '<CR>', vim.lsp.buf.definition, opts)
@@ -31,10 +29,16 @@ c.lsp.config.on_attach = function (_, bufnr)
 	map('v', '<leader>na', vim.lsp.buf.code_action, opts)
 
 	-- Open notes linking to the current buffer.
-	map('n', '<leader>nb', function () zk_backlinks() end, opts)
+	map('n', '<leader>nb', commands.get('ZkBacklinks'), opts)
 
 	-- Open notes linked by the current buffer.
-	map('n', '<leader>nf', function () zk_links() end, opts)
+	map('n', '<leader>nf', commands.get('ZkLinks'), opts)
+
+	-- Inserts a link at the cursor location.
+	map('n', '<leader>ni', commands.get('ZkInsertLink'), opts)
+
+	-- Inserts a link around the selected text.
+	map('v', '<leader>ni', [[:'<,'>ZkInsertLinkAtSelection<CR>]], opts)
 end
 
 return function ()
@@ -47,20 +51,19 @@ return function ()
 	zk.setup(c) -- Setup LSP and builtin commands
 	local commands = require('zk.commands')
 	local zk_notes = commands.get('ZkNotes')
-	local zk_tags = commands.get('ZkTags')
 
 	-- Create a new note after asking for its title.
 	map('n', '<leader>nn', function () zk.new({ title = vim.fn.input('Title: ') }) end, opts)
 	map('n', '<leader>nN', function () zk.new({ dir = 'main', title = vim.fn.input('Title: ') }) end, opts)
 
 	-- Index the notes to be searchable.
-	map("n", "<leader>ni", function () zk.index({ force = false }) end, opts)
-	map("n", "<leader>nI", function () zk.index({ force = true }) end, opts)
+	map("n", "<leader>nx", function () zk.index({ force = false }) end, opts)
+	map("n", "<leader>nX", function () zk.index({ force = true }) end, opts)
 
 	-- Open notes and edit the selected note.
 	map("n", "<leader>no", function () zk_notes({ excludeHrefs = { 'main' }, sort = { 'modified' } }) end, opts)
 	map("n", "<leader>nO", function () zk_notes({ hrefs = { 'main' }, sort = { 'modified' } }) end, opts)
 
 	-- Open notes and edit the selected note associated with the selected tags.
-	map("n", "<leader>nt", function () zk_tags() end, opts)
+	map("n", "<leader>nt", commands.get('ZkTags'), opts)
 end
