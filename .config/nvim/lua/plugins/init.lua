@@ -1,5 +1,5 @@
 
-local lazy_path = string.format('%s/nvim/lazy/lazy.nvim', vim.fn.stdpath('data'))
+local lazy_path = string.format('%s/lazy/lazy.nvim', vim.fn.stdpath('data'))
 if not vim.loop.fs_stat(lazy_path) then vim.fn.system({
 	'git', 'clone', '--filter=blob:none', '--single-branch',
 	'https://github.com/folke/lazy.nvim.git', lazy_path
