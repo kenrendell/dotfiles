@@ -1,6 +1,6 @@
 #!/bin/sh
 # Video/Audio downloader
-# Dependencies: youtube-dl, ffmpeg, xdg-user-dirs
+# Dependencies: yt-dlp ffmpeg, xdg-user-dirs
 #
 # Usage: dlvideo.sh [--audio] URL [URL...]
 
@@ -22,11 +22,11 @@ fi
 while [ "$#" -ge 1 ]; do
 	# Check the URL
 	printf 'URL: %s\n' "$1"
-	youtube-dl --simulate "$1" >/dev/null 2>&1 || \
+	yt-dlp --simulate "$1" >/dev/null 2>&1 || \
 		{ printf 'Please check the internet connection and URL!\n' 1>&2; exit 1; }
 
-	if $audio_only; then youtube-dl --format "$format" --extract-audio --output "$directory/$template" "$1"
-	else youtube-dl --format "$format" --merge-output-format mkv --output "$directory/$template" "$1"; fi
+	if $audio_only; then yt-dlp --format "$format" --extract-audio --output "$directory/$template" "$1"
+	else yt-dlp --format "$format" --merge-output-format mkv --output "$directory/$template" "$1"; fi
 
 	[ "$#" -gt 1 ] && printf '\n'; shift
 done
