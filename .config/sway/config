@@ -16,7 +16,7 @@ exec swayidle -w
 # You can get the list of keys by running:
 # gsettings list-keys org.gnome.desktop.interface
 exec_always gsettings set org.gnome.desktop.interface {
-    gtk-theme 'Arc-Dark'
+    gtk-theme 'Adwaita-dark'
     icon-theme 'Papirus-Dark'
     font-name '$FONT'
     cursor-theme '$CURSOR_THEME'
