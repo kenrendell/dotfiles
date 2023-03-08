@@ -1,2 +1,5 @@
 set editing-mode vi
+set keyseq-timeout 0
 set blink-matching-paren off
+set completion-ignore-case on
+set show-all-if-ambiguous on
