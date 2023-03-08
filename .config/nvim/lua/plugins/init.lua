@@ -67,6 +67,10 @@ require('lazy').setup({ -- Plugins
 			'p00f/nvim-ts-rainbow' -- no longer maintained (see 'HiPhish/nvim-ts-rainbow2')
 		}, config = require('plugins.config.treesitter')
 	},
+	{ -- A collection of language packs for Vim.
+		'sheerun/vim-polyglot',
+		enabled = true
+	},
 	{ -- Fuzzy finder
 		'nvim-telescope/telescope.nvim',
 		enabled = true,
