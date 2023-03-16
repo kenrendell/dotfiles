@@ -9,5 +9,6 @@
 #                                     // which is registered to open <MIME-TYPE>.
 
 image/jpeg=imv.desktop;
+image/jpg=imv.desktop;
 image/png=imv.desktop;
-x-scheme-handler/msteams=teams-for-linux.desktop
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
