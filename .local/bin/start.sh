@@ -23,12 +23,11 @@ spawn() { [ -n "$(get_pid "$1")" ] || "$@" & }
 
 if [ "$#" -eq 1 ]; then
 	statusbar.sh exit
-	terminate fnott mpd
+	terminate fnott
 	swaymsg exit
 else
 	update-colors.sh
 	spawn fnott
-	mkdir -p "$XDG_DATA_HOME/mpd/playlists" && spawn mpd
 	statusbar.sh
 fi
 
