@@ -90,9 +90,9 @@ export GIT_CONFIG_KEY_5='tag.gpgsign' GIT_CONFIG_VALUE_5=true
 
 # Wayland
 export MOZ_ENABLE_WAYLAND=1
-export QT_QPA_PLATFORM='wayland'
+export QT_QPA_PLATFORM='wayland;xcb'
 export QT_QPA_PLATFORMTHEME='qt5ct'
-export SDL_VIDEODRIVER='wayland'
+export SDL_VIDEODRIVER='wayland,x11'
 
 # Zettelkasten
 export ZK_NOTEBOOK_DIR="$XDG_DOCUMENTS_DIR/Notes"
