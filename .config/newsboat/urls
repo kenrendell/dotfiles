@@ -1,5 +1,14 @@
 https://github.com/kenrendell.atom
 
+https://feeds.arstechnica.com/arstechnica/technology-lab "Ars Technica | Information Technology"
+https://feeds.arstechnica.com/arstechnica/gadgets "Ars Technica | Product News & Reviews"
+https://feeds.arstechnica.com/arstechnica/tech-policy "Ars Technica | Civilization & Discontents"
+https://feeds.arstechnica.com/arstechnica/science "Ars Technica | Science & Exploration"
+
+https://bcachefs.org/recentchanges/index.atom "~BcacheFS updates"
+https://github.com/nilfs-dev/nilfs-utils/releases.atom "~NILFS updates"
+https://github.com/kdave/btrfs-progs/releases.atom "~BTRFS updates"
+
 https://github.com/swaywm/sway/releases.atom "~Sway updates"
 https://github.com/newsboat/newsboat/releases.atom "~Newsboat updates"
 https://github.com/neovim/neovim/releases.atom "~Neovim updates"
