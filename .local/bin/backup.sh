@@ -4,7 +4,7 @@
 [ -d "${1}" ] || { printf 'Usage: backup.sh <repo>\n' 1>&2; exit 1; }
 
 # Get the password for the repository.
-RESTIC_PASSWORD="$(keepassxc-cli show --attributes Password "${HOME}/.secrets/passwords.kdbx" 'Backup/Personal')"
+RESTIC_PASSWORD="$(keepassxc-cli show --attributes Password "${HOME}/.secrets/passwords.kdbx" 'Backup/Personal')" || exit 1
 
 export RESTIC_REPOSITORY="${1}" RESTIC_PASSWORD
 
