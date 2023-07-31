@@ -19,3 +19,5 @@ Videos/
 
 .local/share/logins/
 .local/state/.zsh_history
+
+.secrets/
