@@ -2,6 +2,7 @@ Documents/
 Pictures/
 Music/
 Videos/
+VM/
 
 .ssh/config
 .ssh/known_hosts
