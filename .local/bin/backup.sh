@@ -14,5 +14,5 @@ export RESTIC_REPOSITORY="${1}" RESTIC_PASSWORD
 restic cat config >/dev/null 2>&1 || { printf 'Invalid repository or password!\n' 1>&2; exit 1; }
 
 # Create a backup of home files.
-restic backup --files-from-verbatim="${HOME}/.backup"
+( cd "${HOME}/" && restic backup --files-from-verbatim="${HOME}/.backup" )
 restic check # Check the repository for errors.
