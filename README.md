@@ -1,9 +1,10 @@
-DOTFILES with Wayland (Sway) on Arch Linux
+# DOTFILES on Arch Linux
 
-#### Installation
+## Installation
+
 ``` sh
-git clone --bare 'https://github.com/kenrendell/dotfiles.git' "$HOME/.dotfiles"
-alias dotfiles="git --git-dir='$HOME/.dotfiles' --work-tree='$HOME'"
+git clone --bare 'https://github.com/kenrendell/dotfiles.git' "${HOME}/.dotfiles"
+alias dotfiles='git --git-dir="${HOME}/.dotfiles" --work-tree="$HOME"'
 dotfiles config status.showUntrackedFiles no
 dotfiles checkout
 ```
