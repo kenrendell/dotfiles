@@ -23,4 +23,6 @@ VM/
 .local/share/logins/
 .local/state/.zsh_history
 
+.config/liferea/
+
 .secrets/

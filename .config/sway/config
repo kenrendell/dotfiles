@@ -23,6 +23,7 @@ exec_always gsettings set org.gnome.desktop.interface {
     cursor-size '$CURSOR_SIZE'
     toolbar-style 'both-horiz'
     toolbar-icons-size 'small'
+    color-scheme 'prefer-dark'
 }
 
 ### Start programs ###
