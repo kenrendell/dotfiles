@@ -50,19 +50,16 @@ return function ()
 
 	zk.setup(c) -- Setup LSP and builtin commands
 	local commands = require('zk.commands')
-	local zk_notes = commands.get('ZkNotes')
 
 	-- Create a new note after asking for its title.
-	map('n', '<leader>nn', function () zk.new({ title = vim.fn.input('Title: ') }) end, opts)
-	map('n', '<leader>nN', function () zk.new({ dir = 'main', title = vim.fn.input('Title: ') }) end, opts)
+	map('n', '<leader>nn', function () zk.new({ dir = 'main', title = vim.fn.input('Title: ') }) end, opts)
 
 	-- Index the notes to be searchable.
 	map("n", "<leader>nx", function () zk.index({ force = false }) end, opts)
 	map("n", "<leader>nX", function () zk.index({ force = true }) end, opts)
 
 	-- Open notes and edit the selected note.
-	map("n", "<leader>no", function () zk_notes({ excludeHrefs = { 'main' }, sort = { 'modified' } }) end, opts)
-	map("n", "<leader>nO", function () zk_notes({ hrefs = { 'main' }, sort = { 'modified' } }) end, opts)
+	map("n", "<leader>no", function () commands.get('ZkNotes')({ sort = { 'modified' } }) end, opts)
 
 	-- Open notes and edit the selected note associated with the selected tags.
 	map("n", "<leader>nt", commands.get('ZkTags'), opts)
