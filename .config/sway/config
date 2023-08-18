@@ -28,6 +28,7 @@ exec_always gsettings set org.gnome.desktop.interface {
 
 ### Start programs ###
 exec_always start.sh
+exec_always systemctl --user start wayland-session.target
 
 include ./config.d/*
 include /etc/sway/config.d/*
