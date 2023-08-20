@@ -1,16 +1,17 @@
 # ZSH Environment Variables
 # NOTE: This file will be executed once.
+#
+# For XDG base directories, see "https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html".
 
-# XDG base directory
-# see 'https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html'
+# XDG home directory
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_STATE_HOME="${HOME}/.local/state"
 export XDG_CACHE_HOME="${HOME}/.cache"
 
-# XDG user directory
-sed -E -n 's/^[[:space:]]*([_a-zA-Z][_a-zA-Z0-9]*)=.*$/\1/p' '/etc/xdg/user-dirs.defaults' \
-| while read -r userdir; do eval "export XDG_${userdir}_DIR='$(xdg-user-dir ${userdir})'"; done
+# XDG system directory
+export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
 
 # To load other ZSH configuration files
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
