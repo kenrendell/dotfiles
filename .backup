@@ -4,6 +4,8 @@ Public/
 Music/
 Videos/
 VM/
+Sync/
+Playground/
 
 .ssh/config
 .ssh/known_hosts
@@ -21,6 +23,7 @@ VM/
 .gnupg/private-keys-v1.d/
 
 .local/share/logins/
+.local/share/task/
 .local/state/.zsh_history
 
 .config/liferea/

@@ -101,3 +101,6 @@ export ZK_NOTEBOOK_DIR="$XDG_DOCUMENTS_DIR/Notes"
 export LYNX_CFG_PATH="$XDG_CONFIG_HOME/lynx"
 export LYNX_CFG="$LYNX_CFG_PATH/lynx.cfg"
 export LYNX_LSS="$LYNX_CFG_PATH/lynx.lss"
+
+# Task-warrior default data location
+export TASKDATA="${XDG_DATA_HOME}/task"
