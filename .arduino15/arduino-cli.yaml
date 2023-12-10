@@ -1,5 +1,7 @@
 board_manager:
-  additional_urls: []
+  additional_urls:
+    # See https://github.com/esp8266/Arduino
+    - https://arduino.esp8266.com/stable/package_esp8266com_index.json
 build_cache:
   compilations_before_purge: 10
   ttl: 720h0m0s
