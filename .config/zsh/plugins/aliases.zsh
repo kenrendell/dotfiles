@@ -20,8 +20,8 @@ alias v='nvim'
 alias vh=' nvim -c "setl ft=" "$HISTFILE"'
 
 # File listing
-alias ls='eza -FGa --color=auto -s type'
-alias ll='eza -Flhamg --color=auto -s type'
+alias ls='eza -F -Ga --color=auto -s type'
+alias ll='eza -F -lhamg --color=auto -s type'
 
 # Viewing files
 alias cat='bat'
