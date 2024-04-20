@@ -95,7 +95,7 @@ export QT_QPA_PLATFORMTHEME='qt5ct'
 export SDL_VIDEODRIVER='wayland,x11'
 
 # Zettelkasten
-export ZK_NOTEBOOK_DIR="$XDG_DOCUMENTS_DIR/Notes"
+export ZK_NOTEBOOK_DIR="$XDG_DOCUMENTS_DIR/kenrendell-wiki"
 
 # Lynx
 export LYNX_CFG_PATH="$XDG_CONFIG_HOME/lynx"

@@ -89,15 +89,23 @@ require('lazy').setup({ -- Plugins
 		enabled = true,
 		config = require('plugins.config.gitsigns')
 	},
+	{ -- Easily install luarocks with lazy.nvim
+		"vhyrro/luarocks.nvim",
+		priority = 1000,
+		config = true,
+	},
 	{ -- Note taking
 		'nvim-neorg/neorg',
 		enabled = true,
-		build = ':Neorg sync-parsers', ft = 'norg',
-		dependencies = { 'nvim-treesitter/nvim-treesitter' },
-		config = require('plugins.config.neorg')
+		lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+		version = "*", -- Pin Neorg to the latest stable release
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter',
+			'luarocks.nvim',
+		}, config = require('plugins.config.neorg')
 	},
 	{ -- Note taking assistant
-		'mickael-menu/zk-nvim',
+		'zk-org/zk-nvim',
 		enabled = true,
 		dependencies = { 'hrsh7th/cmp-nvim-lsp' },
 		config = require('plugins.config.zk')
