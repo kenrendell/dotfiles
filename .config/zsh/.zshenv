@@ -23,25 +23,50 @@ export GOPATH="$XDG_DATA_HOME/go"
 eval "$(dircolors -b "$ZDOTDIR/colors/.dircolors")"
 
 # Colors
+# export \
+# 	COLOR_00='1E1E1E' \
+# 	COLOR_01='9D535D' \
+# 	COLOR_02='5D9D53' \
+# 	COLOR_03='9D9353' \
+# 	COLOR_04='535D9D' \
+# 	COLOR_05='93539D' \
+# 	COLOR_06='539D93' \
+# 	COLOR_07='787878' \
+# 	COLOR_08='383838' \
+# 	COLOR_09='B37079' \
+# 	COLOR_10='79B370' \
+# 	COLOR_11='B3AA70' \
+# 	COLOR_12='7079B3' \
+# 	COLOR_13='AA70B3' \
+# 	COLOR_14='70B3AA' \
+# 	COLOR_15='929292' \
+# 	COLOR_FG='787878' \
+# 	COLOR_BG='000000'
+# See https://github.com/folke/tokyonight.nvim/blob/main/extras/foot/tokyonight_night.ini
 export \
-	COLOR_00='1E1E1E' \
-	COLOR_01='9D535D' \
-	COLOR_02='5D9D53' \
-	COLOR_03='9D9353' \
-	COLOR_04='535D9D' \
-	COLOR_05='93539D' \
-	COLOR_06='539D93' \
-	COLOR_07='787878' \
-	COLOR_08='383838' \
-	COLOR_09='B37079' \
-	COLOR_10='79B370' \
-	COLOR_11='B3AA70' \
-	COLOR_12='7079B3' \
-	COLOR_13='AA70B3' \
-	COLOR_14='70B3AA' \
-	COLOR_15='929292' \
-	COLOR_FG='787878' \
-	COLOR_BG='000000'
+	COLOR_00='15161e' \
+	COLOR_01='f7768e' \
+	COLOR_02='9ece6a' \
+	COLOR_03='e0af68' \
+	COLOR_04='7aa2f7' \
+	COLOR_05='bb9af7' \
+	COLOR_06='7dcfff' \
+	COLOR_07='a9b1d6' \
+	COLOR_08='414868' \
+	COLOR_09='f7768e' \
+	COLOR_10='9ece6a' \
+	COLOR_11='e0af68' \
+	COLOR_12='7aa2f7' \
+	COLOR_13='bb9af7' \
+	COLOR_14='7dcfff' \
+	COLOR_15='c0caf5' \
+	COLOR_16='ff9e64' \
+	COLOR_17='db4b4b' \
+	COLOR_FG='c0caf5' \
+	COLOR_BG='1a1b26' \
+	COLOR_SFG='c0caf5' \
+	COLOR_SBG='283457' \
+	COLOR_URL='73daca'
 
 # Dynamic Menu
 export BEMENU_OPTS="\

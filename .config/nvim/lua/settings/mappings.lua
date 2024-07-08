@@ -26,6 +26,7 @@ local map = vim.keymap.set
 local opts = { remap = false, silent = true }
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = "\\"
 
 -- Window and tab mappings.
 for _,mode in ipairs({'n', 't', 'i', 'v'}) do

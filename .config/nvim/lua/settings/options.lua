@@ -94,4 +94,4 @@ set.splitright = true
 set.clipboard:append('unnamedplus')
 
 -- Highlighting
-vim.cmd.colorscheme('terminal-colors')
+vim.cmd.colorscheme('tokyonight')

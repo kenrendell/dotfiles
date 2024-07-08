@@ -12,7 +12,7 @@ directories:
   downloads: /home/kenrendell/.arduino15/staging
   user: /home/kenrendell/Arduino
 library:
-  enable_unsafe_install: false
+  enable_unsafe_install: true
 logging:
   file: ""
   format: text

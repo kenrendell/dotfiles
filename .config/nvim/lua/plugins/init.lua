@@ -1,9 +1,10 @@
 
+-- Bootstrap lazy.nvim
 local lazy_path = string.format('%s/lazy/lazy.nvim', vim.fn.stdpath('data'))
-if not vim.loop.fs_stat(lazy_path) then vim.fn.system({
-	'git', 'clone', '--filter=blob:none', '--single-branch',
-	'https://github.com/folke/lazy.nvim.git', lazy_path
-}) end vim.opt.runtimepath:prepend(lazy_path)
+if not (vim.uv or vim.loop).fs_stat(lazy_path) then
+	local lazy_repo = 'https://github.com/folke/lazy.nvim.git'
+	vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--single-branch', lazy_repo, lazy_path })
+end vim.opt.runtimepath:prepend(lazy_path)
 
 require('lazy').setup({ -- Plugins
 	{ -- Portable package manager
@@ -44,6 +45,27 @@ require('lazy').setup({ -- Plugins
 			'saadparwaiz1/cmp_luasnip',
 			'rafamadriz/friendly-snippets',
 		}, config = require('plugins.config.luasnip')
+	},
+	{ -- Colorscheme
+		'folke/tokyonight.nvim',
+		lazy = false,
+		priority = 1000,
+		opts = { style = 'night' },
+	},
+	{ -- Status Line
+		'nvim-lualine/lualine.nvim',
+		enabled = true,
+		dependencies = {
+			'nvim-tree/nvim-web-devicons'
+		}, config = require('plugins.config.lualine')
+	},
+	{ -- Buffer Line
+		'akinsho/bufferline.nvim',
+		enabled = true,
+		version = '*',
+		dependencies = {
+			'nvim-tree/nvim-web-devicons'
+		}, config = require('plugins.config.bufferline')
 	},
 	{ -- Auto-completion
 		'hrsh7th/nvim-cmp',
@@ -89,19 +111,11 @@ require('lazy').setup({ -- Plugins
 		enabled = true,
 		config = require('plugins.config.gitsigns')
 	},
-	{ -- Easily install luarocks with lazy.nvim
-		"vhyrro/luarocks.nvim",
-		priority = 1000,
-		config = true,
-	},
 	{ -- Note taking
 		'nvim-neorg/neorg',
 		enabled = true,
-		lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-		version = "*", -- Pin Neorg to the latest stable release
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter',
-			'luarocks.nvim',
 		}, config = require('plugins.config.neorg')
 	},
 	{ -- Note taking assistant
@@ -113,11 +127,11 @@ require('lazy').setup({ -- Plugins
 }, {
 	install = {
 		missing = true,
-		colorscheme = { 'terminal-colors' }
+		colorscheme = { 'tokyonight' }
 	},
 	ui = {
 		size = { width = 0.8, height = 0.8 },
 		border = 'single',
-		icons = {}
-	}
+	},
+	rocks = { enabled = true }
 })
