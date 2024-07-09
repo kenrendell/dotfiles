@@ -17,6 +17,7 @@ regular4             = $COLOR_04
 regular5             = $COLOR_05
 regular6             = $COLOR_06
 regular7             = $COLOR_07
+
 bright0              = $COLOR_08
 bright1              = $COLOR_09
 bright2              = $COLOR_10
@@ -28,7 +29,4 @@ bright7              = $COLOR_15
 
 16                   = $COLOR_16
 17                   = $COLOR_17
-
-[cursor]
-color                = $COLOR_SFG $COLOR_SBG
 EOF
