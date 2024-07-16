@@ -23,25 +23,6 @@ export GOPATH="$XDG_DATA_HOME/go"
 eval "$(dircolors -b "$ZDOTDIR/colors/.dircolors")"
 
 # Colors
-# export \
-# 	COLOR_00='1E1E1E' \
-# 	COLOR_01='9D535D' \
-# 	COLOR_02='5D9D53' \
-# 	COLOR_03='9D9353' \
-# 	COLOR_04='535D9D' \
-# 	COLOR_05='93539D' \
-# 	COLOR_06='539D93' \
-# 	COLOR_07='787878' \
-# 	COLOR_08='383838' \
-# 	COLOR_09='B37079' \
-# 	COLOR_10='79B370' \
-# 	COLOR_11='B3AA70' \
-# 	COLOR_12='7079B3' \
-# 	COLOR_13='AA70B3' \
-# 	COLOR_14='70B3AA' \
-# 	COLOR_15='929292' \
-# 	COLOR_FG='787878' \
-# 	COLOR_BG='000000'
 # See https://github.com/folke/tokyonight.nvim/blob/main/extras/foot/tokyonight_night.ini
 export \
 	COLOR_00='15161e' \
@@ -116,7 +97,7 @@ export GIT_CONFIG_KEY_5='tag.gpgsign' GIT_CONFIG_VALUE_5=true
 # Wayland
 export MOZ_ENABLE_WAYLAND=1
 export QT_QPA_PLATFORM='wayland;xcb'
-export QT_QPA_PLATFORMTHEME='qt5ct'
+export QT_QPA_PLATFORMTHEME='kvantum'
 export SDL_VIDEODRIVER='wayland,x11'
 export ELECTRON_OZONE_PLATFORM_HINT='wayland'
 
