@@ -23,11 +23,10 @@ spawn() { [ -n "$(get_pid "$1")" ] || "$@" & }
 
 if [ "$#" -eq 1 ]; then
 	statusbar.sh exit
-	terminate fnott
+	terminate swaync
 	swaymsg exit
 else
 	update-colors.sh
-	spawn fnott
+	spawn swaync
 	statusbar.sh
 fi
-

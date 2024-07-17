@@ -55,6 +55,7 @@ window#waybar { background-color: @COLOR_BG; }
 #custom-backlight,
 #custom-battery,
 #custom-date,
+#custom-notification,
 #tray {
 	color: @COLOR_07;
 	padding: 0 8px;
@@ -96,3 +97,12 @@ window#waybar { background-color: @COLOR_BG; }
 #custom-battery.warning { color: @COLOR_03; }
 #custom-battery.charging { color: @COLOR_02; }
 #custom-battery.full { color: @COLOR_12; }
+
+/* Desktop Notification */
+#custom-notification.notification { color: @COLOR_14; }
+#custom-notification.dnd-notification,
+#custom-notification.inhibited-notification,
+#custom-notification.dnd-inhibited-notification { color: @COLOR_13; }
+#custom-notification.dnd-none,
+#custom-notification.inhibited-none,
+#custom-notification.dnd-inhibited-none { color: @COLOR_03; }

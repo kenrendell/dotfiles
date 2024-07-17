@@ -4,4 +4,4 @@ local c = {}
 
 c.style = 'night'
 
-return function () require('lualine').setup(c) end
+return function () require('tokyonight').setup(c) end

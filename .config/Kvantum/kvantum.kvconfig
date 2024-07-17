@@ -1,1 +1,5 @@
-theme=KvArcDark
+[General]
+theme=ArcDark
+
+[Applications]
+ArcDarker=gns3

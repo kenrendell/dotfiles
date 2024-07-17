@@ -48,9 +48,10 @@ require('lazy').setup({ -- Plugins
 	},
 	{ -- Colorscheme
 		'folke/tokyonight.nvim',
+		enabled = true,
 		lazy = false,
 		priority = 1000,
-		opts = { style = 'night' },
+		config = require('plugins.config.tokyonight')
 	},
 	{ -- Status Line
 		'nvim-lualine/lualine.nvim',
