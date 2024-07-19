@@ -15,6 +15,7 @@ get_pid() {
 }
 
 terminate() {
+	unset pid_list
 	for name in "$@"; do pid_list="${pid_list} $(get_pid "$name")"; done
 	[ -z "${pid_list##*[[:digit:]]*}" ] && env kill -TERM --timeout 10000 KILL ${pid_list}
 }
@@ -27,6 +28,7 @@ if [ "$#" -eq 1 ]; then
 	swaymsg exit
 else
 	update-colors.sh
+	terminate swaync
 	spawn swaync
 	statusbar.sh
 fi
