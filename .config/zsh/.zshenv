@@ -49,18 +49,6 @@ export \
 	COLOR_SBG='283457' \
 	COLOR_URL='73daca'
 
-# Dynamic Menu
-export BEMENU_OPTS="\
---wrap \
---prompt menu \
---line-height 24 \
---fn 'JetBrains Mono 9' \
---tf '#${COLOR_02}' --tb '#${COLOR_BG}' \
---ff '#${COLOR_04}' --fb '#${COLOR_BG}' \
---nf '#${COLOR_07}' --nb '#${COLOR_BG}' \
---hf '#${COLOR_03}' --hb '#${COLOR_BG}' \
---sf '#${COLOR_05}' --sb '#${COLOR_15}'"
-
 # FZF configurations
 export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'
 export FZF_DEFAULT_OPTS="\

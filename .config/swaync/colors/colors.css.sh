@@ -1,0 +1,35 @@
+#!/bin/sh
+# Configure 'waybar' CSS colors
+
+cat << EOF > "${0%.*}"
+@define-color COLOR_00  #${COLOR_00};
+@define-color COLOR_01  #${COLOR_01};
+@define-color COLOR_02  #${COLOR_02};
+@define-color COLOR_03  #${COLOR_03};
+@define-color COLOR_04  #${COLOR_04};
+@define-color COLOR_05  #${COLOR_05};
+@define-color COLOR_06  #${COLOR_06};
+@define-color COLOR_07  #${COLOR_07};
+@define-color COLOR_08  #${COLOR_08};
+@define-color COLOR_09  #${COLOR_09};
+@define-color COLOR_10  #${COLOR_10};
+@define-color COLOR_11  #${COLOR_11};
+@define-color COLOR_12  #${COLOR_12};
+@define-color COLOR_13  #${COLOR_13};
+@define-color COLOR_14  #${COLOR_14};
+@define-color COLOR_15  #${COLOR_15};
+@define-color COLOR_FG  #${COLOR_FG};
+@define-color COLOR_BG  #${COLOR_BG};
+
+@define-color cc-bg rgba(26, 27, 38, 1);
+@define-color noti-border-color rgba(255, 255, 255, 0.15);
+@define-color noti-bg rgb(17, 17, 27);
+@define-color noti-bg-darker rgb(43, 43, 57);
+@define-color noti-bg-hover rgb(27, 27, 43);
+@define-color noti-bg-focus rgba(27, 27, 27, 0.6);
+@define-color noti-close-bg rgba(255, 255, 255, 0.1);
+@define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
+@define-color text-color rgba(169, 177, 214, 1);
+@define-color text-color-disabled rgb(150, 150, 150);
+@define-color bg-selected rgb(0, 128, 255);
+EOF
