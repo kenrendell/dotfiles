@@ -5,3 +5,4 @@
 "${XDG_CONFIG_HOME}/waybar/colors/colors.css.sh"
 "${XDG_CONFIG_HOME}/swaync/colors/colors.css.sh"
 "${XDG_CONFIG_HOME}/sway/colors.conf.sh"
+"${XDG_CONFIG_HOME}/zathura/colors/colors.conf.sh"
