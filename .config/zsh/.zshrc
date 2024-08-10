@@ -53,3 +53,6 @@ command -v fzf >/dev/null 2>&1 && {
 # Syntax Highlighting (must be sourced at the end of this file)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 . '/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+
+# Load and unload environment variables depending on the current directory.
+eval "$(direnv hook zsh)"

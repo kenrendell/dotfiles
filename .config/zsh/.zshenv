@@ -130,3 +130,8 @@ export LYNX_LSS="$LYNX_CFG_PATH/lynx.lss"
 
 # Task-warrior default data location
 export TASKDATA="${XDG_DATA_HOME}/task"
+
+# Xschem PDK
+# http://repo.hu/projects/xschem/xschem_man/tutorial_xschem_sky130.html
+export PDK_ROOT="${XDG_DATA_HOME}/pdk"
+export PDK='sky130A'

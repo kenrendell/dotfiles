@@ -46,6 +46,13 @@ alias mkdir='mkdir -pv'
 # Managing dotfiles
 alias dotfiles='git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
 
+# Managing nix packages
+# See https://github.com/lf-/flakey-profile
+alias nix_profile_switch='nix run "${XDG_CONFIG_HOME}/nix/pkgs#profile.switch"'
+alias nix_profile_rollback='nix run "${XDG_CONFIG_HOME}/nix/pkgs#profile.rollback"'
+alias nix_profile_build='nix build "${XDG_CONFIG_HOME}/nix/pkgs#profile"'
+alias nix_profile_update='nix flake update --flake "${XDG_CONFIG_HOME}/nix/pkgs"'
+
 # Network
 alias wan='drill -Q myip.opendns.com @resolver1.opendns.com'
 alias ip='ip -color'
