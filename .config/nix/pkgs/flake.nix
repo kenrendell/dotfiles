@@ -34,6 +34,7 @@
           # Specifies things to pin in the flake registry and in NIX_PATH.
           pinned = { nixpkgs = toString nixpkgs; };
           paths = with pkgs; [
+            # EDA tools
             xschem
             ngspice
             xyce
@@ -47,7 +48,42 @@
             qucs-s
             kicad
             fritzing
+            verible
+            nextpnr
+            verilator
+            yosys
+
+            # Drawing tools
+            inkscape
+            ipe
+
+            # Notes
             emanote
+
+            # Octave
+            octave
+            octavePackages.symbolic
+            octavePackages.control
+            octavePackages.signal
+            octavePackages.image
+            octavePackages.instrument-control
+
+            # Command-line
+            yash
+            exercism
+            cointop
+
+            # IoT
+            mqttui
+            nodePackages.node-red
+
+            # Desktop Applications
+            betterbird
+            teams-for-linux
+            caprine-bin
+            vesktop
+            audacity
+            shotcut
           ];
         };
       });
