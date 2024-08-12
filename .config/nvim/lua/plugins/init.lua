@@ -1,11 +1,26 @@
-
 -- Bootstrap lazy.nvim
 local lazy_path = string.format('%s/lazy/lazy.nvim', vim.fn.stdpath('data'))
 if not (vim.uv or vim.loop).fs_stat(lazy_path) then
 	local lazy_repo = 'https://github.com/folke/lazy.nvim.git'
-	vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--single-branch', lazy_repo, lazy_path })
+	local out = vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--single-branch', lazy_repo, lazy_path })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end vim.opt.runtimepath:prepend(lazy_path)
 
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- Setup lazy.nvim
 require('lazy').setup({ -- Plugins
 	{ -- Portable package manager
 		'williamboman/mason.nvim',
@@ -86,9 +101,7 @@ require('lazy').setup({ -- Plugins
 		enabled = true,
 		build = ':TSUpdate',
 		event = 'BufReadPost',
-		dependencies = {
-			'p00f/nvim-ts-rainbow' -- no longer maintained (see 'HiPhish/nvim-ts-rainbow2')
-		}, config = require('plugins.config.treesitter')
+		config = require('plugins.config.treesitter')
 	},
 	{ -- A collection of language packs for Vim.
 		'sheerun/vim-polyglot',

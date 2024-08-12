@@ -13,10 +13,5 @@ c.ensure_installed = {
 
 c.highlight = { enable = true }
 c.incremental_selection = { enable = true }
-c.rainbow = {
-	enable = false,
-	extended_mode = true,
-	max_file_lines = nil
-}
 
 return function () require('nvim-treesitter.configs').setup(c) end
