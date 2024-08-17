@@ -38,10 +38,14 @@
             xschem
             ngspice
             xyce
+            #xyce-parallel
+            trilinos
+            #trilinos-mpi
             ghdl
             iverilog
             gaw
             gtkwave
+            gnuplot
             magic-vlsi
             klayout
             xcircuit
@@ -53,12 +57,18 @@
             verilator
             yosys
 
+            # Distributed computing
+            mpi
+
             # Drawing tools
             inkscape
             ipe
 
             # Notes
             emanote
+
+            # Document Viewer
+            sioyek
 
             # Octave
             octave
