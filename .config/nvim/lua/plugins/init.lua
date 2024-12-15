@@ -128,8 +128,11 @@ require('lazy').setup({ -- Plugins
 	{ -- Note taking
 		'nvim-neorg/neorg',
 		enabled = true,
+		lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+		version = '*', -- Pin Neorg to the latest stable release
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter',
+			'folke/tokyonight.nvim',
 		}, config = require('plugins.config.neorg')
 	},
 	{ -- Note taking assistant

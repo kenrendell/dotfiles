@@ -6,7 +6,7 @@
 step=5
 sysfs_backlight_file="/sys/class/backlight/${BACKLIGHT_DEVICE}/actual_brightness"
 
-[ -f "$sysfs_backlight_file" ] ||
+[ -f "$sysfs_backlight_file" ] || \
 	{ printf "Invalid backlight device!\n" 1>&2; exit 1; }
 
 script_name="${0##*/}"

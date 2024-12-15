@@ -78,9 +78,9 @@ set.fillchars = {
 set.spelllang = 'en_us'
 
 -- Folding
-set.foldenable = false
+set.foldenable = true
 set.foldmethod = 'indent'
-set.foldlevel = 20
+--set.foldlevel = 20
 
 -- Windows
 set.equalalways = true

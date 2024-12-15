@@ -37,10 +37,10 @@
             # EDA tools
             xschem
             ngspice
-            xyce
-            #xyce-parallel
-            trilinos
-            #trilinos-mpi
+            #xyce
+            xyce-parallel
+            #trilinos
+            trilinos-mpi
             ghdl
             iverilog
             gaw
@@ -56,6 +56,9 @@
             nextpnr
             verilator
             yosys
+
+            # GPU
+            glxinfo
 
             # Distributed computing
             mpi
@@ -88,9 +91,8 @@
             nodePackages.node-red
 
             # Desktop Applications
-            betterbird
+            # NixGL required
             teams-for-linux
-            caprine-bin
             vesktop
             audacity
             shotcut
