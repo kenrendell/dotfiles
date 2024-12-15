@@ -1,15 +1,31 @@
 [Default Applications]
-
-# These .desktop entries can be seen in /usr/share/applications/.
-# Custom .desktop entries can be added in ~/.local/share/applications/.
-
-# xdg-open will use these settings to determine how to open filetypes.
-# xdg-mime query filetype <FILE>      // Prints the MIME type of the file <FILE>.
-# xdg-mime query default <MIME-TYPE>  // Prints the .desktop filename of the application
-#                                     // which is registered to open <MIME-TYPE>.
-
 image/jpeg=imv.desktop;
 image/jpg=imv.desktop;
 image/png=imv.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
 x-scheme-handler/msteams=teams-for-linux.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-839LY2.desktop
+message/rfc822=userapp-Thunderbird-839LY2.desktop
+x-scheme-handler/mid=userapp-Thunderbird-839LY2.desktop
+x-scheme-handler/news=userapp-Thunderbird-VEHJY2.desktop
+x-scheme-handler/snews=userapp-Thunderbird-VEHJY2.desktop
+x-scheme-handler/nntp=userapp-Thunderbird-VEHJY2.desktop
+x-scheme-handler/feed=userapp-Thunderbird-6OYGY2.desktop
+application/rss+xml=userapp-Thunderbird-6OYGY2.desktop
+application/x-extension-rss=userapp-Thunderbird-6OYGY2.desktop
+x-scheme-handler/webcal=userapp-Thunderbird-2388X2.desktop
+text/calendar=userapp-Thunderbird-2388X2.desktop
+application/x-extension-ics=userapp-Thunderbird-2388X2.desktop
+x-scheme-handler/webcals=userapp-Thunderbird-2388X2.desktop
+
+[Added Associations]
+x-scheme-handler/mailto=userapp-Thunderbird-839LY2.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-839LY2.desktop;
+x-scheme-handler/news=userapp-Thunderbird-VEHJY2.desktop;
+x-scheme-handler/snews=userapp-Thunderbird-VEHJY2.desktop;
+x-scheme-handler/nntp=userapp-Thunderbird-VEHJY2.desktop;
+x-scheme-handler/feed=userapp-Thunderbird-6OYGY2.desktop;
+application/rss+xml=userapp-Thunderbird-6OYGY2.desktop;
+application/x-extension-rss=userapp-Thunderbird-6OYGY2.desktop;
+x-scheme-handler/webcal=userapp-Thunderbird-2388X2.desktop;
+x-scheme-handler/webcals=userapp-Thunderbird-2388X2.desktop;
