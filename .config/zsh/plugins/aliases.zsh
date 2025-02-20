@@ -78,3 +78,8 @@ fix_zsh_history() {
 	strings --encoding=S "${HISTFILE}.bak" > "$HISTFILE"
 	fc -R "$HISTFILE"
 }
+
+# Generate xschemrc for Xschem
+generate_xschemrc() {
+	command echo source "${PDK_ROOT}/${PDK}/libs.tech/xschem/xschemrc" > ./xschemrc
+}

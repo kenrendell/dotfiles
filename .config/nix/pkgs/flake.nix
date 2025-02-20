@@ -93,6 +93,7 @@
             # Desktop Applications
             # NixGL required
             teams-for-linux
+            telegram-desktop
             vesktop
             audacity
             shotcut
