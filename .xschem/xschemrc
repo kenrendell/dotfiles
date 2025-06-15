@@ -1,1 +1,4 @@
 source $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/xschemrc
+
+set terminal foot
+set editor {foot nvim}

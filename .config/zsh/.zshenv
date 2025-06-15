@@ -135,6 +135,8 @@ export TASKDATA="${XDG_DATA_HOME}/task"
 # http://repo.hu/projects/xschem/xschem_man/tutorial_xschem_sky130.html
 export PDK_ROOT="${XDG_DATA_HOME}/pdk"
 export PDK='sky130B'
+export KLAYOUT_HOME="${HOME}/.klayout"
+export KLAYOUT_PATH="${KLAYOUT_HOME}:${PDK_ROOT}/${PDK}/libs.tech/klayout"
 
 # Nix Package Manager
 export NIXPKGS_ALLOW_UNFREE=1

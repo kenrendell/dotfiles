@@ -48,7 +48,7 @@
             gnuplot
             magic-vlsi
             klayout
-            xcircuit
+            #xcircuit
             qucs-s
             kicad
             fritzing
@@ -56,6 +56,25 @@
             nextpnr
             verilator
             yosys
+
+            # For Klayout
+            #python313Packages.python
+            #python313Packages.pip
+            #python313Packages.gdsfactory
+            #python313Packages.kfactory
+            #python313Packages.klayout
+            #python313Packages.toolz
+            #python313Packages.aenum
+            #python313Packages.gitpython
+            #python313Packages.gitdb
+            #python313Packages.smmap
+            #python313Packages.loguru
+            #python313Packages.rich
+            #python313Packages.python-dotenv
+            #python313Packages.pydantic
+            #python313Packages.pydantic-core
+            #python313Packages.typing-extensions
+            #python313Packages.typing-inspection
 
             # GPU
             glxinfo
