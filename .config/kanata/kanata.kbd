@@ -1,4 +1,4 @@
-# For linux setup, see https://github.com/jtroo/kanata/blob/main/docs/setup-linux.md
+;; For linux setup, see https://github.com/jtroo/kanata/blob/main/docs/setup-linux.md
 
 (defcfg process-unmapped-keys no)
 
