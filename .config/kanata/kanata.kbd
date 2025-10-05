@@ -1,4 +1,6 @@
-(defcfg process-unmapped-keys yes)
+# For linux setup, see https://github.com/jtroo/kanata/blob/main/docs/setup-linux.md
+
+(defcfg process-unmapped-keys no)
 
 ;; Define keys that will be modified
 (defsrc
@@ -12,8 +14,8 @@
 
 ;; Values used by multiple changes
 (defvar
-      tap-time 150
-      hold-time 150
+      tap-time 200
+      hold-time 200
 )
 
 ;; Remapping between physical keys and functionality
