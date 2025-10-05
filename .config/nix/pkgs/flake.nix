@@ -57,6 +57,8 @@
             verilator
             yosys
 
+            kanata-with-cmd
+
             # For Klayout
             #python313Packages.python
             #python313Packages.pip
